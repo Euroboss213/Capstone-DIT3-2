@@ -6,6 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h1>Login</h1>
+        <form action="../php/tologin.php" method="POST">
+            <label for="username">Username</label>
+            <input type="email" name="username" required>
+            <label for="password">Password</label>
+            <input type="password" name="password" required>
+            
+            <button type="submit">Login</button>
+        </form>
 </body>
 </html>
