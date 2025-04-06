@@ -1,3 +1,10 @@
+<?php
+include "../php/auth_check.php";
+
+// Get the user's name from session
+$userName = $_SESSION['user_name'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,16 +37,17 @@
       </button>
       <div id="dropdownMenu" class="dropdown-menu">
         <a href="#" class="dropdown-item">Change Password</a>
-        <a href="#" class="dropdown-item">Logout</a>
+        <form action="../php/tologout.php" method="post">
+            <button type="submit" class="dropdown-item-btn">Logout</button>
+        </form>
       </div>
     </div>
-    
   </nav>
 
   <div class="flex-container">
     <!-- Sidebar -->
     <aside class="sidebar">
-      <h2 class="user-name">Dela Cruz, Juan M.</h2>
+      <h2 class="user-name"><?php echo htmlspecialchars($userName); ?></h2>
       <button class="side-button">View My Requests</button>
       <button class="side-button">Verify My Account</button>
     </aside>
@@ -57,7 +65,6 @@
       <div class="image-container">
         <img src="step.png" alt="Your Image" class="image" />
       </div>
-
     </main>
   </div>
 </body>

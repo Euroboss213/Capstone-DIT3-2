@@ -89,6 +89,18 @@ body {
   text-decoration: none;
 }
 
+.dropdown-item-btn {
+  padding: 1rem;
+  display: block;
+  color: #4a5568; /* text-gray-700 */
+  text-decoration: none;
+  width: 100%;
+  text-align: start;
+}
+.dropdown-item-btn:hover {
+  background-color: #f7fafc; /* hover:bg-gray-100 */
+}
+
 .dropdown-item:hover {
   background-color: #f7fafc; /* hover:bg-gray-100 */
 }
