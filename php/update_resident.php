@@ -3,7 +3,7 @@
 // Replace these variables with actual database connection details
 $servername = "localhost"; // your database server
 $username = "username";   // your database username
-$password = "password";   // your database password
+$password = "";   // your database password
 $dbname = "admin"; // your database name
 
 // Create connection
