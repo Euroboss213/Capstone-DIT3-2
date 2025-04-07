@@ -11,8 +11,8 @@ $userName = $_SESSION['user_name'];
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Barangay Document Request</title>
-  <link rel="stylesheet" href="userHome_style.css" />
-  <script src="userHome_script.js" defer></script>
+  <link rel="stylesheet" href="../css/userHome_style.css" />
+  <script src="../js/userHome_script.js" defer></script>
 </head>
 <body>
   <!-- Navbar -->

@@ -1,4 +1,10 @@
 <!-- Save this as index.php or similar -->
+<?php
+include "../php/auth_check.php";
+
+// Get the user's name from session
+$userName = $_SESSION['user_name'];
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,8 +12,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Barangay Document Request</title>
-  <link rel="stylesheet" href="adminResidents_style.css" />
-  <script src="adminResidents_script.js" defer></script>
+  <link rel="stylesheet" href="../css/adminResidents_style.css" />
+  <script src="../js/adminResidents_script.js" defer></script>
 </head>
 <body>
   <!-- Navbar -->
