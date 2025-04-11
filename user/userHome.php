@@ -11,14 +11,14 @@ $userName = $_SESSION['user_name'];
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Barangay Document Request</title>
-  <link rel="stylesheet" href="../css/userHome_style.css" />
+  <link rel="stylesheet" href="../styles/userHome_style.css" />
   <script src="../js/userHome_script.js" defer></script>
 </head>
 <body>
   <!-- Navbar -->
   <nav class="navbar">
     <div class="logo-container">
-      <img src="logo.png" alt="REQWEST Logo" class="logo-img" />
+      <img src="../assets/logo.png" alt="REQWEST Logo" class="logo-img" />
       <div class="barangay-name">
         <span class="barangay">Barangay West Kamias</span>
         <span class="city">Quezon City</span>
@@ -63,7 +63,7 @@ $userName = $_SESSION['user_name'];
 
       <!-- Image Container -->
       <div class="image-container">
-        <img src="step.png" alt="Your Image" class="image" />
+        <img src="../assets/step.png" alt="Your Image" class="image" />
       </div>
     </main>
   </div>

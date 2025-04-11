@@ -1,0 +1,188 @@
+html {
+    height: 100%;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "K2D", sans-serif;
+    height: 100%;
+    overflow: hidden;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0 2px 4px 0 rgb(212, 211, 211);
+    background-color: #FFFFFF;
+    height: 12%;
+    margin-bottom: 4px;
+}
+
+    .navigation {
+        display: flex;
+        gap: 55px;
+        margin-left: 0px;
+    }
+        .navigation li {
+            list-style-type:  none;
+            font-size: 20px;
+            font-weight: bold
+        }
+        nav img {
+            height: 60px;
+            width: 180px;
+            padding: 10px 40px;
+        }
+main {
+    display: flex;
+    height: 87%;
+}
+
+    .left-cont {
+        width: 60%;
+        height: 100%;
+        background-color: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+        .headers{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            gap: 80px;
+            margin-bottom: 30px;
+        }
+            .headers h1{
+                font-size: 40px;
+                font-weight: 400;
+                margin: 0;
+            }
+            .header-active {
+                border-bottom: 3px solid #3399FF;
+                color: #3399FF;
+            }
+            
+            .header-inactive {
+                border-bottom: 3px solid #CCCCCC;
+                color: #CCCCCC;
+            }
+
+        .login-form {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 70%;
+            gap: 30px;
+        }
+            .login-form input{
+                width: 90%;
+                padding: 15px 30px;
+                border: 1px solid #00000034;
+                border-radius: 50px;
+                box-shadow: 0 2px 8px 0 #3399FF80;
+            }
+            .login-form-bot-cont {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                align-items: center;
+            }
+                .login-form-bot-cont button{
+                    padding: 6px;
+                    background-color: #3399FF;
+                    border: none;
+                    border-radius: 50px;
+                    width: 20%;
+                    color: #FFFFFF;
+                    font-family: "K2D", sans-serif;
+                    font-size: 17px;
+                }
+                .login-form-bot-cont a{
+                    text-decoration: none;
+                    color: #3399FF;
+                    font-weight: 700;
+                }
+            
+        .signup-form {
+            display: grid;
+            align-items: center;
+            grid-template-columns: 1fr 1fr;
+            width: 70%;
+            gap: 15px 50px ; /* row gap, column gap */
+            max-width: 600px;
+            margin: 0;
+        }
+            .signup-form input{
+                width: 80%;
+                padding: 15px 30px;
+                border: 1px solid #00000034;
+                border-radius: 50px;
+                box-shadow: 0 2px 8px 0 #3399FF80;
+                grid-column: span 1;
+                align-self: center;
+            }
+            .signup-form label {
+                grid-column: span 1;
+            }
+                .signup-form button{
+                    padding: 6px;
+                    background-color: #3399FF;
+                    border: none;
+                    border-radius: 50px;
+                    width: 40%;
+                    color: #FFFFFF;
+                    font-family: "K2D", sans-serif;
+                    font-size: 17px;
+                    justify-self: end;
+                }
+                .signup-form a{
+                    text-decoration: none;
+                    color: #3399FF;
+                    font-weight: 700;
+                }
+
+    .right-cont {
+    position: relative;
+    width: 30%;
+    height: 100%;
+    background-color: #ffffff; /* just to see contrast */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+
+        .circle {
+        position: absolute;
+        border-radius: 50%;
+        background-color: #3399FF;
+        margin-top: -60px;
+        margin-left: 600px;
+        }
+
+        /* Big Circle - most transparent */
+        .big {
+        width: 1010px;
+        height: 1010px;
+        opacity: 0.4;
+        }
+
+        /* Medium Circle */
+        .medium {
+        width: 880px;
+        height: 880px;
+        opacity: 0.6;
+        }
+
+        /* Smallest Circle - most visible */
+        .small {
+        width: 740px;
+        height: 740px;
+        opacity: 1;
+        }
+

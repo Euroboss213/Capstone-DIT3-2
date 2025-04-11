@@ -1,10 +1,3 @@
-<!-- Save this as index.php or similar -->
-<?php
-include "../php/auth_check.php";
-
-// Get the user's name from session
-$userName = $_SESSION['user_name'];
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,14 +5,14 @@ $userName = $_SESSION['user_name'];
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Barangay Document Request</title>
-  <link rel="stylesheet" href="../css/adminResidents_style.css" />
+  <link rel="stylesheet" href="../styles/adminResidents_style.css" />
   <script src="../js/adminResidents_script.js" defer></script>
 </head>
 <body>
   <!-- Navbar -->
   <nav class="navbar">
     <div class="logo-container">
-      <img src="logo.png" alt="REQWEST Logo" class="logo-img" />
+      <img src="../assets/logo.png" alt="REQWEST Logo" class="logo-img" />
       <div class="barangay-name">
         <span class="barangay">Barangay West Kamias</span>
         <span class="city">Quezon City</span>

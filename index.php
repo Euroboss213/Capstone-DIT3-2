@@ -17,7 +17,7 @@
 </head>
 <body>
     <nav>
-        <img src="./assets/logo.png" alt="reqwest-logo">
+        <img src="./assets/reqwest-logo.png" alt="reqwest-logo">
         <ul class="navigation">
             <li>Home</li>
             <li>Services</li>
@@ -25,7 +25,7 @@
             <li>FAQ</li>
             <li>Contact Us</li>
         </ul>
-        <button class="signup-btn">Sign Up</button>
+        <button class="signup-btn" >Sign Up</button>
     </nav>
 
     <main>
