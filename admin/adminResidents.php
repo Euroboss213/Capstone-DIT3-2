@@ -37,7 +37,7 @@
       <h2 class="user-name">Admin Account</h2>
       <button class="side-button">Dashboard</button>
       <button class="side-button">Document Requests</button>
-      <button class="side-button">Registered Residents</button>
+      <button id="registered-residents" class="side-button">Registered Residents</button>
       <button class="side-button">User Accounts</button>
       <button class="side-button">Admin Accounts</button>
     </aside>
@@ -78,7 +78,7 @@
                   <td>{$row['contact_number']}</td>
                   <td>{$row['address']}</td>
                   <td>{$row['date_of_registration']}</td>
-                  <td><button class='more-info-btn' onclick='openModal(" . json_encode($row) . ")'>More Info</button></td>
+                  <td><button class='more-info-btn' onclick='openModal(" . json_encode($row) . ")'>View and Edit</button></td>
                 </tr>";
         }
         echo "</tbody></table>";
