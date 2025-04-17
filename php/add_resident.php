@@ -1,5 +1,5 @@
 <?php
-include 'config.php';
+include '../database/connect_db.php';
 
 header('Content-Type: application/json');
 
@@ -36,13 +36,13 @@ $covid_status = $_POST['covid_status'] ?? null;
 $vaccinated = $_POST['vaccinated'] ?? null;
 $date_of_registration = date("Y-m-d H:i:s"); // now
 
-$sql = "INSERT INTO residents (
+$sql = "INSERT INTO residences (
   first_name, middle_name, last_name, suffix, birth_date, birth_place, age, sex, civil_status,
   nationality, religion, occupation, contact_number, address, pwd, pwd_id_no, indigent, solo_parent, 
   solo_parent_id_no, member_4ps, family_monthly_income, registered_voter, national_id_no, 
   philhealth_no, sss_no, pagibig_no, tin_no, voters_id_no, covid_status, vaccinated, date_of_registration
 ) VALUES (
-  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
 )";
 
 $stmt = $conn->prepare($sql);

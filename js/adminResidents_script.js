@@ -103,30 +103,31 @@ window.addEventListener("click", function (e) {
   if (e.target === addModal) closeAddModal();
 });
 
-document.getElementById('addResidentForm').addEventListener('submit', function(e) {
+document.getElementById("addResidentForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
-  const formData = new FormData(this);
+  let formData = new FormData(this);
+
+  // Log form data to see what is being sent
+  formData.forEach((value, key) => {
+      console.log(key + ": " + value);
+  });
 
   fetch('../php/add_resident.php', {
-    method: 'POST',
-    body: formData
+      method: 'POST',
+      body: formData
   })
-  .then(res => res.json())
+  .then(response => response.text()) // Read the server's response as text
   .then(data => {
-    if (data.success) {
-      alert("Resident added successfully.");
-      closeAddModal();
-      location.reload();
-    } else {
-      alert("Failed to add resident.");
-    }
+      console.log("Server Response: " + data); // Log the response from PHP
+      alert(data); // Alert the user with the response
   })
   .catch(error => {
-    console.error("Error:", error);
-    alert("There was a problem adding the resident.");
+      console.error('Error during fetch:', error);
+      alert('An error occurred while submitting the form.');
   });
 });
+
 
 function deleteResident() {
   const id = document.getElementById('id').value;
