@@ -19,11 +19,8 @@ $fields = [
     'first_name', 'middle_name', 'last_name', 'suffix', 'birth_date', 'birth_place', 'age',
     'sex', 'civil_status', 'nationality', 'religion', 'occupation', 'contact_number', 'address',
     'pwd', 'pwd_id_no', 'indigent', 'solo_parent', 'solo_parent_id_no', 'member_4ps',
-    'family_monthly_income', 'registered_voter', 'purok_no', 'house_no', 'street',
-    'emergency_full_name', 'emergency_relationship', 'emergency_contact_no', 'emergency_address',
-    'national_id_no', 'philhealth_no', 'sss_no', 'pagibig_no', 'tin_no', 'voters_id_no',
-    'covid_status', 'vaccinated', 'date_of_registration', 'date_of_death', 'alive_or_deceased'
-];
+    'family_monthly_income', 'national_id_no', 'philhealth_no', 'sss_no', 'pagibig_no', 'tin_no', 'voters_id_no',
+    'covid_status', 'vaccinated', 'date_of_registration'];
 
 $placeholders = [];
 $values = [];

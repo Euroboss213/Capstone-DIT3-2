@@ -103,28 +103,37 @@ window.addEventListener("click", function (e) {
   if (e.target === addModal) closeAddModal();
 });
 
-document.getElementById("addResidentForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  let formData = new FormData(this);
-
-  // Log form data to see what is being sent
-  formData.forEach((value, key) => {
-      console.log(key + ": " + value);
-  });
+document.getElementById('addResidentForm').addEventListener('submit', function(event) {
+  event.preventDefault();  // Prevent the form from submitting the traditional way
+  
+  const formData = new FormData(this);  // Create a FormData object from the form
 
   fetch('../php/add_resident.php', {
-      method: 'POST',
-      body: formData
+    method: 'POST',
+    body: formData
   })
-  .then(response => response.text()) // Read the server's response as text
+  .then(response => {
+    return response.text().then(text => {
+      try {
+        return JSON.parse(text);  // Attempt to parse the response as JSON
+      } catch (err) {
+        console.error("Raw response (not JSON):", text);
+        throw new Error("Invalid JSON: " + err.message);
+      }
+    });
+  })
   .then(data => {
-      console.log("Server Response: " + data); // Log the response from PHP
-      alert(data); // Alert the user with the response
+    if (data.success) {
+      alert('Resident added successfully!');
+      closeAddModal();  // Close the modal after successful submission
+      document.getElementById('addResidentForm').reset();  // Reset the form fields
+    } else {
+      alert('Error adding resident: ' + data.message);  // Show error message if not successful
+    }
   })
   .catch(error => {
-      console.error('Error during fetch:', error);
-      alert('An error occurred while submitting the form.');
+    console.error('Error:', error);  // Log any error that occurs during the fetch request
+    alert('An error occurred: ' + error.message);  // Show an error message to the user
   });
 });
 

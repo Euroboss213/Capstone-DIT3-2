@@ -146,12 +146,6 @@
     </select>
 </label>
 <label>Family Monthly Income: <input type="number" step="0.01" id="family_monthly_income" name="family_monthly_income" /></label>
-<label>Registered Voter: 
-    <select id="registered_voter" name="registered_voter">
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-    </select>
-</label>
 <label>National ID No: <input type="text" id="national_id_no" name="national_id_no" /></label>
 <label>PhilHealth No: <input type="text" id="philhealth_no" name="philhealth_no" /></label>
 <label>SSS No: <input type="text" id="sss_no" name="sss_no" /></label>
@@ -228,12 +222,6 @@
           </select>
         </label>
         <label>Family Monthly Income: <input type="number" step="0.01" name="family_monthly_income" /></label>
-        <label>Registered Voter: 
-          <select name="registered_voter">
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-          </select>
-        </label>
         <label>National ID No: <input type="text" name="national_id_no" /></label>
         <label>PhilHealth No: <input type="text" name="philhealth_no" /></label>
         <label>SSS No: <input type="text" name="sss_no" /></label>
