@@ -43,7 +43,7 @@ document.getElementById('residentForm').addEventListener('submit', function(e) {
   const formData = new FormData(this); // Collect form data
 
   // Use AJAX to send data to the PHP server
-  fetch('update_resident.php', {
+  fetch('../php/update_resident.php', {
     method: 'POST',
     body: formData
   })

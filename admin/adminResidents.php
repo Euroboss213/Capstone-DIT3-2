@@ -93,6 +93,7 @@
           <span class="close-btn" onclick="closeModal()">&times;</span>
           <h2>Resident Information</h2>
           <form id="residentForm">
+          <input type="hidden" id="id" name="id" />
             <div class="form-grid">
             <label>First Name: <input type="text" id="first_name" name="first_name" required /></label>
 <label>Middle Name: <input type="text" id="middle_name" name="middle_name" /></label>
