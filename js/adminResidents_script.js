@@ -1,6 +1,7 @@
 const profileButton = document.getElementById('profileButton');
 const dropdownMenu = document.getElementById('dropdownMenu');
 const modal = document.getElementById("infoModal");
+const addModal = document.getElementById("addModal");
 
 profileButton.addEventListener('click', (e) => {
   e.stopPropagation();
@@ -62,3 +63,96 @@ document.getElementById('residentForm').addEventListener('submit', function(e) {
     alert('There was an error processing your request.');
   });
 });
+
+function filterTable() {
+  const input = document.getElementById("searchInput");
+  const filter = input.value.toLowerCase();
+  const table = document.querySelector(".residents-table");
+  const rows = table.getElementsByTagName("tr");
+
+  // Start from 1 to skip the table header
+  for (let i = 1; i < rows.length; i++) {
+    const cells = rows[i].getElementsByTagName("td");
+    let found = false;
+
+    for (let j = 0; j < cells.length - 1; j++) { // exclude the "Action" column
+      const cell = cells[j];
+      if (cell.textContent.toLowerCase().includes(filter)) {
+        found = true;
+        break;
+      }
+    }
+
+    rows[i].style.display = found ? "" : "none";
+  }
+}
+
+// Show add modal
+function openNewResidentModal() {
+  document.getElementById("addResidentForm").reset();
+  addModal.style.display = "block";
+}
+
+// Close add modal
+function closeAddModal() {
+  addModal.style.display = "none";
+}
+
+// Close modals if click outside
+window.addEventListener("click", function (e) {
+  if (e.target === addModal) closeAddModal();
+});
+
+document.getElementById('addResidentForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+
+  fetch('../php/add_resident.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      alert("Resident added successfully.");
+      closeAddModal();
+      location.reload();
+    } else {
+      alert("Failed to add resident.");
+    }
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    alert("There was a problem adding the resident.");
+  });
+});
+
+function deleteResident() {
+  const id = document.getElementById('id').value;
+  if (!id) {
+    alert("No resident selected.");
+    return;
+  }
+
+  if (confirm("Are you sure you want to delete this resident?")) {
+    fetch(`../php/delete_resident.php?id=${id}`, {
+      method: 'GET'
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert("Resident deleted successfully.");
+        closeModal();
+        location.reload(); // Reload to update the table
+      } else {
+        alert("Failed to delete resident.");
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert("An error occurred while deleting the resident.");
+    });
+  }
+}
+

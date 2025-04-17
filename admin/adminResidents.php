@@ -44,6 +44,11 @@
 
     <!-- Main Content -->
     <main class="main-content">
+    <div class="top-bar">
+  <input type="text" id="searchInput" placeholder="Search residents..." class="search-bar" onkeyup="filterTable()" />
+  <button class="add-btn" onclick="openNewResidentModal()">+ Add New Resident</button>
+  </div>
+
       <?php
       $conn = new mysqli("localhost", "root", "", "admin");
       if ($conn->connect_error) {
@@ -106,7 +111,6 @@
     <select id="sex" name="sex">
         <option value="Male">Male</option>
         <option value="Female">Female</option>
-        <option value="Other">Other</option>
     </select>
 </label>
 <label>Civil Status: <input type="text" id="civil_status" name="civil_status" /></label>
@@ -148,13 +152,6 @@
         <option value="No">No</option>
     </select>
 </label>
-<label>Purok No: <input type="text" id="purok_no" name="purok_no" /></label>
-<label>House No: <input type="text" id="house_no" name="house_no" /></label>
-<label>Street: <input type="text" id="street" name="street" /></label>
-<label>Emergency Full Name: <input type="text" id="emergency_full_name" name="emergency_full_name" /></label>
-<label>Emergency Relationship: <input type="text" id="emergency_relationship" name="emergency_relationship" /></label>
-<label>Emergency Contact No: <input type="text" id="emergency_contact_no" name="emergency_contact_no" /></label>
-<label>Emergency Address: <input type="text" id="emergency_address" name="emergency_address" /></label>
 <label>National ID No: <input type="text" id="national_id_no" name="national_id_no" /></label>
 <label>PhilHealth No: <input type="text" id="philhealth_no" name="philhealth_no" /></label>
 <label>SSS No: <input type="text" id="sss_no" name="sss_no" /></label>
@@ -169,21 +166,95 @@
     </select>
 </label>
 <label>Date of Registration: <input type="text" id="date_of_registration" name="date_of_registration" readonly /></label>
-<label>Date of Death: <input type="date" id="date_of_death" name="date_of_death" /></label>
-<label>Alive or Deceased: 
-    <select id="alive_or_deceased" name="alive_or_deceased">
-        <option value="Alive">Alive</option>
-        <option value="Deceased">Deceased</option>
-    </select>
-</label>
-
             </div>
             <div class="modal-footer">
-              <button type="submit">Save Changes</button>
+            <button type="submit" class="save-btn">Save Changes</button>
+            <button type="button" class="delete-btn" onclick="deleteResident()">Delete</button>
             </div>
           </form>
         </div>
       </div>
+
+      <div id="addModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeAddModal()">&times;</span>
+    <h2>Add New Resident</h2>
+    <form id="addResidentForm">
+      <div class="form-grid">
+        <!-- Use same input structure as edit modal but with unique IDs if needed -->
+        <label>First Name: <input type="text" name="first_name" required /></label>
+        <label>Middle Name: <input type="text" name="middle_name" /></label>
+        <label>Last Name: <input type="text" name="last_name" required /></label>
+        <label>Suffix: <input type="text" name="suffix" /></label>
+        <label>Birth Date: <input type="date" name="birth_date" /></label>
+        <label>Birth Place: <input type="text" name="birth_place" /></label>
+        <label>Age: <input type="number" name="age" /></label>
+        <label>Sex: 
+          <select name="sex">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </label>
+        <label>Civil Status: <input type="text" name="civil_status" /></label>
+        <label>Nationality: <input type="text" name="nationality" /></label>
+        <label>Religion: <input type="text" name="religion" /></label>
+        <label>Occupation: <input type="text" name="occupation" /></label>
+        <label>Contact Number: <input type="text" name="contact_number" /></label>
+        <label>Address: <input type="text" name="address" /></label>
+        <label>PWD: 
+          <select name="pwd">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </label>
+        <label>PWD ID No: <input type="text" name="pwd_id_no" /></label>
+        <label>Indigent: 
+          <select name="indigent">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </label>
+        <label>Solo Parent: 
+          <select name="solo_parent">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </label>
+        <label>Solo Parent ID No: <input type="text" name="solo_parent_id_no" /></label>
+        <label>Member of 4Ps: 
+          <select name="member_4ps">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </label>
+        <label>Family Monthly Income: <input type="number" step="0.01" name="family_monthly_income" /></label>
+        <label>Registered Voter: 
+          <select name="registered_voter">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </label>
+        <label>National ID No: <input type="text" name="national_id_no" /></label>
+        <label>PhilHealth No: <input type="text" name="philhealth_no" /></label>
+        <label>SSS No: <input type="text" name="sss_no" /></label>
+        <label>Pag-IBIG No: <input type="text" name="pagibig_no" /></label>
+        <label>TIN No: <input type="text" name="tin_no" /></label>
+        <label>Voter's ID No: <input type="text" name="voters_id_no" /></label>
+        <label>COVID Status: <input type="text" name="covid_status" /></label>
+        <label>Vaccinated: 
+          <select name="vaccinated">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </label>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="save-btn">Add Resident</button>
+      </div>
+    </form>
+  </div>
+</div>
+
     </main>
   </div>
 </body>
