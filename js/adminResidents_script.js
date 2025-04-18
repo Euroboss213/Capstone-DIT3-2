@@ -126,6 +126,7 @@ document.getElementById('addResidentForm').addEventListener('submit', function(e
     if (data.success) {
       alert('Resident added successfully!');
       closeAddModal();  // Close the modal after successful submission
+      location.reload();
       document.getElementById('addResidentForm').reset();  // Reset the form fields
     } else {
       alert('Error adding resident: ' + data.message);  // Show error message if not successful
