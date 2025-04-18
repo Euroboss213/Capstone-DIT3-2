@@ -1,13 +1,26 @@
 const profileButton = document.getElementById('profileButton');
-const dropdownMenu = document.getElementById('dropdownMenu');
+const accdropdownMenu = document.getElementById('acc-dropdownMenu');
+const chatButton = document.getElementById('chatButton');
+const chatdropdownMenu = document.getElementById('chat-dropdownMenu');
 
 profileButton.addEventListener('click', (e) => {
   e.stopPropagation(); // Prevent this click from reaching window
-  dropdownMenu.classList.toggle('show');
+  accdropdownMenu.classList.toggle('show');
 });
 
 window.addEventListener('click', (e) => {
-  if (!profileButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
-    dropdownMenu.classList.remove('show');
+  if (!profileButton.contains(e.target) && !accdropdownMenu.contains(e.target)) {
+    accdropdownMenu.classList.remove('show');
+  }
+});
+
+chatButton.addEventListener('click', (e) => {
+  e.stopPropagation(); // Prevent this click from reaching window
+  chatdropdownMenu.classList.toggle('show');
+});
+
+window.addEventListener('click', (e) => {
+  if (!chatButton.contains(e.target) && !chatdropdownMenu.contains(e.target)) {
+    chatdropdownMenu.classList.remove('show');
   }
 });

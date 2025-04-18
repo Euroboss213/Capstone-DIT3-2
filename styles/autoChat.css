@@ -1,0 +1,138 @@
+  .autoChat-container {
+    width: 400px;
+    height: 100%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .autoChat-box {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Base message style */
+  .auto-user-message,
+  .auto-bot-message {
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 75%;
+    word-wrap: break-word;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+  
+  .auto-user-message {
+    align-self: flex-end;
+    background-color: #dcf8c6;
+    color: #333;
+    border-bottom-right-radius: 0;
+  }
+  
+  .auto-bot-message {
+    align-self: flex-start;
+    background-color: #eee;
+    color: #000;
+    border-bottom-left-radius: 0;
+  }
+  
+  /* Chat input */
+  form {
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
+  
+  input[type="text"] {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    border-radius: 0;
+  }
+  
+  button {
+    padding: 12px 20px;
+    background: #2196f3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  button:hover {
+    background: #1976d2;
+  }
+  
+  /* Choice buttons */
+  /* Bot-suggested options */
+.choice-btn {
+    margin-top: 5px;
+    padding: 10px 15px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    align-self: flex-start;
+    max-width: fit-content;
+  }
+  
+  .choice-btn:hover {
+    background-color: #2980b9;
+  }
+  
+  /* User-selected option buttons aligned right */
+  .user-choice-btn {
+    margin-top: 5px;
+    padding: 10px 15px;
+    background: #dcf8c6;
+    color: #333;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    align-self: flex-end;
+    max-width: fit-content;
+  }
+  
+  .user-choice-btn:hover {
+    background-color: #cbe8b2;
+  }
+
+  .divider {
+  text-align: center;
+  color: #aaa;
+  font-size: 13px;
+  margin: 10px 0;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+  
+  

@@ -2,7 +2,7 @@ function sendMessage(event) {
   if (event) event.preventDefault();
 
   const userInput = document.getElementById("userInput").value.trim();
-  const chatBox = document.getElementById("chatBox");
+  const chatBox = document.getElementById("chatBotBox");
 
   if (userInput === "") return;
 
@@ -59,3 +59,30 @@ function sendMessage(event) {
       console.error("Fetch error:", error);
     });
 }
+
+// ✅ Initial welcome message on page load
+window.addEventListener("DOMContentLoaded", () => {
+  const chatBox = document.getElementById("chatBotBox");
+  const welcomeMessage = document.createElement("div");
+  welcomeMessage.className = "bot-message";
+  welcomeMessage.textContent = "Welcome, ka-barangay. How can I help you?";
+  chatBox.appendChild(welcomeMessage);
+});
+
+document.getElementById("clearChatBtn").addEventListener("click", () => {
+  const chatBox = document.getElementById("chatBotBox");
+
+  // Clear chat messages
+  chatBox.innerHTML = "";
+
+  // Add the welcome message again
+  const welcomeMessage = document.createElement("div");
+  welcomeMessage.className = "bot-message";
+  welcomeMessage.textContent = "Welcome, ka-barangay. How can I help you?";
+  chatBox.appendChild(welcomeMessage);
+
+  // Optional: Clear the input field
+  document.getElementById("userInput").value = "";
+});
+
+

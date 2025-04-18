@@ -1,25 +1,15 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-.chat-container {
+.chatBot-container {
     width: 400px;
-    height: 500px;
+    height: 100%;
     background: white;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    display: flex;
+    display: none;
     flex-direction: column;
     overflow: hidden;
 }
 
-.chat-box {
+.chatBot-box {
     flex: 1;
     padding: 15px;
     overflow-y: auto;
@@ -82,3 +72,4 @@ button {
 button:hover {
     background: #1976d2;
 }
+
