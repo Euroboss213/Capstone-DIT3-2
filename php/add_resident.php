@@ -35,14 +35,14 @@ $data['date_of_registration'] = date("Y-m-d H:i:s");
 file_put_contents('debug_post.txt', json_encode($_POST, JSON_PRETTY_PRINT) . PHP_EOL, FILE_APPEND);
 
 // Connect to MySQL using MySQLi
-$mysqli = new mysqli("localhost", "username", "password", "admin");
+$mysqli = new mysqli("localhost", "root", "", "admin");
 if ($mysqli->connect_error) {
     respond(false, "Database connection failed: " . $mysqli->connect_error);
 }
 
 // Prepare SQL statement
 $stmt = $mysqli->prepare("
-    INSERT INTO residents (
+    INSERT INTO residences (
         first_name, middle_name, last_name, suffix, birth_date, birth_place, age, sex,
         civil_status, nationality, religion, occupation, contact_number, address,
         pwd, pwd_id_no, indigent, solo_parent, solo_parent_id_no, member_4ps,
@@ -59,7 +59,7 @@ if (!$stmt) {
 
 // Bind parameters (30 fields, types matched accordingly)
 $stmt->bind_param(
-    "sssssssissssssssssssdsssssssssss",
+    "sssssssissssssssssssdsssssssss",
     $data['first_name'],
     $data['middle_name'],
     $data['last_name'],
