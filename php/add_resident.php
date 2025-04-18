@@ -14,7 +14,7 @@ function respond($success, $message) {
 // Capture and sanitize input
 $fields = [
     'first_name', 'middle_name', 'last_name', 'suffix', 'birth_date', 'birth_place',
-    'age', 'sex', 'civil_status', 'nationality', 'religion', 'occupation',
+    'sex', 'civil_status', 'nationality', 'religion', 'occupation',
     'contact_number', 'address', 'pwd', 'pwd_id_no', 'indigent', 'solo_parent',
     'solo_parent_id_no', 'member_4ps', 'family_monthly_income', 'national_id_no',
     'philhealth_no', 'sss_no', 'pagibig_no', 'tin_no', 'voters_id_no',
@@ -23,16 +23,11 @@ $fields = [
 
 $data = [];
 foreach ($fields as $field) {
-    // Use ternary operator for undefined POST data
     $data[$field] = isset($_POST[$field]) ? $_POST[$field] : '';
 }
 
-$data['age'] = is_numeric($data['age']) ? (int)$data['age'] : 0;
 $data['family_monthly_income'] = is_numeric($data['family_monthly_income']) ? (float)$data['family_monthly_income'] : 0.0;
 $data['date_of_registration'] = date("Y-m-d H:i:s");
-
-// Debug: log raw POST data to a file (for troubleshooting)
-file_put_contents('debug_post.txt', json_encode($_POST, JSON_PRETTY_PRINT) . PHP_EOL, FILE_APPEND);
 
 // Connect to MySQL using MySQLi
 $mysqli = new mysqli("localhost", "root", "", "admin");
@@ -40,16 +35,44 @@ if ($mysqli->connect_error) {
     respond(false, "Database connection failed: " . $mysqli->connect_error);
 }
 
+// List of ID fields that must be unique
+$uniqueIdFields = [
+    'national_id_no', 'philhealth_no', 'sss_no',
+    'pagibig_no', 'tin_no', 'voters_id_no'
+];
+
+// Check for duplicate ID fields
+foreach ($uniqueIdFields as $field) {
+    if (!empty($data[$field])) {
+        $query = "SELECT id FROM residences WHERE $field = ?";
+        $checkStmt = $mysqli->prepare($query);
+        if ($checkStmt) {
+            $checkStmt->bind_param("s", $data[$field]);
+            $checkStmt->execute();
+            $checkStmt->store_result();
+
+            if ($checkStmt->num_rows > 0) {
+                $fieldNameFormatted = ucwords(str_replace("_", " ", $field));
+                respond(false, "This $fieldNameFormatted is already existing from another Resident.");
+            }
+
+            $checkStmt->close();
+        } else {
+            respond(false, "Error checking for duplicate $field: " . $mysqli->error);
+        }
+    }
+}
+
 // Prepare SQL statement
 $stmt = $mysqli->prepare("
     INSERT INTO residences (
-        first_name, middle_name, last_name, suffix, birth_date, birth_place, age, sex,
+        first_name, middle_name, last_name, suffix, birth_date, birth_place, sex,
         civil_status, nationality, religion, occupation, contact_number, address,
         pwd, pwd_id_no, indigent, solo_parent, solo_parent_id_no, member_4ps,
         family_monthly_income, national_id_no, philhealth_no, sss_no, pagibig_no,
         tin_no, voters_id_no, covid_status, vaccinated, date_of_registration
     ) VALUES (
-        ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+        ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
     )
 ");
 
@@ -57,16 +80,15 @@ if (!$stmt) {
     respond(false, "Prepare failed: " . $mysqli->error);
 }
 
-// Bind parameters (30 fields, types matched accordingly)
+// Bind parameters
 $stmt->bind_param(
-    "sssssssissssssssssssdsssssssss",
+    "sssssssssssssssssssdsssssssss",
     $data['first_name'],
     $data['middle_name'],
     $data['last_name'],
     $data['suffix'],
     $data['birth_date'],
     $data['birth_place'],
-    $data['age'],
     $data['sex'],
     $data['civil_status'],
     $data['nationality'],
