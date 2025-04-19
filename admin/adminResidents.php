@@ -50,7 +50,7 @@
   <form action="../php/upload_residents.php" method="POST" enctype="multipart/form-data" style="display:inline-block;">
     <input type="file" name="csv_file" accept=".csv" required />
     <button type="submit" name="import_csv" class="upload-btn">Upload CSV</button>
-</form>
+  </form>
 </div>
 
       <?php
