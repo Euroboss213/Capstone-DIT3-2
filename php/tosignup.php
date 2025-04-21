@@ -55,13 +55,8 @@ if ($result->num_rows > 0) {
 
         // Prepare the INSERT query for the 'users' table
         $insert_query = "INSERT INTO users (
-                            username, password, first_name, middle_name, last_name, suffix, birth_date, birth_place,
-                            age, sex, civil_status, nationality, religion, occupation, contact_number, address, pwd, 
-                            pwd_id_no, indigent, solo_parent, solo_parent_id_no, member_4ps, family_monthly_income, 
-                            registered_voter, purok_no, house_no, street, emergency_full_name, emergency_relationship, 
-                            emergency_contact_no, emergency_address, national_id_no, philhealth_no, sss_no, pagibig_no, 
-                            tin_no, voters_id_no, covid_status, vaccinated, date_of_registration, date_of_death, alive_or_deceased
-                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                            username, password, first_name, middle_name, last_name, suffix
+                        ) VALUES (?, ?, ?, ?, ?, ?)";
 
         // Check if the insert query was prepared successfully
         $insert_stmt = $users_db->prepare($insert_query);
@@ -71,22 +66,8 @@ if ($result->num_rows > 0) {
 
         // Bind all necessary parameters for the 'users' table insertion
         $insert_stmt->bind_param(
-            'ssssssssssssssssssssssssssssssssssssssssss',
-            $username, $hashed_password, $first_name, $middle_name, $last_name, $suffix, 
-            $residence_data['birth_date'], $residence_data['birth_place'], $residence_data['age'], 
-            $residence_data['sex'], $residence_data['civil_status'], $residence_data['nationality'], 
-            $residence_data['religion'], $residence_data['occupation'], $residence_data['contact_number'], 
-            $residence_data['address'], $residence_data['pwd'], $residence_data['pwd_id_no'], 
-            $residence_data['indigent'], $residence_data['solo_parent'], $residence_data['solo_parent_id_no'], 
-            $residence_data['member_4ps'], $residence_data['family_monthly_income'], 
-            $residence_data['registered_voter'], $residence_data['purok_no'], $residence_data['house_no'], 
-            $residence_data['street'], $residence_data['emergency_full_name'], 
-            $residence_data['emergency_relationship'], $residence_data['emergency_contact_no'], 
-            $residence_data['emergency_address'], $residence_data['national_id_no'], 
-            $residence_data['philhealth_no'], $residence_data['sss_no'], $residence_data['pagibig_no'], 
-            $residence_data['tin_no'], $residence_data['voters_id_no'], $residence_data['covid_status'], 
-            $residence_data['vaccinated'], $residence_data['date_of_registration'], 
-            $residence_data['date_of_death'], $residence_data['alive_or_deceased']
+            'ssssss',
+            $username, $hashed_password, $first_name, $middle_name, $last_name, $suffix
         );
 
         if ($insert_stmt->execute()) {
