@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../database/connect_db_admin.php';
+require_once '../database/connect_db_reqwest.php';
 
 // Enable full error reporting during development
 ini_set('display_errors', 1);

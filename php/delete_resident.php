@@ -4,7 +4,7 @@ $response = ['success' => false];
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
 
-  $conn = new mysqli("localhost", "root", "", "admin");
+  $conn = new mysqli("localhost", "root", "", "reqwest");
 
   if ($conn->connect_error) {
     $response['error'] = 'Database connection failed.';

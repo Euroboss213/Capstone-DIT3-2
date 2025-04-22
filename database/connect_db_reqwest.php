@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = ""; // Change this if needed
-$dbname = "users"; // Replace with your actual database name
+$dbname = "reqwest"; // Replace with your actual database name
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 

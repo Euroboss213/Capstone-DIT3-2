@@ -54,7 +54,7 @@
 </div>
 
       <?php
-      $conn = new mysqli("localhost", "root", "", "admin");
+      $conn = new mysqli("localhost", "root", "", "reqwest");
       if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
       }

@@ -30,7 +30,7 @@ $data['family_monthly_income'] = is_numeric($data['family_monthly_income']) ? (f
 $data['date_of_registration'] = date("Y-m-d H:i:s");
 
 // Connect to MySQL using MySQLi
-$mysqli = new mysqli("localhost", "root", "", "admin");
+$mysqli = new mysqli("localhost", "root", "", "reqwest");
 if ($mysqli->connect_error) {
     respond(false, "Database connection failed: " . $mysqli->connect_error);
 }
