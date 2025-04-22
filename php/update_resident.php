@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-$conn = new mysqli("localhost", "root", "", "admin");
+$conn = new mysqli("localhost", "root", "", "reqwest");
 
 if ($conn->connect_error) {
     echo json_encode(["success" => false, "message" => "Connection failed."]);

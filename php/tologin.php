@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../database/connect_db_users.php";
+include "../database/connect_db_reqwest.php";
 
 // Get the input values
 $username = $_POST['username'];
