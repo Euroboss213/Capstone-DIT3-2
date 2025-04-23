@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Barangay Document Request</title>
   <link rel="stylesheet" href="../styles/adminResidents_style.css" />
+  <link rel="stylesheet" href="../styles/adminTemplate.css" />
   <script src="../js/adminResidents_script.js" defer></script>
+  <script src="../js/adminNav.js" defer></script>
 </head>
 <body>
   <!-- Navbar -->
@@ -35,11 +36,11 @@
     <!-- Sidebar -->
     <aside class="sidebar">
       <h2 class="user-name">Admin Account</h2>
-      <button class="side-button">Dashboard</button>
-      <button class="side-button">Document Requests</button>
-      <button id="registered-residents" class="side-button">Registered Residents</button>
-      <button class="side-button">User Accounts</button>
-      <button class="side-button">Admin Accounts</button>
+      <button id="dashboard" class="side-button" onclick="window.location.href='adminDashboard.php'">Dashboard</button>
+      <button id="doc-req" class="side-button" onclick="window.location.href='adminDocReq.php'">Document Requests</button>
+      <button id="registered-residents" class="side-button" onclick="window.location.href='adminResidents.php'">Registered Residents</button>
+      <button id="user-accounts" class="side-button" onclick="window.location.href='adminUserAccounts.php'">User Accounts</button>
+      <button id="admin-accounts" class="side-button" onclick="window.location.href='adminAdAccounts.php'">Admin Accounts</button>
     </aside>
 
     <!-- Main Content -->

@@ -24,6 +24,44 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `indigency`
+--
+
+CREATE TABLE `indigency` (
+  `id` int(11) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `middle_name` varchar(50) DEFAULT NULL,
+  `suffix` varchar(10) DEFAULT NULL,
+  `purpose` text NOT NULL,
+  `supporting_document` varchar(255) DEFAULT NULL,
+  `status` enum('Ongoing','Returned','For Pickup') DEFAULT 'Ongoing',
+  `comment` text DEFAULT NULL,
+  `date_requested` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `indigency`
+--
+ALTER TABLE `indigency`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `indigency`
+--
+ALTER TABLE `indigency`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+--
 -- Table structure for table `residences`
 --
 

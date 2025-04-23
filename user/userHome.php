@@ -65,11 +65,11 @@ $userName = $_SESSION['user_name'];
 
     <!-- Main Content -->
     <main class="main-content">
-      <div class="button-grid">
-        <button class="action-button bg-green-500">Request Barangay Indigency</button>
-        <button class="action-button bg-yellow-500">Request Barangay Permit</button>
-        <button class="action-button bg-blue-500">Request Barangay Residency</button>
-        <button class="action-button bg-purple-500">Request Barangay Clearance</button>
+    <div class="button-grid">
+        <a href="request_indigency.php" class="action-button">Request Barangay Indigency</a>
+        <a href="#residency" class="action-button">Request Barangay Residency</a>
+        <a href="#permit" class="action-button">Request Barangay Permit</a>
+        <a href="#clearance" class="action-button">Request Barangay Clearance</a>
       </div>
 
       <!-- Image Container -->

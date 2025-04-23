@@ -27,7 +27,7 @@
                 <img src = "../assets/reqwest-logo.png">
                 <h1>Login</h1>
                 <div class="input-box">
-                    <input type="email" placeholder="Username" required name="username">
+                    <input type="email" placeholder="Email" required name="username">
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">

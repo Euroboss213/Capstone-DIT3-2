@@ -1,12 +1,5 @@
-const profileButton = document.getElementById('profileButton');
-const dropdownMenu = document.getElementById('dropdownMenu');
 const modal = document.getElementById("infoModal");
 const addModal = document.getElementById("addModal");
-
-profileButton.addEventListener('click', (e) => {
-  e.stopPropagation();
-  dropdownMenu.classList.toggle('show');
-});
 
 function openModal(data) {
   modal.style.display = "block";
