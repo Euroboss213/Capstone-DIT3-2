@@ -19,10 +19,10 @@
         <div class="form-box login">
             <form action="../php/tologin.php" method="POST" id="login-form">
                 <div class="navbar">
-                    <a href="#">Services</a>
+                    <a href="services.php">Services</a>
                     <a href="#">About Us</a>
-                    <a href="#">FAQ</a>
-                    <a href="#">Contact Us</a>  
+                    <a href="faq.php">FAQ</a>
+                    <a href="contact.php">Contact Us</a>  
                 </div>
                 <img src = "../assets/reqwest-logo.png">
                 <h1>Login</h1>
