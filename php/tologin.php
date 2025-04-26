@@ -29,6 +29,10 @@ if ($stmt->num_rows == 1) {
         $_SESSION['id'] = $id;
         $_SESSION['user_name'] = $full_name;
         $_SESSION['role'] = $role;
+        $_SESSION['first_name'] = $first_name;
+        $_SESSION['middle_name'] = $middle_name;
+        $_SESSION['last_name'] = $last_name;
+        $_SESSION['suffix'] = $suffix;
 
         // Redirect based on role
         if ($role === 'admin') {
