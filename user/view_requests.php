@@ -1,3 +1,10 @@
+<?php
+include "../php/auth_check.php";
+
+// Get the user's name from session
+$userName = $_SESSION['user_name'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,38 +42,19 @@
   <div class="flex-container">
     <!-- Sidebar -->
     <aside class="sidebar">
-      <h2 class="user-name">Admin Account</h2>
-      <button id="dashboard" class="side-button" onclick="window.location.href='adminDashboard.php'">Dashboard</button>
-      <button id="doc-req" class="side-button" onclick="window.location.href='adminDocReq.php'">Document Requests</button>
-      <button id="registered-residents" class="side-button" onclick="window.location.href='adminResidents.php'">Registered Residents</button>
-      <button id="user-accounts" class="side-button" onclick="window.location.href='adminUserAccounts.php'">User Accounts</button>
-      <button id="admin-accounts" class="side-button" onclick="window.location.href='adminAdAccounts.php'">Admin Accounts</button>
+      <h2 class="user-name"><?php echo htmlspecialchars($userName); ?></h2>
+      <button class="side-button" onclick="window.location.href='view_requests.php'">View My Requests</button>
+      <button class="side-button">Verify My Account</button>
     </aside>
 
     <!-- Main Content -->
     <main class="main-content">
       <div class="top-bar">
         <input type="text" id="searchInput" placeholder="Search request..." class="search-bar" onkeyup="filterTable()" />
-        <button onclick="showTable('indigency')">Barangay Indigency</button>
-        <button onclick="showTable('indigency')">Barangay Residency</button>
-        <button onclick="showTable('indigency')">Barangay Permit</button>
-        <button onclick="showTable('indigency')">Barangay Clearance</button>
       </div>
 
       <div id="indigency" class="table-container" style="display: block;">
-        <?php include '../modalForDocs/indigencyDocModal.php'; ?>
-      </div>
-
-      <div id="residency" class="table-container" style="display: none;">
-        <?php include '../modalForDocs/residencyDocModal.php'; ?>
-      </div>
-
-      <div id="permit" class="table-container" style="display: none;">
-        <?php include '../modalForDocs/permitDocModal.php'; ?>
-      </div>
-
-      <div id="clearance" class="table-container" style="display: none;">
-        <?php include '../modalForDocs/clearanceDocModal.php'; ?>
+        <?php include '../modalForDocs/usersDocModal.php'; ?>
       </div>
       
     </main>

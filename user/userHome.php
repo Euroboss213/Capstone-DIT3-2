@@ -59,7 +59,7 @@ $userName = $_SESSION['user_name'];
     <!-- Sidebar -->
     <aside class="sidebar">
       <h2 class="user-name"><?php echo htmlspecialchars($userName); ?></h2>
-      <button class="side-button">View My Requests</button>
+      <button class="side-button" onclick="window.location.href='view_requests.php'">View My Requests</button>
       <button class="side-button">Verify My Account</button>
     </aside>
 
@@ -67,9 +67,9 @@ $userName = $_SESSION['user_name'];
     <main class="main-content">
     <div class="button-grid">
         <a href="request_indigency.php" class="action-button">Request Barangay Indigency</a>
-        <a href="#residency" class="action-button">Request Barangay Residency</a>
-        <a href="#permit" class="action-button">Request Barangay Permit</a>
-        <a href="#clearance" class="action-button">Request Barangay Clearance</a>
+        <a href="request_residency.php" class="action-button">Request Barangay Residency</a>
+        <a href="request_permit.php" class="action-button">Request Barangay Permit</a>
+        <a href="request_clearance.php" class="action-button">Request Barangay Clearance</a>
       </div>
 
       <!-- Image Container -->

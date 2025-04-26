@@ -11,14 +11,14 @@ $suffix = $_SESSION['suffix'] ?? '';
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Request Barangay Indigency</title>
+  <title>Request Barangay Residency</title>
   <link rel="stylesheet" href="../styles/request_form.css" />
 </head>
-<body>
+<body>  
   <div class="form-container">
-    <h2>Barangay Indigency Request Form</h2>
-    <form method="POST" action="../php/handle_request_indigency.php" enctype="multipart/form-data">
-      <input type="hidden" name="document_type" value="indigency">
+    <h2>Barangay Residency Request Form</h2>
+    <form method="POST" action="../php/handle_request_residency.php" enctype="multipart/form-data">
+      <input type="hidden" name="document_type" value="residency">
 
       <label>Last Name:</label>
       <input type="text" name="last_name" value="<?php echo htmlspecialchars($lastName); ?>" readonly>
