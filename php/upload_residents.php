@@ -37,10 +37,10 @@ if (isset($_POST['import_csv']) && isset($_FILES['csv_file']) && $_FILES['csv_fi
     file_put_contents($logFile, "Parsed header: " . implode(',', $header) . "\n", FILE_APPEND);
 
     $expectedHeaders = [
-        'first_name', 'middle_name', 'last_name', 'suffix', 'birth_date', 'birth_place', 'age', 'sex', 'civil_status',
-        'nationality', 'religion', 'occupation', 'contact_number', 'address', 'pwd', 'pwd_id_no', 'indigent',
-        'solo_parent', 'solo_parent_id_no', 'member_4ps', 'family_monthly_income', 'national_id_no', 'philhealth_no',
-        'sss_no', 'pagibig_no', 'tin_no', 'voters_id_no', 'covid_status', 'vaccinated'
+        'first_name', 'middle_name', 'last_name', 'suffix', 'birth_date', 'birth_place', 'sex', 'civil_status',
+    'nationality', 'religion', 'occupation', 'contact_number', 'address', 'pwd', 'pwd_id_no', 'indigent',
+    'solo_parent', 'solo_parent_id_no', 'member_4ps', 'family_monthly_income', 'national_id_no', 'philhealth_no',
+    'sss_no', 'pagibig_no', 'tin_no', 'voters_id_no', 'covid_status', 'vaccinated'
     ];
 
     if ($header !== $expectedHeaders) {
@@ -57,16 +57,49 @@ if (isset($_POST['import_csv']) && isset($_FILES['csv_file']) && $_FILES['csv_fi
             }
 
             [
-                $first_name, $middle_name, $last_name, $suffix, $birth_date, $birth_place, $age, $sex, $civil_status,
+                $first_name, $middle_name, $last_name, $suffix, $birth_date, $birth_place, $sex, $civil_status,
                 $nationality, $religion, $occupation, $contact_number, $address, $pwd, $pwd_id_no, $indigent,
                 $solo_parent, $solo_parent_id_no, $member_4ps, $family_monthly_income, $national_id_no,
                 $philhealth_no, $sss_no, $pagibig_no, $tin_no, $voters_id_no, $covid_status, $vaccinated
             ] = $data;
 
+            if (!empty($birth_date)) {
+                $date_parts = explode('/', $birth_date);
+                if (count($date_parts) === 3) {
+                    $birth_date = $date_parts[2] . '-' . $date_parts[1] . '-' . $date_parts[0];
+                }
+            }
+            
             // Required fields check
-            if (empty($first_name) || empty($last_name) || empty($birth_date) || empty($sex) || empty($civil_status)) {
-                $errorRows[] = implode(", ", $data) . " - Missing required fields.";
-                continue;
+            $requiredFields = [
+                'first_name' => $first_name,
+                'middle_name' => $middle_name,
+                'last_name' => $last_name,
+                'birth_date' => $birth_date,
+                'birth_place' => $birth_place,
+                'sex' => $sex,
+                'civil_status' => $civil_status,
+                'nationality' => $nationality,
+                'religion' => $religion,
+                'occupation' => $occupation,
+                'contact_number' => $contact_number,
+                'address' => $address,
+                'pwd' => $pwd,
+                'indigent' => $indigent,
+                'solo_parent' => $solo_parent,
+                'member_4ps' => $member_4ps,
+                'family_monthly_income' => $family_monthly_income,
+                'voters_id_no' => $voters_id_no,
+                'covid_status' => $covid_status,
+                'vaccinated' => $vaccinated
+            ];
+            
+            foreach ($requiredFields as $fieldName => $fieldValue) {
+                if (empty($fieldValue)) {
+                    $formattedField = ucwords(str_replace('_', ' ', $fieldName)); // e.g., "first_name" -> "First Name"
+                    $errorRows[] = "Missing data for required field: $formattedField";
+                    continue 2; // Skip to next row immediately once a missing required field is found
+                }
             }
 
             // ID format validation
@@ -93,35 +126,56 @@ if (isset($_POST['import_csv']) && isset($_FILES['csv_file']) && $_FILES['csv_fi
 
             if ($invalidFormat) continue;
 
-            // Check for duplicate National ID
-            $check = $conn->prepare("SELECT id FROM residences WHERE national_id_no = ?");
-            $check->bind_param("s", $national_id_no);
-            $check->execute();
-            $check->store_result();
+            // Check for duplicate IDs
+            $idFieldsToCheck = [
+                'national_id_no',
+                'pwd_id_no',
+                'solo_parent_id_no',
+                'philhealth_no',
+                'sss_no',
+                'pagibig_no',
+                'tin_no',
+                'voters_id_no'
+            ];
 
-            if ($check->num_rows > 0) {
-                $errorRows[] = implode(", ", $data) . " - Duplicate National ID.";
-                $check->close();
-                continue;
+            $duplicateFound = false;
+            foreach ($idFieldsToCheck as $idField) {
+                $value = $$idField;
+                if (!empty($value)) {
+                    $check = $conn->prepare("SELECT id FROM residences WHERE $idField = ?");
+                    $check->bind_param("s", $value);
+                    $check->execute();
+                    $check->store_result();
+
+                    if ($check->num_rows > 0) {
+                        $errorRows[] = implode(", ", $data) . " - Upload unsuccessful: $idField ($value) already exists in the database.";
+                        $check->close();
+                        $duplicateFound = true;
+                        break;
+                    }
+                    $check->close();
+                }
             }
-            $check->close();
+
+            if ($duplicateFound) continue;
 
             // Prepare insert
             $stmt = $conn->prepare("INSERT INTO residences (
-                first_name, middle_name, last_name, suffix, birth_date, birth_place, age, sex, civil_status,
+                first_name, middle_name, last_name, suffix, birth_date, birth_place, sex, civil_status,
                 nationality, religion, occupation, contact_number, address, pwd, pwd_id_no, indigent,
                 solo_parent, solo_parent_id_no, member_4ps, family_monthly_income, national_id_no,
                 philhealth_no, sss_no, pagibig_no, tin_no, voters_id_no, covid_status, vaccinated, date_of_registration
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
 
             if ($stmt) {
                 $stmt->bind_param(
-                    'ssssssissssssssssssdsssssssss',
-                    $first_name, $middle_name, $last_name, $suffix, $birth_date, $birth_place, $age, $sex, $civil_status,
+                    'ssssssssssssssssssdsssssssss',
+                    $first_name, $middle_name, $last_name, $suffix, $birth_date, $birth_place, $sex, $civil_status,
                     $nationality, $religion, $occupation, $contact_number, $address, $pwd, $pwd_id_no, $indigent,
                     $solo_parent, $solo_parent_id_no, $member_4ps, $family_monthly_income, $national_id_no,
                     $philhealth_no, $sss_no, $pagibig_no, $tin_no, $voters_id_no, $covid_status, $vaccinated
                 );
+                
 
                 try {
                     $stmt->execute();
@@ -142,9 +196,32 @@ if (isset($_POST['import_csv']) && isset($_FILES['csv_file']) && $_FILES['csv_fi
             $message = "<p style='color:green;'>$insertCount record(s) successfully imported.</p>";
         }
         if (!empty($errorRows)) {
-            $message .= "<p style='color:red;'>Some rows could not be imported:</p><ul>";
+            $message .= "<p style='color:red;'>Import Failed for the following reasons:</p><ul>";
             foreach ($errorRows as $err) {
-                $message .= "<li>" . htmlspecialchars($err) . "</li>";
+                // Change: Only show the ID part of the error
+                $idFieldsWithLabels = [
+                    'national_id_no' => 'National ID No.',
+                    'pwd_id_no' => 'PWD ID No.',
+                    'solo_parent_id_no' => 'Solo Parent ID No.',
+                    'philhealth_no' => 'PhilHealth No.',
+                    'sss_no' => 'SSS No.',
+                    'pagibig_no' => 'Pag-IBIG No.',
+                    'tin_no' => 'TIN No.',
+                    'voters_id_no' => 'Voter\'s ID No.'
+                ];
+                
+                $matched = false;
+                foreach ($idFieldsWithLabels as $field => $label) {
+                    if (strpos($err, $field) !== false && preg_match("/$field\s*\((.*?)\)/", $err, $matches)) {
+                        $message .= "<li>$label (" . htmlspecialchars($matches[1]) . ") already exists in the database.</li>";
+                        $matched = true;
+                        break;
+                    }
+                }
+                
+                if (!$matched) {
+                    $message .= "<li>" . htmlspecialchars($err) . "</li>";
+                }
             }
             $message .= "</ul>";
         }
