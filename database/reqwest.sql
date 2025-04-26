@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2025 at 08:44 AM
+-- Generation Time: Apr 26, 2025 at 12:42 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,26 +40,7 @@ CREATE TABLE `indigency` (
   `date_requested` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `indigency`
---
-ALTER TABLE `indigency`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `indigency`
---
-ALTER TABLE `indigency`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-COMMIT;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `residences`
@@ -73,7 +54,6 @@ CREATE TABLE `residences` (
   `suffix` varchar(10) DEFAULT NULL,
   `birth_date` date DEFAULT NULL,
   `birth_place` varchar(100) DEFAULT NULL,
-  `age` int(11) DEFAULT NULL,
   `sex` enum('Male','Female','Other') DEFAULT NULL,
   `civil_status` varchar(20) DEFAULT NULL,
   `nationality` varchar(50) DEFAULT NULL,
@@ -113,13 +93,11 @@ CREATE TABLE `residences` (
 -- Dumping data for table `residences`
 --
 
-INSERT INTO `residences` (`id`, `first_name`, `middle_name`, `last_name`, `suffix`, `birth_date`, `birth_place`, `age`, `sex`, `civil_status`, `nationality`, `religion`, `occupation`, `contact_number`, `address`, `pwd`, `pwd_id_no`, `indigent`, `solo_parent`, `solo_parent_id_no`, `member_4ps`, `family_monthly_income`, `registered_voter`, `purok_no`, `house_no`, `street`, `emergency_full_name`, `emergency_relationship`, `emergency_contact_no`, `emergency_address`, `national_id_no`, `philhealth_no`, `sss_no`, `pagibig_no`, `tin_no`, `voters_id_no`, `covid_status`, `vaccinated`, `date_of_registration`, `date_of_death`, `alive_or_deceased`) VALUES
-(1, 'John', 'Doe', 'Smith', 'Jr.', '1990-05-15', 'Manila', 35, 'Male', 'Single', 'Filipino', 'Christian', 'Engineer', '09171234567', '1234 Sample St., Barangay 1, Manila', 'Yes', 'PWD12345', 'No', 'No', 'SPID1234', 'Yes', 25000.00, 'Yes', '1', '101', 'Sample St.', 'Jane Doe', 'Mother', '09182345678', '5678 Emergency Ave, Manila', '123456789012', 'PH123456', 'SSS123456', 'PAGIBIG123', 'TIN123456789', 'VOTER12345', 'Negative', 'Yes', '2025-04-05 17:27:17', NULL, 'Alive'),
-(2, 'Maria', 'Delos Santos', 'Reyes', '', '1985-08-20', 'Cebu', 40, 'Female', 'Married', 'Filipino', 'Christian', 'Teacher', '09234567890', '2345 Sample St., Barangay 2, Cebu', 'No', NULL, 'Yes', 'No', NULL, 'Yes', 30000.00, 'Yes', '2', '202', 'Main St.', 'Carlos Reyes', 'Husband', '09213456789', '6789 Emergency Rd., Cebu', '234567890123', 'PH234567', 'SSS234567', 'PAGIBIG234', 'TIN234567890', 'VOTER23456', 'Negative', 'Yes', '2025-04-05 17:27:17', NULL, 'Alive'),
-(3, 'Luis', 'Fernandez', 'Gutierrez', 'III', '2000-12-01', 'Davao', 24, 'Male', 'Single', 'Filipino', 'Muslim', 'Student', '09335678901', '4567 Example St., Barangay 3, Davao', 'No', NULL, 'No', 'No', NULL, 'No', 15000.00, 'No', '3', '303', 'Main Road', 'Maria Gutierrez', 'Mother', '09312345678', '1234 Emergency Ave, Davao', '345678901234', 'PH345678', 'SSS345678', 'PAGIBIG345', 'TIN345678901', 'VOTER34567', 'Negative', 'Yes', '2025-04-05 17:27:17', NULL, 'Alive'),
-(4, 'Germain', 'Agapito', 'Tan', '', '2002-10-14', 'Manila', NULL, 'Male', 'namimili kung baddie', 'Filipino/Taiwanese', 'Iglesia ni Chris Brown', 'nanonood ng fliptop sa ojt', '09294456211', 'Pasayy', 'Yes', 'PWD-4344-1414', 'Yes', 'Yes', '', 'Yes', 99999999.99, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', '', 'VIN-1442-5234', 'Negative', 'Yes', '2025-04-21 07:48:14', NULL, NULL),
-(5, 'Super', 'User', 'Admin', '', '2025-04-21', 'Manila', NULL, 'Male', 'Super Admin', 'Super', 'Super', 'Super', '123', 'Super', 'Yes', '', 'Yes', 'Yes', '', 'Yes', 123123.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', '', 'VIN-1234-1234', 'Negative', 'Yes', '2025-04-21 08:13:40', NULL, NULL),
-(6, 'Ronald', 'Bong', 'Querubin', '', '2025-04-22', 'Manila', NULL, 'Male', 'Single', 'Filipino', 'Iglesia ni Chris Brown', 'nanonood ng fliptop sa ojt', '09294456211', 'makati', 'Yes', '', 'Yes', 'Yes', '', 'Yes', 123123.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', '', 'VIN-1234-1235', 'Negative', 'Yes', '2025-04-22 08:40:08', NULL, NULL);
+INSERT INTO `residences` (`id`, `first_name`, `middle_name`, `last_name`, `suffix`, `birth_date`, `birth_place`, `sex`, `civil_status`, `nationality`, `religion`, `occupation`, `contact_number`, `address`, `pwd`, `pwd_id_no`, `indigent`, `solo_parent`, `solo_parent_id_no`, `member_4ps`, `family_monthly_income`, `registered_voter`, `purok_no`, `house_no`, `street`, `emergency_full_name`, `emergency_relationship`, `emergency_contact_no`, `emergency_address`, `national_id_no`, `philhealth_no`, `sss_no`, `pagibig_no`, `tin_no`, `voters_id_no`, `covid_status`, `vaccinated`, `date_of_registration`, `date_of_death`, `alive_or_deceased`) VALUES
+(2, 'Maria', 'Delos Santos', 'Reyes', '', '1985-08-20', 'Cebu', 'Female', 'Married', 'Filipino', 'Christian', 'Teacher', '09234567890', '2345 Sample St., Barangay 2, Cebu', 'No', NULL, 'Yes', 'No', NULL, 'Yes', 30000.00, 'Yes', '2', '202', 'Main St.', 'Carlos Reyes', 'Husband', '09213456789', '6789 Emergency Rd., Cebu', '234567890123', 'PH234567', 'SSS234567', 'PAGIBIG234', 'TIN234567890', 'VOTER23456', 'Negative', 'Yes', '2025-04-05 17:27:17', NULL, 'Alive'),
+(3, 'Luis', 'Fernandez', 'Gutierrez', 'III', '2000-12-01', 'Davao', 'Male', 'Single', 'Filipino', 'Muslim', 'Student', '09335678901', '4567 Example St., Barangay 3, Davao', 'No', NULL, 'No', 'No', NULL, 'No', 15000.00, 'No', '3', '303', 'Main Road', 'Maria Gutierrez', 'Mother', '09312345678', '1234 Emergency Ave, Davao', '345678901234', 'PH345678', 'SSS345678', 'PAGIBIG345', 'TIN345678901', 'VOTER34567', 'Negative', 'Yes', '2025-04-05 17:27:17', NULL, 'Alive'),
+(12, 'Euro', 'Bobo', 'Boya', '', '2025-04-26', 'Manila City', 'Male', 'Marami na anak', 'Filipino', 'Catholic', 'Sarap buhay', '9451411647', '124 ABC, QC', 'Yes', 'PWD-1234-5679', 'No', 'No', '', 'No', 15001.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1235 6678 9013', '12-3456-7891', '12-3456789-1', '1234-5678-9013', '123-456-790', 'VIN-9876-5433', 'Recovered', 'Yes', '2025-04-26 15:57:03', NULL, NULL),
+(20, 'Juan', 'Cruz', 'Dela Cruz', 'Jr.', '2003-09-07', 'Quezon City', 'Male', 'Single', 'Filipino', 'Catholic', 'Engineer', '9208649935', '123 ABC, QC', 'Yes', 'PWD-1234-5678', 'No', 'No', '', '', 15000.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1234 6678 9015', '12-3456-7890', '12-3456789-0', '1234-5678-9012', '123-456-789', 'VIN-9876-5432', 'Recovered', 'Yes', '2025-04-26 18:24:58', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -136,23 +114,30 @@ CREATE TABLE `users` (
   `last_name` varchar(50) NOT NULL,
   `suffix` varchar(10) DEFAULT NULL,
   `role` varchar(20) NOT NULL DEFAULT 'user',
-  `residence_id` int(11) DEFAULT NULL
+  `residence_id` int(11) DEFAULT NULL,
+  `id_options` varchar(255) DEFAULT NULL,
+  `id_selected` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `first_name`, `middle_name`, `last_name`, `suffix`, `role`, `residence_id`) VALUES
-(4, 'mdsr@gmail.com', '$2y$10$DnJYZM8eKdXJGmSx0UKwxupGi5shVfDO2vHgVdi9MqmwfAVF.3Cty', 'Maria', 'Delos Santos', 'Reyes', '', 'user', NULL),
-(5, 'jerrualen@gmail.com', '$2y$10$JBcsZ5O4jIwiOMIciJ/hAeyp//95PbtNhO98VN4/6T83LPVSxo/4S', 'John', 'Doe', 'Smith', 'Jr.', 'user', NULL),
-(6, 'luis@gmail.com', '$2y$10$oDG7vbTVuauDq2Z01UqxCeAA.2BP5HHU5ICcmgAkGAhjNMaQcmpGG', 'Luis', 'Fernandez', 'Gutierrez', 'III', 'user', NULL),
-(10, 'admin@example.com', '$2y$10$q2ueKAtPQqOPOJfkhyFSvuoRBrZZ8GGuixmixghQYMDojjuPLtab2', 'Super', 'User', 'Admin', '', 'admin', NULL),
-(11, 'germain@gmail.com', '$2y$10$5f8yN8AeT0fZ7SvxyVL.O.KzhkqFYoK87zW6JIE.OrwYdU3TBp6ce', 'Germain', 'Agapito', 'Tan', '', 'user', 4);
+INSERT INTO `users` (`id`, `username`, `password`, `first_name`, `middle_name`, `last_name`, `suffix`, `role`, `residence_id`, `id_options`, `id_selected`) VALUES
+(4, 'mdsr@gmail.com', '$2y$10$DnJYZM8eKdXJGmSx0UKwxupGi5shVfDO2vHgVdi9MqmwfAVF.3Cty', 'Maria', 'Delos Santos', 'Reyes', '', 'user', NULL, NULL, NULL),
+(6, 'luis@gmail.com', '$2y$10$oDG7vbTVuauDq2Z01UqxCeAA.2BP5HHU5ICcmgAkGAhjNMaQcmpGG', 'Luis', 'Fernandez', 'Gutierrez', 'III', 'user', NULL, NULL, NULL),
+(10, 'admin@example.com', '$2y$10$q2ueKAtPQqOPOJfkhyFSvuoRBrZZ8GGuixmixghQYMDojjuPLtab2', 'Super', 'User', 'Admin', '', 'admin', NULL, NULL, NULL),
+(13, 'euro@gmail.com', '$2y$10$Cuzk4sewBgLTaKDkMJara.0Xtj7LyyVt0JhjWqyF0gTsDd5meBGRu', 'Euro', 'Bobo', 'Boya', '', 'user', 12, 'nationalid', '1235 6678 9013');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `indigency`
+--
+ALTER TABLE `indigency`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `residences`
@@ -172,16 +157,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `indigency`
+--
+ALTER TABLE `indigency`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `residences`
 --
 ALTER TABLE `residences`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

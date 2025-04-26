@@ -240,12 +240,140 @@
   background-color: #da190b;
 }
 
+.upload-csv-btn {
+  padding: 10px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.upload-csv-btn:hover {
+  filter: brightness(0.9);
+}
+
+/* Modal Styles */
+.modal-upload {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+}
+
+.modal-upload-content {
+  background-color: #ffffff;
+  margin: 5% auto;
+  padding: 30px 40px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.4s;
+  position: relative;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: #333;
+}
+
+/* Heading */
+.modal-upload-content h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 26px;
+  color: #333;
+}
+
+/* Template Table Styles */
+.template-table {
+  width: 100%;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+}
+
+.template-table thead {
+  display: none; /* Hide the thead since we will format the tbody into columns */
+}
+
+.template-table tbody {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.template-table tbody tr {
+  flex: 0 0 48%; /* Two columns, small gap */
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.template-table td {
+  font-size: 16px;
+  color: #555;
+}
+
+/* File Input and Button */
+form input[type="file"] {
+  display: block;
+  margin: 0 auto 15px auto;
+  font-size: 16px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 400px;
+}
+
 .upload-btn {
   background-color: #4CAF50;
   color: white;
-  padding: 8px 12px;
+  padding: 12px 25px;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
+  font-size: 16px;
   cursor: pointer;
-  margin-left: 10px;
+  width: 100%;
+  max-width: 400px;
+  display: block;
+  margin: 0 auto;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.upload-btn:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .template-table tbody tr {
+    flex: 0 0 100%; /* Stack in smaller screens */
+  }
 }

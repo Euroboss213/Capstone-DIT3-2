@@ -100,7 +100,13 @@ body{
     .navbar a{
         font-size: 17px;
         color: #333;
-        font-weight: 600;   
+        font-weight: 600;
+        transition: color 0.3s;   
+    }
+
+    .navbar a.active,
+    .navbar a:hover {
+    color: #339af0;
     }
 
 form{ width: 100%; }

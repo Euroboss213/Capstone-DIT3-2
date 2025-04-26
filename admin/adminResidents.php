@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="../styles/adminResidents_style.css" />
   <link rel="stylesheet" href="../styles/adminTemplate.css" />
   <script src="../js/adminResidents_script.js" defer></script>
+  <script src="../js/uploadCV.js" defer></script>
   <script src="../js/adminNav.js" defer></script>
 </head>
 <body>
@@ -48,10 +49,7 @@
     <div class="top-bar">
   <input type="text" id="searchInput" placeholder="Search residents..." class="search-bar" onkeyup="filterTable()" />
   <button class="add-btn" onclick="openNewResidentModal()">+ Add New Resident</button>
-  <form action="../php/upload_residents.php" method="POST" enctype="multipart/form-data" style="display:inline-block;">
-    <input type="file" name="csv_file" accept=".csv" required />
-    <button type="submit" name="import_csv" class="upload-btn">Upload CSV</button>
-  </form>
+  <button id="openCsvModalBtn" class="upload-csv-btn">Upload CSV File</button>
 </div>
 
       <?php
@@ -59,7 +57,11 @@
       if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
       }
-
+      session_start();
+if (isset($_SESSION['import_message'])) {
+    echo $_SESSION['import_message'];
+    unset($_SESSION['import_message']);
+}
       $sql = "SELECT * FROM residences";
       $result = $conn->query($sql);
 
@@ -123,7 +125,7 @@
         <label>Contact Number: <input type="text" id="contact_number" name="contact_number" required /></label>
         <label>Address: <input type="text" id="address" name="address" required /></label>
         <label>PWD: 
-          <select id="pwd" name="pwd">
+          <select id="pwd" name="pwd" required>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </select>
@@ -165,8 +167,8 @@
         <label>Date of Registration: <input type="text" id="date_of_registration" name="date_of_registration" readonly /></label>
       </div>
       <div class="modal-footer">
+      <button type="button" class="delete-btn" onclick="deleteResident()">Delete Resident</button>
         <button type="submit" class="save-btn">Save Changes</button>
-        <button type="button" class="delete-btn" onclick="deleteResident()">Delete</button>
       </div>
     </form>
   </div>
@@ -198,7 +200,7 @@
         <label>Contact Number: <input type="text" name="contact_number" required /></label>
         <label>Address: <input type="text" name="address" required /></label>
         <label>PWD: 
-          <select name="pwd">
+          <select name="pwd" required>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </select>
@@ -241,6 +243,54 @@
       <div class="modal-footer">
         <button type="submit" class="save-btn">Add Resident</button>
       </div>
+    </form>
+  </div>
+</div>
+
+<!--Upload Modal-->
+<div id="uploadCsvModal" class="modal-upload">
+  <div class="modal-upload-content">
+    <span class="close">&times;</span>
+    <h2>REQUIRED CSV HEADER</h2>
+    <table class="template-table">
+      <thead>
+        <tr><th>Required Headers</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>first_name</td></tr>
+        <tr><td>middle_name</td></tr>
+        <tr><td>last_name</td></tr>
+        <tr><td>suffix</td></tr>
+        <tr><td>birth_date</td></tr>
+        <tr><td>birth_place</td></tr>
+        <tr><td>sex</td></tr>
+        <tr><td>civil_status</td></tr>
+        <tr><td>nationality</td></tr>
+        <tr><td>religion</td></tr>
+        <tr><td>occupation</td></tr>
+        <tr><td>contact_number</td></tr>
+        <tr><td>address</td></tr>
+        <tr><td>pwd</td></tr>
+        <tr><td>pwd_id_no</td></tr>
+        <tr><td>indigent</td></tr>
+        <tr><td>solo_parent</td></tr>
+        <tr><td>solo_parent_id_no</td></tr>
+        <tr><td>member_4ps</td></tr>
+        <tr><td>family_monthly_income</td></tr>
+        <tr><td>national_id_no</td></tr>
+        <tr><td>philhealth_no</td></tr>
+        <tr><td>sss_no</td></tr>
+        <tr><td>pagibig_no</td></tr>
+        <tr><td>tin_no</td></tr>
+        <tr><td>voters_id_no</td></tr>
+        <tr><td>covid_status</td></tr>
+        <tr><td>vaccinated</td></tr>
+      </tbody>
+    </table>
+
+    <form action="../php/upload_residentS.php" method="POST" enctype="multipart/form-data" style="margin-top: 20px;">
+      <input type="file" name="csv_file" accept=".csv" required />
+      <button type="submit" name="import_csv" class="upload-btn">Upload CSV</button>
     </form>
   </div>
 </div>
