@@ -12,6 +12,7 @@ $suffix = $_SESSION['suffix'] ?? '';
 // Only process POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $purpose = $_POST['purpose'] ?? '';
+    $documentType = $_POST['document_type'] ?? ''; // <--- added this
     $supportingDocument = '';
     $status = 'Ongoing'; // default
 
@@ -43,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Prepare and insert into indigency
-    $stmt = $conn->prepare("INSERT INTO indigency (user_id, last_name, first_name, middle_name, suffix, purpose, supporting_document, status, date_requested) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())");
-    $stmt->bind_param("isssssss", $user_id, $lastName, $firstName, $middleName, $suffix, $purpose, $supportingDocument, $status);
+    $stmt = $conn->prepare("INSERT INTO indigency (user_id, last_name, first_name, middle_name, suffix, purpose, document_type, supporting_document, status, date_requested) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+    $stmt->bind_param("issssssss", $user_id, $lastName, $firstName, $middleName, $suffix, $purpose, $documentType, $supportingDocument, $status);
 
     if ($stmt->execute()) {
         echo "<script>alert('Request submitted successfully!'); window.location.href='../user/userHome.php';</script>";
