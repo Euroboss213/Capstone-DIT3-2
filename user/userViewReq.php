@@ -4,19 +4,26 @@ include "../php/auth_check.php";
 // Get the user's name from session
 $userName = $_SESSION['user_name'];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Barangay Document Request</title>
-  <link rel="stylesheet" href="../styles/adminDocReq_style.css" />
-  <link rel="stylesheet" href="../styles/adminTemplate.css" />
-  <script src="../js/adminNav.js" defer></script>
-</head>
-<!-- Font Awesome CDN -->
+  <!--STYLES-->
+  <link rel="stylesheet" href="../styles/userTemplate.css" />
+  <link rel="stylesheet" href="../styles/chatBot.css" />
+  <link rel="stylesheet" href="../styles/autoChat.css">
+  <link rel="stylesheet" href="../styles/userViewReq_style.css">
+  <!-- Font Awesome CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+  <!--SCRIPTS-->
+  <script src="../js/userHome_script.js" defer></script>
+  <script src="../js/chatBot.js" defer></script>
+  <script src="../js/autoChat.js" defer></script>
+  <script src="../js/displayChats.js" defer></script>
+</head>
 <body>
   <!-- Navbar -->
   <nav class="navbar">
@@ -28,14 +35,25 @@ $userName = $_SESSION['user_name'];
       </div>
     </div>
     <div class="profile-menu">
+      <button id="chatButton" class="chat-button">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v7z" />
+        </svg>
+      </button>
       <button id="profileButton" class="profile-button">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.655 6.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
       </button>
-      <div id="dropdownMenu" class="dropdown-menu">
-        <a href="#" class="dropdown-item">Change Password</a>
-        <a href="../pages/newlogin.php" class="dropdown-item">Logout</a>
+      <div id="acc-dropdownMenu" class="acc-dropdown-menu">
+        <a href="#" class="acc-dropdown-item">Change Password</a>
+        <form action="../php/tologout.php" method="post">
+            <button type="submit" class="acc-dropdown-item-btn">Logout</button>
+        </form>
+      </div>
+      <div id="chat-dropdownMenu" class="chat-dropdown-menu">
+          <button type="submit" class="chat-dropdown-item-btn" id="chatBot-btn">AI Assisstant</button>
+          <button type="submit" class="chat-dropdown-item-btn" id="autoChat-btn">Chat Bot</button>
       </div>
     </div>
   </nav>
@@ -43,17 +61,15 @@ $userName = $_SESSION['user_name'];
   <div class="flex-container">
     <!-- Sidebar -->
     <aside class="sidebar">
-      <h2 class="user-name">Admin Account</h2>
-      <button id="dashboard" class="side-button" onclick="window.location.href='adminDashboard.php'">Dashboard</button>
-      <button id="doc-req" class="side-button" onclick="window.location.href='adminDocReq.php'">Document Requests</button>
-      <button id="registered-residents" class="side-button" onclick="window.location.href='adminResidents.php'">Registered Residents</button>
-      <button id="user-accounts" class="side-button" onclick="window.location.href='adminUserAccounts.php'">User Accounts</button>
+      <h2 class="user-name"><?php echo htmlspecialchars($userName); ?></h2>
+      <button class="side-button" onclick="window.location.href='userHome.php'">Home</button>
+      <button class="side-button-active" onclick="window.location.href='userViewReq.php'">View My Requests</button>
     </aside>
 
     <!-- Main Content -->
     <main class="main-content">
   <div class="document-buttons-container">
-    <button class="document-button" onclick="window.location.href='adminDocReq_indigency.php'">
+    <button class="document-button" onclick="window.location.href='userViewReq_indigency.php'">
       <i class="fas fa-hand-holding-heart document-icon"></i>
       <span>Barangay Indigency</span>
     </button>

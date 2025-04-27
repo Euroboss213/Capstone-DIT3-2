@@ -12,10 +12,11 @@ $userName = $_SESSION['user_name'];
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Barangay Document Request</title>
   <!--STYLES-->
-  <link rel="stylesheet" href="../styles/userHome_style.css" />
+  <link rel="stylesheet" href="../styles/userViewReq_indigency_style.css" />
   <link rel="stylesheet" href="../styles/userTemplate.css" />
   <link rel="stylesheet" href="../styles/chatBot.css" />
   <link rel="stylesheet" href="../styles/autoChat.css">
+
   <!--SCRIPTS-->
   <script src="../js/userHome_script.js" defer></script>
   <script src="../js/chatBot.js" defer></script>
@@ -60,48 +61,62 @@ $userName = $_SESSION['user_name'];
     <!-- Sidebar -->
     <aside class="sidebar">
       <h2 class="user-name"><?php echo htmlspecialchars($userName); ?></h2>
-      <button class="side-button-active" onclick="window.location.href='userHome.php'">Home</button>
-      <button class="side-button" onclick="window.location.href='userViewReq.php'">View My Requests</button>
+      <button class="side-button" onclick="window.location.href='userHome.php'">Home</button>
+      <button class="side-button-active" onclick="window.location.href='userViewReq.php'">View My Requests</button>
     </aside>
 
     <!-- Main Content -->
     <main class="main-content">
-    <div class="button-grid">
-        <a href="request_indigency.php" class="action-button">Request Barangay Indigency</a>
-        <a href="request_residency.php" class="action-button">Request Barangay Residency</a>
-        <a href="request_permit.php" class="action-button">Request Barangay Permit</a>
-        <a href="request_clearance.php" class="action-button">Request Barangay Clearance</a>
-      </div>
+      <!-- Main Content -->
+    <main class="main-content">
+    <div class="top-bar">
+  <button class="back-btn" onclick="window.location.href='userViewReq.php'">Go Back</button>
+</div>
 
-      <!-- Image Container -->
-      <div class="image-container">
-        <img src="../assets/step.png" alt="Your Image" class="image" />
-      </div>
-      <div class="chat-containers">
-        <div class="chatBot-container">
-            <div class="exit-header">
-              <button class="clear-btn" id="clearChatBtn">Clear</button>
-              <button class="bot-exit-btn">Exit</button>
-            </div>
-          <div class="chatBot-box" id="chatBotBox">
-              <!-- Messages will appear here -->
-          </div>
-          <form id="chatBotForm" onsubmit="sendMessage(event )">
-              <input type="text" id="userInput" placeholder="Type a message..." autocomplete="off" required>
-              <button type="submit">Send</button>
-          </form>
-        </div>
+      <?php
+      $conn = new mysqli("localhost", "root", "", "reqwest");
+      if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+      }
+if (isset($_SESSION['import_message'])) {
+    echo $_SESSION['import_message'];
+    unset($_SESSION['import_message']);
+}
+      $sql = "SELECT * FROM indigency";
+      $result = $conn->query($sql);
 
-        <div class="autoChat-container">
-          <div class="exit-header">
-            <button class="chat-exit-btn">Exit</button>
-          </div>
-          <div class="autoChat-box" id="autoChatBox">
-            <!-- Chat messages will be added here -->
-          </div>
-        </div>
-      </div>
-    </main>
+      if ($result->num_rows > 0) {
+        echo "<table class='indigency-table'>
+                <thead>
+                  <tr>
+                    <th>User ID</th>
+                    <th>Full Name</th>
+                    <th>Status</th>
+                    <th>Date Requested</th>
+                    <th>Document Type</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>";
+        while($row = $result->fetch_assoc()) {
+          $fullName = $row["first_name"] . " " . ($row["middle_name"] ? $row["middle_name"] . " " : "") . $row["last_name"] . ($row["suffix"] ? ", " . $row["suffix"] : "");
+          echo "<tr>
+                <td>{$row['user_id']}</td> 
+                  <td>{$fullName}</td>
+                  <td>{$row['status']}</td>
+                  <td>{$row['date_requested']}</td>
+                  <td>{$row['document_type']}</td>
+                 <td><button class='action-btn' onclick=''>Edit Request</button></td>
+                </tr>";
+        }
+        echo "</tbody></table>";
+      } else {
+        echo "No records found.";
+      }
+
+      $conn->close();
+      ?>
+</main>
   </div>
 </body>
 </html>

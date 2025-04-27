@@ -46,12 +46,12 @@ if ($stmt->num_rows == 1) {
         exit();
     } else {
         // Redirect to login page if the password is incorrect
-        header("Location: ../pages/login.php?error=invalid_password");
+        header("Location: ../pages/newlogin.php?error=invalid_password");
         exit();
     }
 } else {
     // Redirect to login page if the user is not found
-    header("Location: ../pages/login.php?error=invalid_credentials");
+    header("Location: ../pages/newlogin.php?error=invalid_credentials");
     exit();
 }
 
