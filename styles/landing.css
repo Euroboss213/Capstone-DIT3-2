@@ -1,0 +1,209 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "K2D", sans-serif;
+    line-height: 1.6;
+  }
+  
+  /* Top Bar */
+  .top-bar {
+    background-color: #339af0;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    font-size: 14px;
+  }
+  
+  .social-icons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .social-icons a {
+    color: white;
+    font-size: 20px;
+    margin-right: 15px;
+    text-decoration: none;
+  }
+  
+  .social-icons a:hover {
+    color: #333;
+  }
+  
+  /* Header */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 50px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .logo-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    width: 80px;
+    margin-right: 15px;
+  }
+  
+  .header h1 {
+    font-size: 24px;
+    color: #339af0;
+  }
+  
+  .barangay-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .barangay-name {
+    font-size: 20px;
+    color: #339af0;
+    font-weight: bold;
+    border-bottom: 2px solid black;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .city-name {
+    color: #333;
+    opacity: 70%;
+    text-decoration: none;
+    font-size: 15px;
+  }
+  
+  
+  .navbar a {
+    margin: 0 10px;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .navbar a.active,
+  .navbar a:hover {
+      color: #339af0;
+  }
+  
+  /* Hero Section */
+  .hero {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+  }
+  
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Systems Section */
+  .systems {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+  }
+  
+  .systems h2 {
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #339af0;
+  }
+  
+  .system-icons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  
+  .system {
+    width: 150px;
+    text-align: center;
+  }
+  
+  .system img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .system p {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: #339af0;
+    color: white;
+    padding: 20px 20px 20px;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 50px;
+  }
+  
+  .footer-section {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  /* About Section */
+  .footer-section.about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .footer-section.about-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .footer-logo {
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
+  }
+  
+  .footer-description {
+    text-align: left;
+    max-width: 400px;
+  }
+  
+  /* Contact Section */
+  .footer-section.contact {
+    text-align: left;
+    margin-right: 8px;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    font-size: 12px;
+    border-top: 1px solid #333;
+    padding-top: 10px;
+    color: #ccc;
+    background-color: #000000;
+  }
+  
+  
