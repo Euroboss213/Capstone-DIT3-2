@@ -68,7 +68,7 @@
   }
   
   button:hover {
-    background: #1976d2;
+    filter: brightness(0.9);
   }
   
   /* Choice buttons */
