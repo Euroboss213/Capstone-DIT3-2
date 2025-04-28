@@ -19,7 +19,7 @@ function filterTable() {
       rows[i].style.display = match ? "" : "none";
     }
   }
-  
+
   function openReviewModal(data) {
     document.getElementById('reviewModal').style.display = 'block';
   

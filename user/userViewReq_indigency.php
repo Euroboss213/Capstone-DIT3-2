@@ -73,49 +73,10 @@ $userName = $_SESSION['user_name'];
   <button class="back-btn" onclick="window.location.href='userViewReq.php'">Go Back</button>
 </div>
 
-      <?php
-      $conn = new mysqli("localhost", "root", "", "reqwest");
-      if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-      }
-if (isset($_SESSION['import_message'])) {
-    echo $_SESSION['import_message'];
-    unset($_SESSION['import_message']);
-}
-      $sql = "SELECT * FROM indigency";
-      $result = $conn->query($sql);
+      <div id="indigency" class="table-container" style="display: block;">
+        <?php include '../DocsModals/usersDocModal.php'; ?>
+      </div>
 
-      if ($result->num_rows > 0) {
-        echo "<table class='indigency-table'>
-                <thead>
-                  <tr>
-                    <th>User ID</th>
-                    <th>Full Name</th>
-                    <th>Status</th>
-                    <th>Date Requested</th>
-                    <th>Document Type</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>";
-        while($row = $result->fetch_assoc()) {
-          $fullName = $row["first_name"] . " " . ($row["middle_name"] ? $row["middle_name"] . " " : "") . $row["last_name"] . ($row["suffix"] ? ", " . $row["suffix"] : "");
-          echo "<tr>
-                <td>{$row['user_id']}</td> 
-                  <td>{$fullName}</td>
-                  <td>{$row['status']}</td>
-                  <td>{$row['date_requested']}</td>
-                  <td>{$row['document_type']}</td>
-                 <td><button class='action-btn' onclick=''>Edit Request</button></td>
-                </tr>";
-        }
-        echo "</tbody></table>";
-      } else {
-        echo "No records found.";
-      }
-
-      $conn->close();
-      ?>
 </main>
   </div>
 </body>
