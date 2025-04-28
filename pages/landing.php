@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Barangay Zone II</title>
   <link rel="stylesheet" href="../styles/landing.css">
+  <script src="../js/landing-image-slider.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,25 +15,29 @@
 </head>
 <body>
 
-  <!-- Top Bar -->
+  <!-- Top Bar
   <div class="top-bar">
     <div class="social-icons">
       <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
       <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
       <a href="#" target="_blank"><i class="fab fa-x-twitter"></i></a>
     </div>
-  </div>
+  </div> -->
 
   <!-- Header -->
   <header class="header">
-    <div class="logo-section">
+    <!-- <div class="logo-section">
       <img src="../assets/brgy-logo.png" alt="Barangay Logo" class="logo">
+    </div> -->
+    <div class="column1">
+          <div class="barangay-title">
+          <img src="../assets/reqwest-logo.png" alt="Barangay Logo" class="logo">
+          <!-- <span class="barangay-name">BARANGAY WEST KAMIAS</span> -->
+          </div>
+          <!-- <span class="city-name">QUEZON CITY</span> -->
     </div>
+
     
-    <div class="barangay-title">
-    <span class="barangay-name">BARANGAY ZONE II</span>
-    <span class="city-name">CITY OF KORONADAL</span>
-    </div>
 
     <nav class="navbar">
       <a href="landing.php" class="active" >Home</a>
@@ -44,37 +49,79 @@
     </nav>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero Section
   <section class="hero">
-    <img src="../assets/landing-bg.jpg" alt="Barangay Office" class="hero-image">
-  </section>
+    <img src="../assets/landing-bg.png" alt="Barangay Office" class="hero-image">
+  </section> -->
+
+  <div class="slider">
+    <button class="nav-button left" onclick="prevImage()">&lt;</button>
+    <img id="slider-image" src="../assets/landing-bg.png" alt="Slider Image">
+    <button class="nav-button right" onclick="nextImage()">&gt;</button>
+  </div>
+
 
   <!-- E-Governance Systems -->
-  <section class="systems">
-    <h2>E-Governance Systems</h2>
-    <div class="system-icons">
-      <div class="system">
-        <img src="icon1.png" alt="Barangay Profile">
-        <p>Barangay Profile System</p>
-      </div>
-      <div class="system">
-        <img src="icon2.png" alt="Barangay Certification">
-        <p>Barangay Certification System</p>
-      </div>
-      <div class="system">
-        <img src="icon3.png" alt="Judicial System">
-        <p>Judicial System</p>
-      </div>
-      <div class="system">
-        <img src="icon4.png" alt="Health Center">
-        <p>Health Center E-Logbook</p>
-      </div>
-      <div class="system">
-        <img src="icon5.png" alt="Budget Monitoring">
-        <p>Barangay Budget and Monitoring</p>
-      </div>
+  <div class="officials">
+        <h1 class="title">BARANGAY<br>OFFICIALS</h1>
+        <div class="members">
+            <!-- First row -->
+            <div class="member">
+                <img src="../assets/member1.jpg" alt="Deovic Ontangco">
+                <h2>Hon. Deovic Ontangco</h2>
+                <p>City Councilor</p>
+            </div>
+            <div class="member">
+                <img src="../assets/member2.jpg" alt="Robenson Sale">
+                <h2>Hon. Robenson Sale</h2>
+                <p>City Councilor</p>
+            </div>
+            <div class="member">
+                <img src="../assets/member3.jpg" alt="Prima Dajoyag">
+                <h2>Hon. Prima Dajoyag</h2>
+                <p>City Councilor</p>
+            </div>
+            <div class="member">
+                <img src="../assets/member4.jpg" alt="Michael Jones Salazar">
+                <h2>Hon. Michael Jones Salazar</h2>
+                <p>City Councilor</p>
+            </div>
+
+            <!-- Second row -->
+            <div class="member">
+                <img src="../assets/member5.jpg" alt="Rexner Jown Pastoral">
+                <h2>Hon. Rexner Jown Pastoral</h2>
+                <p>City Councilor</p>
+            </div>
+            <div class="member">
+                <img src="../assets/member6.jpg" alt="Divina Opelanio">
+                <h2>Hon. Divina Opelanio</h2>
+                <p>City Councilor</p>
+            </div>
+            <div class="member">
+                <img src="../assets/member7.jpg" alt="Caesar Ryan Noche">
+                <h2>Hon. Caesar Ryan Noche</h2>
+                <p>City Councilor</p>
+            </div>
+            <div class="member">
+                <img src="../assets/member8.jpg" alt="Cedric De Joya">
+                <h2>Hon. Cedric De Joya</h2>
+                <p>City Councilor</p>
+            </div>
+
+            <!-- Third row -->
+            <div class="member">
+                <img src="../assets/member9.jpg" alt="Generoso Garcia">
+                <h2>Hon. Generoso Garcia</h2>
+                <p>ABC President</p>
+            </div>
+            <div class="member">
+                <img src="../assets/member10.jpg" alt="Rodellen Mendoza">
+                <h2>Hon. Rodellen Mendoza</h2>
+                <p>SK Federation President</p>
+            </div>
+        </div>
     </div>
-  </section>
 
   <!-- Footer -->
   <footer class="footer">
