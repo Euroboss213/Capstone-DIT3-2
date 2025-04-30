@@ -11,12 +11,19 @@ function openModal(data) {
 
     // Handle supporting document display
     const previewDiv = document.getElementById('supporting_document_preview');
-    if (data.supporting_document) {
-        const fileName = data.supporting_document.split('/').pop(); // Get only file name
-        previewDiv.innerHTML = `<a href="${data.supporting_document}" target="_blank">${fileName}</a>`;
-    } else {
-        previewDiv.innerText = 'No document uploaded.';
-    }
+if (data.supporting_document) {
+    // Get only the file name
+    let fileName = data.supporting_document.split('/').pop();
+
+    // Remove numeric prefix followed by underscore (e.g., 1746012924_)
+    fileName = fileName.replace(/^\d+_/, '');
+
+    // Display the cleaned file name in the link
+    previewDiv.innerHTML = `<a href="${data.supporting_document}" target="_blank">${fileName}</a>`;
+} else {
+    previewDiv.innerText = 'No document uploaded.';
+}
+
 }
 
 function closeModal() {

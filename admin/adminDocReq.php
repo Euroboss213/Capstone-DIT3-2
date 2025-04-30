@@ -47,26 +47,10 @@
     <main class="main-content">
       <div class="top-bar">
         <input type="text" id="searchInput" placeholder="Search request..." class="search-bar" onkeyup="filterTable()" />
-        <button onclick="showTable('indigency')">Barangay Indigency</button>
-        <button onclick="showTable('indigency')">Barangay Residency</button>
-        <button onclick="showTable('indigency')">Barangay Permit</button>
-        <button onclick="showTable('indigency')">Barangay Clearance</button>
       </div>
 
       <div id="indigency" class="table-container" style="display: block;">
         <?php include '../modalForDocs/indigencyDocModal.php'; ?>
-      </div>
-
-      <div id="residency" class="table-container" style="display: none;">
-        <?php include '../modalForDocs/residencyDocModal.php'; ?>
-      </div>
-
-      <div id="permit" class="table-container" style="display: none;">
-        <?php include '../modalForDocs/permitDocModal.php'; ?>
-      </div>
-
-      <div id="clearance" class="table-container" style="display: none;">
-        <?php include '../modalForDocs/clearanceDocModal.php'; ?>
       </div>
       
     </main>

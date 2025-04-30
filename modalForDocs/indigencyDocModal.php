@@ -31,9 +31,14 @@ if ($result->num_rows > 0) {
       <tr>
           <td>{$fullname}</td>
           <td>{$row['purpose']}</td>
-          <td>" . (!empty($row['supporting_document']) ? $row['supporting_document'] : 'No attached file') . "</td>
+          <td>" . (!empty($row['supporting_document']) ? 
+              '<a href="' . htmlspecialchars($row['supporting_document']) . '" target="_blank">' . 
+              preg_replace('/^(..\/)?uploads\/\d+_/', '', $row['supporting_document']) . 
+              '</a>' : 
+              'No attached file') . "
+          </td>
           <td>{$row['status']}</td>
-          <td>{$row['comment']}</td>
+          <td>" . (!empty($row['comment']) ? $row['comment'] : 'No comment yet') . "</td>
           <td>{$row['date_requested']}</td>
           <td>
             <button class='more-info-btn' onclick='openModal(" . json_encode($row) . ")'>View and Edit</button>
@@ -55,7 +60,6 @@ if ($result->num_rows > 0) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Barangay Document Request</title>
-  <link rel="stylesheet" href="../styles/adminTemplate.css" />
   <link rel="stylesheet" href="../styles/adminResidents_style.css" />
   <script src="../js/adminDocReq_script.js" defer></script>
   <script src="../js/adminNav.js" defer></script>
@@ -75,7 +79,7 @@ if ($result->num_rows > 0) {
                 <label>Suffix: <input type="text" id="suffix" name="suffix" readonly /></label>
 
                 <label>Supporting Document:</label>
-                <div id="supporting_document_preview" style="margin-bottom: 10px;">
+                <div id="supporting_document_preview" style="margin-bottom: 10px;" >
                     No document uploaded.
                 </div>
 

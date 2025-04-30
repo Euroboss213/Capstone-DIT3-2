@@ -74,7 +74,7 @@ if ($result->num_rows > 0) {
               <td>{$document_type}</td>
               <td>{$supporting_document}</td>
               <td>" . htmlspecialchars($row['status']) . "</td>
-              <td>" . htmlspecialchars($row['comment']) . "</td>
+              <td>" . (!empty($row['comment']) ? $row['comment'] : 'No comment yet') . "</td>
               <td>" . htmlspecialchars($row['date_requested']) . "</td>
               <td>
                 <button class='more-info-btn' onclick='openModal(" . htmlspecialchars(json_encode($row), ENT_QUOTES, 'UTF-8') . ")'>View and Edit</button>
@@ -101,7 +101,6 @@ $conn->close();
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Barangay Document Request</title>
-  <link rel="stylesheet" href="../styles/adminTemplate.css" />
   <link rel="stylesheet" href="../styles/adminResidents_style.css" />
   <script src="../js/adminNav.js" defer></script>
   <script src="../js/users_openModal.js" defer></script>
@@ -147,7 +146,7 @@ $conn->close();
                     <input type="file" name="supporting_document" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
 
                     <label>Comment: 
-                        <input type="text" id="comment" name="comment" />
+                        <input type="text" id="comment" name="comment" readonly/>
                     </label>
                 </div>
 
