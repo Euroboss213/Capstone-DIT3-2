@@ -1,14 +1,27 @@
+<?php
+include "../php/auth_check.php";
+
+// Get the user's name from session
+$userName = $_SESSION['user_name'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Barangay Document Request</title>
+  <link rel="stylesheet" href="../styles/adminDocReq_style.css" />
   <link rel="stylesheet" href="../styles/adminTemplate.css" />
-  <link rel="stylesheet" href="../styles/adminAdAccounts_style.css" />
-  <script src="../js/" defer></script>
+  <link rel="stylesheet" href="../styles/adminDocReq_indigency_style.css" />
+  <link rel="stylesheet" href="../styles/adminDocReqModal_style.css" />
   <script src="../js/adminNav.js" defer></script>
+  <script src="../js/admindDocReq_indigency_script.js" defer></script>
+  <script src="../js/admindDocReq_script.js" defer></script>
+  
 </head>
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <body>
   <!-- Navbar -->
   <nav class="navbar">
@@ -27,7 +40,7 @@
       </button>
       <div id="dropdownMenu" class="dropdown-menu">
         <a href="#" class="dropdown-item">Change Password</a>
-        <a href="#" class="dropdown-item">Logout</a>
+        <a href="../pages/newlogin.php" class="dropdown-item">Logout</a>
       </div>
     </div>
   </nav>
@@ -40,13 +53,20 @@
       <button id="doc-req" class="side-button" onclick="window.location.href='adminDocReq.php'">Document Requests</button>
       <button id="registered-residents" class="side-button" onclick="window.location.href='adminResidents.php'">Registered Residents</button>
       <button id="user-accounts" class="side-button" onclick="window.location.href='adminUserAccounts.php'">User Accounts</button>
-      <button id="admin-accounts" class="side-button" onclick="window.location.href='adminAdAccounts.php'">Admin Accounts</button>
     </aside>
 
     <!-- Main Content -->
     <main class="main-content">
-   
-    </main>
+    <div class="top-bar">
+  <input type="text" id="searchInput" placeholder="Search requests..." class="search-bar" onkeyup="filterTable()" />
+  <button class="back-btn" onclick="window.location.href='adminDocReq.php'">Go Back</button>
+</div>
+
+      <div id="indigency" class="table-container" style="display: block;">
+        <?php include '../docsModals/indigencyDocModal.php'; ?>
+      </div>
+
+</main>
   </div>
 </body>
 </html>

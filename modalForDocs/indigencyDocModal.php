@@ -43,7 +43,7 @@ if ($result->num_rows > 0) {
           <td>
             <button class='more-info-btn' onclick='openModal(" . json_encode($row) . ")'>View and Edit</button>
           </td>
-      </tr>
+      </tr> 
     ";
   }
 

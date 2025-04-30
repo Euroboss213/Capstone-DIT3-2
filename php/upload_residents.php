@@ -211,13 +211,15 @@ if (isset($_POST['import_csv']) && isset($_FILES['csv_file']) && $_FILES['csv_fi
                 ];
                 
                 $matched = false;
+                $fullName = trim("$first_name $middle_name $last_name" . (!empty($suffix) ? " $suffix" : ""));
                 foreach ($idFieldsWithLabels as $field => $label) {
-                    if (strpos($err, $field) !== false && preg_match("/$field\s*\((.*?)\)/", $err, $matches)) {
-                        $message .= "<li>$label (" . htmlspecialchars($matches[1]) . ") already exists in the database.</li>";
-                        $matched = true;
-                        break;
-                    }
-                }
+                 if (strpos($err, $field) !== false && preg_match("/$field\s*\((.*?)\)/", $err, $matches)) {
+                // Assuming you have the full name stored in $fullName
+                 $message .= "<li>" . htmlspecialchars($fullName) . " - $label (" . htmlspecialchars($matches[1]) . ") already exists in the database.</li>";
+                 $matched = true;
+                 break;
+                 }
+}
                 
                 if (!$matched) {
                     $message .= "<li>" . htmlspecialchars($err) . "</li>";

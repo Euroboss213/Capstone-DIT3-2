@@ -1,3 +1,9 @@
+<?php
+include "../php/auth_check.php";
+
+// Get the user's name from session
+$userName = $_SESSION['user_name'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +33,7 @@
       </button>
       <div id="dropdownMenu" class="dropdown-menu">
         <a href="#" class="dropdown-item">Change Password</a>
-        <a href="#" class="dropdown-item">Logout</a>
+        <a href="../pages/newlogin.php" class="dropdown-item">Logout</a>
       </div>
     </div>
   </nav>
@@ -40,7 +46,6 @@
       <button id="doc-req" class="side-button" onclick="window.location.href='adminDocReq.php'">Document Requests</button>
       <button id="registered-residents" class="side-button" onclick="window.location.href='adminResidents.php'">Registered Residents</button>
       <button id="user-accounts" class="side-button" onclick="window.location.href='adminUserAccounts.php'">User Accounts</button>
-      <button id="admin-accounts" class="side-button" onclick="window.location.href='adminAdAccounts.php'">Admin Accounts</button>
     </aside>
 
     <!-- Main Content -->

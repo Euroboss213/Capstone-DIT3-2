@@ -1,0 +1,231 @@
+@import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+
+/* Custom Styles */
+body {
+  background-color: #f7fafc; /* bg-gray-100 */
+  color: #2d3748; /* text-gray-800 */
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Pushes logo to the left and buttons to the right */
+}
+
+.logo-container {
+  display: flex;
+  align-items: center; /* Vertically align logo and subheading */
+}
+
+.logo-img {
+  width: 150px;  /* Adjust width to your desired size */
+  height: auto;   /* Keep aspect ratio */
+  object-fit: contain;
+  margin-right: 10px;  /* Space between logo and subheading */
+}
+
+.barangay-name {
+  font-size: small;
+  display: flex;
+  flex-direction: column; /* Stack barangay and city vertically */
+  align-items: flex-start;
+}
+
+.barangay {
+  font-size: small;
+  font-weight: bold;  /* Make barangay bold */
+  color: #3399FF;     /* Dark gray color */
+}
+
+.city {
+  font-size: small;
+  font-weight: bold;  /* Make the city bold */
+  color: #777777;     /* Dark gray color */
+}
+
+.profile-menu {
+  display: flex;
+  align-items: center;
+}
+
+.chat-button, .profile-button {
+  background-color: #edf2f7; /* bg-gray-200 */
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 10px; /* Space between the buttons */
+}
+
+.chat-button:hover, .profile-button:hover {
+  background-color: #e2e8f0; /* hover:bg-gray-300 */
+}
+
+.acc-dropdown-menu {
+  position: absolute;
+  right: 0;
+  margin-top: 10rem;
+  width: 12rem;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: none;
+  z-index: 10;
+}
+
+.acc-dropdown-menu.show {
+  display: block;
+}
+
+.acc-dropdown-item {
+  padding: 1rem;
+  display: block;
+  color: #4a5568; /* text-gray-700 */
+  text-decoration: none;
+}
+
+.acc-dropdown-item-btn {
+  padding: 1rem;
+  display: block;
+  color: #4a5568; /* text-gray-700 */
+  text-decoration: none;
+  width: 100%;
+  text-align: start;
+}
+.acc-dropdown-item-btn:hover {
+  background-color: #f7fafc; /* hover:bg-gray-100 */
+}
+
+.acc-dropdown-item:hover {
+  background-color: #f7fafc; /* hover:bg-gray-100 */
+}
+
+.chat-dropdown-menu {
+  position: absolute;
+  right: 0;
+  margin-top: 10rem;
+  width: 12rem;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: none;
+  z-index: 10;
+}
+
+.chat-dropdown-menu.show {
+  display: block;
+}
+
+.chat-dropdown-item {
+  padding: 1rem;
+  display: block;
+  color: #4a5568; /* text-gray-700 */
+  text-decoration: none;
+}
+
+.chat-dropdown-item-btn {
+  padding: 1rem;
+  display: block;
+  color: #4a5568; /* text-gray-700 */
+  text-decoration: none;
+  width: 100%;
+  text-align: start;
+  background-color: #f7fafc; 
+}
+.chat-dropdown-item-btn:hover {
+  background-color: #2196f3; /* hover:bg-gray-100 */
+}
+
+.chat-dropdown-item:hover {
+  background-color: #f7fafc; /* hover:bg-gray-100 */
+}
+
+.flex-container {
+  display: flex;
+}
+
+.sidebar {
+  width: 16rem;
+  min-height: calc(100vh - 4rem); /* This ensures it's at least full height */
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-top: 1rem;
+  border-top-right-radius: 1.5rem;
+}
+
+.user-name {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.side-button {
+  margin-top: 10px;
+  width: 100%;
+  background-color: #e2e8f0; /* bg-gray-300 */
+  padding: 0.75rem;
+  font-weight: 600;
+  color: #2d3748; /* text-gray-800 */
+  border-radius: 0.375rem;
+  transition: background-color 0.3s;
+}
+.side-button-active {
+  margin-top: 10px;
+  width: 100%;
+  background-color: #e2e8f0; /* bg-gray-300 */
+  padding: 0.75rem;
+  font-weight: 600;
+  color:#3182ce; /* text-gray-800 */
+  border-radius: 0.375rem;
+  transition: background-color 0.3s;
+}
+.side-button-active:hover {
+  background-color: #cbd5e0; /* hover:bg-gray-400 */
+}
+.side-button:hover {
+  background-color: #cbd5e0; /* hover:bg-gray-400 */
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 1.5rem;
+}
+
+.chat-containers {
+  display: flex;
+  justify-content: flex-end;
+  align-items: end;
+  position: fixed; /* change from absolute to fixed */
+  bottom: 0;        /* stick to the bottom */
+  left: 10%;        /* adjust this if you want it centered */
+  width: 88%;
+  height: 60%;
+  z-index: 100;
+  gap: 20px;
+}
+
+.exit-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(156, 152, 152, 0.253);
+}
+
+.bot-exit-btn {
+  display: flex;
+  justify-self: flex-end;
+}
+.clear-btn {
+  display: flex;
+  justify-self: flex-start;
+}
+
+.chat-exit-btn {
+  margin-left: auto;
+}
