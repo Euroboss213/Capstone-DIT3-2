@@ -8,53 +8,68 @@
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    width: 100%;
+    padding: 20px;
     background: linear-gradient(90deg, #e2e2e2, #c9d6ff);
 }
 
-.services-container {
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 30px;
+    background: rgba(28, 37, 38, 0.15); /* #1C2526 with 80% opacity */
+    position: fixed; /* Fix header at the top */
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 1200px;
-    height: 600px;
-    margin: 40px auto;
-    background: white;
-    border-radius: 25px;
-    padding: 30px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, .2);
+    z-index: 1000; /* Ensure header stays above other content */
+}
+
+.logo {
+    height: 60px;
+    width: 165px;
+}
+
+.column1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .navbar {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    padding: 10px 30px;
     gap: 20px;
-    margin-bottom: 30px;
 }
 
 .navbar a {
     text-decoration: none;
-    color: #333;
+    color: #fff; /* White text for better contrast on dark background */
     font-weight: 600;
     padding: 5px 10px;
     transition: color 0.3s;
+    margin-top: -10px;
+    font-size: 18px;
 }
 
 .navbar a.active,
 .navbar a:hover {
-    color: #339af0;
+    color: #339af0; /* Keep blue for active/hover states */
 }
 
 .header-section {
     text-align: center;
     margin-bottom: 40px;
+    margin-top: 100px; /* Add margin to prevent content from being hidden under fixed header */
 }
 
 .header-section h1 {
     font-size: 36px;
     color: #333;
     margin-bottom: 10px;
+    margin-top: 20px;
 }
 
 .header-section p {
@@ -74,6 +89,7 @@ body {
     border-radius: 15px;
     text-align: center;
     transition: transform 0.3s, background-color 0.3s;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .15);
 }
 
 .service-box:hover {

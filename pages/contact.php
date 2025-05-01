@@ -9,15 +9,19 @@
     <link href="https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<div class="contact-container">
-    <nav class="navbar">
-        <a href="newlogin.php">Login/Sign up</a>
-        <a href="services.php">Services</a>
-        <a href="#">About Us</a>
-        <a href="faq.php">FAQ</a>
-        <a href="contact.php" class="active">Contact Us</a>
-    </nav>
+    <header class="header">
+        <div class="column1">
+            <img src="../assets/reqwest-logo.png" alt="Barangay Logo" class="logo">
+        </div>
+        <nav class="navbar">
+            <a href="landing.php">Home</a>
+            <a href="services.php">Services</a>
+            <a href="aboutus.php">About Us</a>
+            <a href="faq.php">FAQ</a>
+            <a href="contact.php" class="active">Contact Us</a>
+            <a href="newlogin.php">Login</a>
+        </nav>
+    </header>
 
     <div class="header-section">
         <h1>📞 Get in Touch</h1>
@@ -65,7 +69,5 @@
             width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0">
         </iframe>
     </div>
-</div>
-
 </body>
 </html>
