@@ -15,15 +15,25 @@
     <script src="../js/confirmPass.js"></script>
 </head>
 <body>
+<header class="header">
+        <div class="column1">
+            <div class="barangay-title">
+                <img src="../assets/reqwest-logo.png" alt="Barangay Logo" class="logo">
+            </div>
+        </div>
+        <nav class="navbar">
+            <a href="landing.php">Home</a>
+            <a href="services.php">Services</a>
+            <a href="aboutus.php">About Us</a>
+            <a href="faq.php">FAQ</a>
+            <a href="contact.php">Contact Us</a>
+            <a href="newlogin.php" class="active">Login</a>
+        </nav>
+    </header>
+
     <div class="container">
         <div class="form-box login">
             <form action="../php/tologin.php" method="POST" id="login-form">
-                <div class="navbar">
-                    <a href="services.php">Services</a>
-                    <a href="#">About Us</a>
-                    <a href="faq.php">FAQ</a>
-                    <a href="contact.php">Contact Us</a>  
-                </div>
                 <img src = "../assets/reqwest-logo.png">
                 <h1>Login</h1>
                 <div class="input-box">

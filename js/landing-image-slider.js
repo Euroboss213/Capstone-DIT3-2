@@ -8,19 +8,25 @@ const images = [
 let currentIndex = 0;
 
 function showImage(index) {
-    const img = document.getElementById('slider-image');
-    img.src = images[index];
+    const img = document.getElementById("slider-image");
+    const dots = document.querySelectorAll(".dot");
+    
+    currentIndex = (index + images.length) % images.length;
+    img.src = images[currentIndex];
+
+    dots.forEach(dot => dot.classList.remove("active"));
+    dots[currentIndex].classList.add("active");
 }
 
 function nextImage() {
-    currentIndex = (currentIndex + 1) % images.length;
-    showImage(currentIndex);
+    showImage(currentIndex + 1);
 }
 
 function prevImage() {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    showImage(currentIndex);
+    showImage(currentIndex - 1);
 }
 
-// Auto-slide every 3 seconds
-setInterval(nextImage, 3000);
+function currentImage(index) {
+    showImage(index);
+}
+setInterval(nextImage, 5000);
