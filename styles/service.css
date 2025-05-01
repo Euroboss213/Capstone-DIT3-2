@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "K2D", sans-serif;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(90deg, #e2e2e2, #c9d6ff);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 30px;
+    background: rgba(28, 37, 38, 0.15); /* #1C2526 with 80% opacity */
+    position: fixed; /* Fix header at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure header stays above other content */
+}
+
+.logo {
+    height: 60px;
+    width: 165px;
+}
+
+.column1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 10px 30px;
+    gap: 20px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #fff; /* White text for better contrast on dark background */
+    font-weight: 600;
+    padding: 5px 10px;
+    transition: color 0.3s;
+    margin-top: -10px;
+    font-size: 18px;
+}
+
+.navbar a.active,
+.navbar a:hover {
+    color: #339af0; /* Keep blue for active/hover states */
+}
+
+.header-section {
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 100px; /* Add margin to prevent content from being hidden under fixed header */
+}
+
+.header-section h1 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.header-section p {
+    font-size: 18px;
+    color: #555;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.service-box {
+    background: #f1f3f5;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.3s, background-color 0.3s;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .15);
+}
+
+.service-box:hover {
+    transform: translateY(-8px);
+    background-color: #e7f5ff;
+}
+
+.service-box h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #339af0;
+}
+
+.service-box p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.btn-small {
+    background: #339af0;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 15px;
+    transition: background 0.3s;
+}
+
+.btn-small:hover {
+    background: #1c7ed6;
+}

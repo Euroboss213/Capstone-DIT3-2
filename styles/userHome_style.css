@@ -1,0 +1,58 @@
+@import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+
+
+.main-content {
+  flex-grow: 1;
+  padding: 1.5rem;
+}
+
+/* Responsive Grid */
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .button-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Button Styling */
+.action-button {
+  display: inline-block;
+  width: 100%; /* fills grid column */
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #3b82f6;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.action-button:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+.image-container {
+  width: 100%;
+  max-width: 1100px; /* Limit the image size */
+  margin: 1.5rem auto; /* Center the image container */
+  padding: 1rem;
+  background-color: #fff; /* Optional: Adds background color */
+  border-radius: 0.375rem; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow */
+  text-align: center; /* Centers the image */
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 0.375rem; /* Optional: Rounds the image corners */
+}

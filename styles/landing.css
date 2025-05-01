@@ -1,0 +1,248 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "K2D", sans-serif;
+  line-height: 1.6;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px;
+  background: rgba(0, 0, 0, 0.15);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.logo {
+  height: 60px;
+  width: 165px;
+  margin-bottom: -10px;
+}
+
+.column1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navbar a {
+  margin: 0 15px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.navbar a.active,
+.navbar a:hover {
+  color: #339af0;
+}
+
+/* Slider */
+.slider {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+}
+
+.slider img {
+  width: 100%;
+  height: 100%  ;
+  object-fit: cover;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.5s ease;
+}
+
+/* Slide Indicators (inside image) */
+.indicator-container {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  margin: 0 6px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #339af0;
+}
+
+/* Officials */
+.officials {
+  padding: 20px;
+}
+
+.title {
+  color: #339af0;
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title::before,
+.title::after {
+  content: "";
+  display: block;
+  width: 500px;
+  height: 2px;
+  background-color: #339af0;
+  margin: 10px auto;
+}
+
+.members {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.member {
+  width: 200px;
+  text-align: center;
+}
+
+.member img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.member h2 {
+  font-size: 16px;
+  margin: 10px 0 5px;
+  color: #000;
+}
+
+.member p {
+  font-size: 14px;
+  color: #339af0;
+  margin: 0;
+}
+
+/* Footer */
+/* Footer */
+.footer {
+  background-color: #339af0;
+  color: white;
+  padding: 20px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-evenly; /* Even spacing between sections */
+  align-items: flex-start; /* Align content at the top */
+  flex-wrap: wrap;
+  gap: 20px; /* Fallback spacing for older browsers */
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px; /* Ensure sections don't get too narrow */
+  text-align: center; /* Center text within each section */
+}
+
+/* About Section */
+.footer-section.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-section.about-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-logo {
+  width: 100px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.footer-description {
+  text-align: left;
+  max-width: 400px;
+}
+
+/* Contact Section */
+.footer-section.contact {
+  text-align: center; /* Center the contact info */
+}
+
+/* Social Icons Section */
+.footer-section.social-icons {
+  text-align: center;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center; /* Center the icons horizontally */
+  gap: 20px; /* Space between icons */
+}
+
+.social-links a {
+  color: white;
+  font-size: 40px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #000;
+  background-color: none;
+  transform: translateY(-5px);
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensure headings are consistent */
+.footer-section h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 12px;
+  border-top: 1px solid #333;
+  padding-top: 10px;
+  color: #ccc;
+  background-color: #000000;
+  
+}
+
+.footer-bottom a{
+  font-size: 15px;
+  color: white;
+  text-decoration: none;
+  gap: 10px;
+  font-family: "K2D", sans-serif;
+  margin: 0px 15px 15px 0px;
+}
