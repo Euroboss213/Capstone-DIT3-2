@@ -58,6 +58,7 @@ $conn->close();
   <link rel="stylesheet" href="../styles/adminTemplate.css" />
   <link rel="stylesheet" href="../styles/adminDocReq_indigency_style.css" />
   <link rel="stylesheet" href="../styles/adminDocReqModal_style.css" />
+
   <script src="../js/adminNav.js" defer></script>
   <script src="../js/admindDocReq_indigency_script.js" defer></script>
   <script src="../js/admindDocReq_script.js" defer></script>
@@ -117,6 +118,13 @@ $conn->close();
             </div>
 
             <div class="modal-buttons">
+                <!-- <a id="pdfLink" href="#" target="_blank">view PDF</a> -->
+                <input type="hidden" id="requestId" value="12345"> <!-- Example hidden field -->
+
+                <button type="button" onclick="generateAndViewPDF(document.getElementById('requestId').value)">
+                  View PDF
+                </button>
+
                 <button type="button" id="deleteBtn" class="btn btn-delete">Delete</button>
                 <button type="submit" id="saveBtn" class="btn btn-save">Save</button>
             </div>
