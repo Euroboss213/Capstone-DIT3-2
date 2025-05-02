@@ -22,7 +22,7 @@ function openReviewModal(data) {
         document.getElementById('purpose').readOnly = false;
         document.getElementById('supportingDocument').disabled = false;
         document.getElementById('documentType').readOnly = false;
-        document.getElementById('comment').readOnly = false;
+        document.getElementById('comment').readOnly = true;
         document.getElementById('saveBtn').disabled = false; // Enable the save button
     }
 }
@@ -75,35 +75,19 @@ document.getElementById('deleteBtn').onclick = function() {
       .catch(error => console.error('Error:', error));
     }
 };
-function openModal(data) {
-    document.getElementById('infoModal').style.display = 'block';
 
-    // Fill in fields
-    document.querySelector('input[name="last_name"]').value = data.last_name || '';
-    document.querySelector('input[name="first_name"]').value = data.first_name || '';
-    document.querySelector('input[name="middle_name"]').value = data.middle_name || '';
-    document.querySelector('input[name="suffix"]').value = data.suffix || '';
-    document.querySelector('textarea[name="purpose"]').value = data.purpose || '';
-    document.querySelector('input[name="comment"]').value = data.comment || '';
-    document.querySelector('input[name="id"]').value = data.id || '';
-    
-
-    // Determine if fields should be disabled
-    const isReadOnly = data.status === 'For Pickup';
-
-    document.querySelector('input[name="last_name"]').readOnly = isReadOnly;
-    document.querySelector('input[name="first_name"]').readOnly = isReadOnly;
-    document.querySelector('input[name="middle_name"]').readOnly = isReadOnly;
-    document.querySelector('input[name="suffix"]').readOnly = isReadOnly;
-    document.querySelector('textarea[name="purpose"]').readOnly = isReadOnly;
-    document.querySelector('input[name="comment"]').readOnly = isReadOnly;
-    document.querySelector('input[name="supporting_document"]').disabled = isReadOnly;
-    
-
-    // Optional: hide or disable the submit/update button if it's For Pickup
-    const updateBtn = document.getElementById('updateBtn');
-    if (updateBtn) {
-        updateBtn.disabled = isReadOnly;
-        updateBtn.style.display = isReadOnly ? 'none' : 'inline-block';
-    }
+function deleteFromRow(id) {
+  if (confirm('Are you sure you want to cancel this request?')) {
+    fetch('../php/admin_deleteIndigency.php', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: `id=${id}`
+    })
+    .then(response => response.text())
+    .then(data => {
+      alert(data);
+      location.reload();
+    })
+    .catch(error => console.error('Error:', error));
+  }
 }

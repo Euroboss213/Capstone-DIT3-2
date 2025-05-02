@@ -33,7 +33,7 @@ if ($result->num_rows > 0) {
             <td>{$row['user_id']}</td> 
             <td>{$fullName}</td>
             <td>{$row['purpose']}</td>
-            <td>{$row['status']}</td>
+            <td class='status'>{$row['status']}</td>
             <td>{$row['date_requested']}</td>
             <td>{$row['document_type']}</td>
             <td><button class='action-btn' onclick='openReviewModal(".json_encode($row).")'>Review Request</button></td>
@@ -54,14 +54,6 @@ $conn->close();
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Barangay Document Request</title>
-  <link rel="stylesheet" href="../styles/adminDocReq_style.css" />
-  <link rel="stylesheet" href="../styles/adminTemplate.css" />
-  <link rel="stylesheet" href="../styles/adminDocReq_indigency_style.css" />
-  <link rel="stylesheet" href="../styles/adminDocReqModal_style.css" />
-
-  <script src="../js/adminNav.js" defer></script>
-  <script src="../js/admindDocReq_indigency_script.js" defer></script>
-  <script src="../js/admindDocReq_script.js" defer></script>
 </head>
 <body>
     <!-- Modal part -->
@@ -118,13 +110,10 @@ $conn->close();
             </div>
 
             <div class="modal-buttons">
-                <!-- <a id="pdfLink" href="#" target="_blank">view PDF</a> -->
-                <input type="hidden" id="requestId" value="12345"> <!-- Example hidden field -->
-
+            <input type="hidden" id="requestId" value="12345"> <!-- Example hidden field -->
                 <button type="button" onclick="generateAndViewPDF(document.getElementById('requestId').value)">
-                  View PDF
+                   View PDF
                 </button>
-
                 <button type="button" id="deleteBtn" class="btn btn-delete">Delete</button>
                 <button type="submit" id="saveBtn" class="btn btn-save">Save</button>
             </div>

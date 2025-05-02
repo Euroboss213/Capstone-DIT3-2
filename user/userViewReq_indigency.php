@@ -16,8 +16,10 @@ $userName = $_SESSION['user_name'];
   <link rel="stylesheet" href="../styles/userTemplate.css" />
   <link rel="stylesheet" href="../styles/chatBot.css" />
   <link rel="stylesheet" href="../styles/autoChat.css">
+  <link rel="stylesheet" href="../styles/status.css" />
 
   <!--SCRIPTS-->
+  <script src="../js/status.js" defer></script>
   <script src="../js/userHome_script.js" defer></script>
   <script src="../js/chatBot.js" defer></script>
   <script src="../js/autoChat.js" defer></script>
@@ -70,11 +72,19 @@ $userName = $_SESSION['user_name'];
       <!-- Main Content -->
     <main class="main-content">
     <div class="top-bar">
+    <select id="statusFilter" class="filter-dropdown" onchange="filterByStatus()">
+    <option value="">All Statuses</option>
+    <option value="Ongoing">Ongoing</option>
+    <option value="Approved">Approved</option>
+    <option value="Returned">Returned</option>
+    <option value="For Pickup">For Pickup</option>
+    <option value="Completed">Completed</option>
+  </select>
   <button class="back-btn" onclick="window.location.href='userViewReq.php'">Go Back</button>
 </div>
 
       <div id="indigency" class="table-container" style="display: block;">
-        <?php include '../DocsModals/usersDocModal.php'; ?>
+        <?php include '../DocsModals/usersDocModal_indigency.php'; ?>
       </div>
 
 </main>

@@ -53,14 +53,18 @@ if ($result->num_rows > 0) {
             <tbody>";
     while($row = $result->fetch_assoc()) {
         $fullName = $row["first_name"] . " " . ($row["middle_name"] ? $row["middle_name"] . " " : "") . $row["last_name"] . ($row["suffix"] ? ", " . $row["suffix"] : "");
+        $disableEdit = in_array($row['status'], ['For Pickup', 'Completed']) ? 'disabled' : '';
         echo "<tr>
             <td>{$row['user_id']}</td> 
             <td>{$fullName}</td>
-            <td>{$row['status']}</td>
+            <td class='status'>{$row['status']}</td>
             <td>{$row['date_requested']}</td>
             <td>{$row['document_type']}</td>
             <td>{$row['comment']}</td> <!-- 🆕 Added this -->
-            <td><button class='action-btn' onclick='openReviewModal(".json_encode($row).")'>Edit Request</button></td>
+            <td>
+               <button class='action-btn' onclick='openReviewModal(".json_encode($row).")' $disableEdit>Edit Request</button>
+                <button class='action-btn delete-btn' onclick='deleteFromRow({$row['id']})'>Cancel</button>
+            </td>
         </tr>";
     }
     echo "</tbody></table>";
@@ -76,15 +80,8 @@ if ($result->num_rows > 0) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Barangay Document Request</title>
-  <link rel="stylesheet" href="../styles/adminTemplate.css" />
-  <link rel="stylesheet" href="../styles/adminResidents_style.css" />
-  <link rel="stylesheet" href="../styles/adminDocReq_style.css" />
-  <link rel="stylesheet" href="../styles/adminDocReq_indigency_style.css" />
-  <link rel="stylesheet" href="../styles/adminDocReqModal_style.css" />
-  
-  <script src="../js/adminNav.js" defer></script>
+  <link rel="stylesheet" href="../styles/formModal_style.css" />
   <script src="../js/users_openModal.js" defer></script>
-  <script src="../js/admindDocReq_script.js" defer></script>
 </head>
 <body>
     <!-- Modal part -->
@@ -137,7 +134,7 @@ if ($result->num_rows > 0) {
 
             <div class="form-group">
                 <label>Comment:</label>
-                <textarea id="comment" name="comment" rows="4" placeholder="Add a comment..." readonly></textarea>
+                <textarea id="comment" name="comment" rows="4" placeholder="The Brgy. Official Will comment here..." readonly></textarea>
             </div>
 
             <div class="modal-buttons">

@@ -13,6 +13,14 @@
 .action-btn:hover {
   filter: brightness(0.9);
 }
+.delete-btn {
+  background-color: #e53e3e; /* Red shade */
+  color: white;
+}
+
+.delete-btn:hover {
+  filter: brightness(0.9);
+}
 
 .indigency-table {
   width: 100%;
@@ -85,6 +93,16 @@
   .back-btn:hover {
     filter: brightness(0.9);
   }
+  .action-btn:disabled {
+    background-color: #ccc;  /* Light gray to show it's inactive */
+    color: #666;
+    cursor: not-allowed;
+    border: 1px solid #999;
+    opacity: 0.7;
+}
 
+.action-btn:disabled:hover {
+    background-color: #ccc;
+}
 
 
