@@ -68,7 +68,7 @@ if (!file_exists($pdfPath)) {
             <button id="user-accounts" class="side-button" onclick="window.location.href='adminUserAccounts.php'">User Accounts</button>
         </aside>
 
-        <!-- Main Content -->
+        <!-- Main Contentdito ilagay -->
         <main class="main-content">
             <div class="top-bar">
                 <button class="back-btn" onclick="window.location.href='adminDocReq.php'">Go Back</button>
