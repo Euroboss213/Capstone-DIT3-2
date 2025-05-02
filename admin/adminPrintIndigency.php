@@ -3,6 +3,20 @@ include "../php/auth_check.php";
 
 // Get the user's name from session
 $userName = $_SESSION['user_name'];
+
+// Check if the 'id' query parameter is set
+if (isset($_GET['id'])) {
+  $id = $_GET['id'];
+  $pdfPath = "../temp/barangay_{$id}.pdf";  // Construct the PDF path
+} else {
+  // If no 'id' parameter is provided, show an error or redirect
+  die("No ID specified.");
+}
+
+// Ensure the file exists
+if (!file_exists($pdfPath)) {
+  die("The requested PDF does not exist.");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

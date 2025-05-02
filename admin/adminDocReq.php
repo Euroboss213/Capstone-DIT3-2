@@ -13,6 +13,8 @@ $userName = $_SESSION['user_name'];
   <link rel="stylesheet" href="../styles/adminDocReq_style.css" />
   <link rel="stylesheet" href="../styles/adminTemplate.css" />
   <link rel="stylesheet" href="../styles/adminDocReqLanding.css" />
+
+  <script src="../js/admindDocReq_indigency_script.js"></script>
   <script src="../js/adminNav.js" defer></script>
 </head>
 <!-- Font Awesome CDN -->
