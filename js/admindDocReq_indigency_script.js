@@ -19,20 +19,6 @@ function filterTable() {
       rows[i].style.display = match ? "" : "none";
     }
   }
-
-  function openReviewModal(data) {
-    document.getElementById('reviewModal').style.display = 'block';
-  
-    document.getElementById('requestId').value = data.id;
-    document.getElementById('userId').value = data.user_id;
-    document.getElementById('fullName').value = `${data.first_name} ${data.middle_name ?? ''} ${data.last_name} ${data.suffix ?? ''}`;
-    document.getElementById('purpose').value = data.purpose;
-    document.getElementById('supportingDocument').value = data.supporting_document;
-    document.getElementById('documentType').value = data.document_type;
-    document.getElementById('dateRequested').value = data.date_requested;
-    document.getElementById('status').value = data.status;
-    document.getElementById('comment').value = data.comment ?? '';
-  }
   
   // Close modal
   document.querySelector('.close').onclick = function() {
@@ -51,7 +37,7 @@ function filterTable() {
     })
     .then(response => response.text())
     .then(data => {
-      alert(data);
+      // alert(data);
       location.reload();
     })
     .catch(error => console.error('Error:', error));
@@ -69,7 +55,7 @@ function filterTable() {
       })
       .then(response => response.text())
       .then(data => {
-        alert(data);
+        // alert(data);
         location.reload();
       })
       .catch(error => console.error('Error:', error));
@@ -89,6 +75,8 @@ function filterTable() {
     document.getElementById('dateRequested').value = data.date_requested;
     document.getElementById('status').value = data.status;
     document.getElementById('comment').value = data.comment ?? '';
+
+    document.getElementById("pdfLink").href = `http://localhost/capstone/Capstone-DIT3-2/forPDFtemplate/template-pdf.php?id=${data.id}`;
   
     const fileName = data.supporting_document;
     if (fileName) {
@@ -99,6 +87,16 @@ function filterTable() {
       document.getElementById('supportingDocumentLink').href = "#";
       document.getElementById('supportingDocumentLink').textContent = "No file uploaded";
     }
+  }
+
+  function generateAndViewPDF(requestId) {
+    // Redirect to the correct PHP script to generate the PDF
+    window.location.href = 'http://localhost/capstone/Capstone-DIT3-2/forPrints/template-pdf.php?id=' + requestId;
+  }
+
+  function printCompleteList() {
+    // Redirect to the correct PHP script to generate the PDF
+    window.location.href = 'http://localhost/capstone/Capstone-DIT3-2/forPrints/completeReqList.php?';
   }
   
   

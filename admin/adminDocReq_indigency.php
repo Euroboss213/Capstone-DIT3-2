@@ -60,6 +60,10 @@ $userName = $_SESSION['user_name'];
     <div class="top-bar">
   <input type="text" id="searchInput" placeholder="Search requests..." class="search-bar" onkeyup="filterTable()" />
   <button class="back-btn" onclick="window.location.href='adminDocReq.php'">Go Back</button>
+
+  <button type="button" onclick="printCompleteList()">
+    Generate List
+  </button>
 </div>
 
       <div id="indigency" class="table-container" style="display: block;">
