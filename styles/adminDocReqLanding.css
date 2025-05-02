@@ -1,0 +1,77 @@
+.document-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px;
+  }
+  
+  .document-button {
+    background-color: #f0f4f8;
+    border: none;
+    border-radius: 12px;
+    padding: 20px 30px;
+    width: 200px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    color: #3182ce;
+  }
+  
+  .document-button:hover {
+    background-color: #dbeafe;
+    transform: translateY(-5px);
+  }
+  
+  .document-icon {
+    font-size: 50px;
+    color: #3b82f6; /* blue color */
+    margin-bottom: 15px;
+  }
+  .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 40px auto 0 auto; /* top: 40px, left/right: auto, bottom: 0 */
+  }
+  .top-bar-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #2d3748;
+  }
+  
+  .top-bar-input {
+    padding: 8px 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 120px;
+  }
+  
+  .generate-button {
+    padding: 8px 16px;
+    background-color: #3182ce;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .generate-button:hover {
+    filter:brightness(0.9)
+  }
+  .main-content {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ensures children like .top-bar center */
+  }

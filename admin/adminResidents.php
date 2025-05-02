@@ -93,7 +93,7 @@ if (isset($_SESSION['import_message'])) {
                   <td>{$row['contact_number']}</td>
                   <td>{$row['address']}</td>
                   <td>{$row['date_of_registration']}</td>
-                  <td><button class='more-info-btn' onclick='openModal(" . json_encode($row) . ")'>View and Edit</button></td>
+                  <td><button class='more-info-btn' onclick='openModal(" . json_encode($row) . ")'>View or Edit</button></td>
                 </tr>";
         }
         echo "</tbody></table>";

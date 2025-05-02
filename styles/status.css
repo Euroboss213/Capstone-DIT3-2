@@ -1,0 +1,20 @@
+.status {
+    font-weight: bold;
+  }
+  
+  .status-ongoing {
+    color: #007bff;
+  }
+  
+  .status-pickup {
+    color: #28a745;
+  }
+  
+  .status-returned {
+    color: #dc3545;
+  }
+  
+  .status-completed {
+    color: #6c757d;
+  }
+  

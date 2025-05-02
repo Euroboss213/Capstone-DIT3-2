@@ -71,7 +71,7 @@ $userName = $_SESSION['user_name'];
   <div class="document-buttons-container">
     <button class="document-button" onclick="window.location.href='userViewReq_indigency.php'">
       <i class="fas fa-hand-holding-heart document-icon"></i>
-      <span>Barangay Indigency</span>
+      <span>Certificate of Indigency</span>
     </button>
 
     <button class="document-button">
@@ -81,12 +81,12 @@ $userName = $_SESSION['user_name'];
 
     <button class="document-button">
       <i class="fas fa-home document-icon"></i>
-      <span>Barangay Residency</span>
+      <span>Certificate of Residency</span>
     </button>
 
     <button class="document-button">
       <i class="fas fa-id-badge document-icon"></i>
-      <span>Barangay Clearance</span>
+      <span>Barangay Business Clearance</span>
     </button>
   </div>
 </main>

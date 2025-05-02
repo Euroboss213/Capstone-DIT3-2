@@ -12,6 +12,7 @@ $userName = $_SESSION['user_name'];
   <title>Barangay Document Request</title>
   <link rel="stylesheet" href="../styles/adminDocReq_style.css" />
   <link rel="stylesheet" href="../styles/adminTemplate.css" />
+  <link rel="stylesheet" href="../styles/adminDocReqLanding.css" />
   <script src="../js/adminNav.js" defer></script>
 </head>
 <!-- Font Awesome CDN -->
@@ -52,10 +53,17 @@ $userName = $_SESSION['user_name'];
 
     <!-- Main Content -->
     <main class="main-content">
+    <div class="top-bar">
+  <label for="yearInput" class="top-bar-label">Year:</label>
+  <input type="number" id="yearInput" name="year" class="top-bar-input" placeholder="e.g. 2025" min="2000" max="2099" />
+  <button type="button" class="generate-button" onclick="printCompleteList()">
+    Generate List
+  </button>
+</div>
   <div class="document-buttons-container">
     <button class="document-button" onclick="window.location.href='adminDocReq_indigency.php'">
       <i class="fas fa-hand-holding-heart document-icon"></i>
-      <span>Barangay Indigency</span>
+      <span>Certificate of Indigency</span>
     </button>
 
     <button class="document-button">
@@ -65,12 +73,12 @@ $userName = $_SESSION['user_name'];
 
     <button class="document-button">
       <i class="fas fa-home document-icon"></i>
-      <span>Barangay Residency</span>
+      <span>Certificate of Residency</span>
     </button>
 
     <button class="document-button">
       <i class="fas fa-id-badge document-icon"></i>
-      <span>Barangay Clearance</span>
+      <span>Barangay Business Clearance</span>
     </button>
   </div>
 </main>

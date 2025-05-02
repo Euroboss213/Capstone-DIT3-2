@@ -16,7 +16,10 @@ $suffix = $_SESSION['suffix'] ?? '';
 </head>
 <body>
   <div class="form-container">
-    <h2>Barangay Indigency Request Form</h2>
+  <div class="form-header">
+  <a href="javascript:history.back()" class="icon-back-button" aria-label="Go back">⮌</a>
+  <h2>Barangay Indigency Request Form</h2>
+</div>
     <form method="POST" action="../php/handle_request_indigency.php" enctype="multipart/form-data">
       <input type="hidden" name="document_type" value="indigency">
 

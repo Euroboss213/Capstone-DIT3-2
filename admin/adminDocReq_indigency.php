@@ -13,10 +13,11 @@ $userName = $_SESSION['user_name'];
   <link rel="stylesheet" href="../styles/adminDocReq_style.css" />
   <link rel="stylesheet" href="../styles/adminTemplate.css" />
   <link rel="stylesheet" href="../styles/adminDocReq_indigency_style.css" />
-  <link rel="stylesheet" href="../styles/adminDocReqModal_style.css" />
+  <link rel="stylesheet" href="../styles/formModal_style.css" />
+  <link rel="stylesheet" href="../styles/status.css" />
   <script src="../js/adminNav.js" defer></script>
   <script src="../js/admindDocReq_indigency_script.js" defer></script>
-  <script src="../js/admindDocReq_script.js" defer></script>
+  <script src="../js/status.js" defer></script>
   
 </head>
 <!-- Font Awesome CDN -->
@@ -58,12 +59,16 @@ $userName = $_SESSION['user_name'];
     <!-- Main Content -->
     <main class="main-content">
     <div class="top-bar">
-  <input type="text" id="searchInput" placeholder="Search requests..." class="search-bar" onkeyup="filterTable()" />
+    <input type="text" id="searchInput" placeholder="Search indigency requests..." class="search-bar" onkeyup="filterTable()" />
+    <select id="statusFilter" class="filter-dropdown" onchange="filterByStatus()">
+    <option value="">All Statuses</option>
+    <option value="Ongoing">Ongoing</option>
+    <option value="Approved">Approved</option>
+    <option value="Returned">Returned</option>
+    <option value="For Pickup">For Pickup</option>
+    <option value="Completed">Completed</option>
+  </select>
   <button class="back-btn" onclick="window.location.href='adminDocReq.php'">Go Back</button>
-
-  <button type="button" onclick="printCompleteList()">
-    Generate List
-  </button>
 </div>
 
       <div id="indigency" class="table-container" style="display: block;">
