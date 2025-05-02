@@ -3,6 +3,13 @@ include "../php/auth_check.php";
 
 // Get the user's name from session
 $userName = $_SESSION['user_name'];
+
+$pdfPath = "../temp/complete_requests.pdf";
+
+// Check if file exists
+if (!file_exists($pdfPath)) {
+    die("The complete requests PDF does not exist.");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
