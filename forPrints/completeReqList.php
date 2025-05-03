@@ -2,8 +2,17 @@
 require_once('libs/tcpdf/tcpdf.php');
 include "../database/connect_db_reqwest.php";
 
+// Get the year input if provided
+$year = isset($_GET['year']) && !empty($_GET['year']) ? intval($_GET['year']) : null;
+
+if($year) {
+    $sql = "SELECT * FROM indigency WHERE status = 'completed' AND YEAR(date_requested) = $year ORDER BY date_requested DESC";
+} else {
+    $sql = "SELECT * FROM indigency WHERE status = 'completed' ORDER BY date_requested DESC";
+}
+
 // Fetch all requests with status 'complete'
-$sql = "SELECT * FROM indigency WHERE status = 'completed' ORDER BY date_requested DESC";
+
 $result = $conn->query($sql);
 
 if ($result->num_rows == 0) {

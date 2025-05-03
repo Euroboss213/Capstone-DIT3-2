@@ -57,10 +57,15 @@ $userName = $_SESSION['user_name'];
     <main class="main-content">
     <div class="top-bar">
   <label for="yearInput" class="top-bar-label">Year:</label>
-  <input type="number" id="yearInput" name="year" class="top-bar-input" placeholder="e.g. 2025" min="2000" max="2099" />
-  <button type="button" class="generate-button" onclick="printCompleteList()">
+  <form method="GET" action="../forPrints/completeReqList.php">
+    <input type="number" id="yearInput" name="year" class="top-bar-input" placeholder="e.g. 2025" min="2000" max="2099" />
+    <button type="submit" class="generate-button">Generate PDF</button>
+
+    <!-- <button type="button" class="generate-button" onclick="printCompleteList()">
     Generate List
-  </button>
+    </button> -->
+  </form>
+
 </div>
   <div class="document-buttons-container">
     <button class="document-button" onclick="window.location.href='adminDocReq_indigency.php'">
