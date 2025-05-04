@@ -187,3 +187,16 @@ body {
   border-color: #007bff;
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
+.back-btn {
+  padding: 10px 16px;
+  background-color: #575454;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.back-btn:hover {
+  filter: brightness(0.9);
+}

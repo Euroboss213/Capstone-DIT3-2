@@ -1,8 +1,12 @@
 <?php
 include "../php/auth_check.php";
+include "../database/connect_db_reqwest.php"; 
 
-// Get the user's name from session
 $userName = $_SESSION['user_name'];
+$lastName = $_SESSION['last_name'] ?? '';
+$firstName = $_SESSION['first_name'] ?? '';
+$middleName = $_SESSION['middle_name'] ?? '';
+$suffix = $_SESSION['suffix'] ?? '';
 ?>
 
 <!DOCTYPE html>
@@ -15,14 +19,14 @@ $userName = $_SESSION['user_name'];
   <link rel="stylesheet" href="../styles/userTemplate.css" />
   <link rel="stylesheet" href="../styles/chatBot.css" />
   <link rel="stylesheet" href="../styles/autoChat.css">
-  <link rel="stylesheet" href="../styles/userViewReq_style.css">
-  <!-- Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="../styles/alertModal_style.css">
+  <link rel="stylesheet" href="../styles/request_form.css">
   <!--SCRIPTS-->
   <script src="../js/userHome_script.js" defer></script>
   <script src="../js/chatBot.js" defer></script>
   <script src="../js/autoChat.js" defer></script>
   <script src="../js/displayChats.js" defer></script>
+  <script src="../js/alerts.js" defer></script>
 </head>
 <body>
   <!-- Navbar -->
@@ -62,37 +66,56 @@ $userName = $_SESSION['user_name'];
     <!-- Sidebar -->
     <aside class="sidebar">
       <h2 class="user-name"><?php echo htmlspecialchars($userName); ?></h2>
-      <button class="side-button" onclick="window.location.href='userHome.php'">Home</button>
-      <button class="side-button-active" onclick="window.location.href='userViewReq.php'">My Requests</button>
+      <button class="side-button-active" onclick="window.location.href='userHome.php'">Home</button>
+      <button class="side-button" onclick="window.location.href='userViewReq.php'">My Requests</button>
     </aside>
 
     <!-- Main Content -->
     <main class="main-content">
-  <div class="document-buttons-container">
-  <div class="document-button">
-    <i class="fas fa-hand-holding-heart document-icon"></i>
-    <span>Certificate of Indigency</span>
-    <button class="view-requests-button" onclick="window.location.href='userViewReq_indigency.php'">View My Requests</button>
-  </div>
+  <div class="form-container">
+    <div class="form-header">
+      <a href="javascript:history.back()" class="icon-back-button" aria-label="Go back">⮌</a>
+      <h2>Barangay Indigency Request Form</h2>
+    </div>
 
-  <div class="document-button">
-    <i class="fas fa-file-signature document-icon"></i>
-    <span>Barangay Permit</span>
-    <button class="view-requests-button" onclick="window.location.href=''">View My Requests</button>
-  </div>
+    <form method="POST" action="../php/handle_request_indigency.php" enctype="multipart/form-data">
+      <input type="hidden" name="document_type" value="indigency">
 
-  <div class="document-button">
-    <i class="fas fa-home document-icon"></i>
-    <span>Certificate of Residency</span>
-    <button class="view-requests-button" onclick="window.location.href=''">View My Requests</button>
-  </div>
+      <div class="form-group">
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" value="<?php echo htmlspecialchars($lastName); ?>" readonly>
+      </div>
 
-  <div class="document-button">
-    <i class="fas fa-id-badge document-icon"></i>
-    <span>Barangay Business Clearance</span>
-    <button class="view-requests-button" onclick="window.location.href=''">View My Requests</button>
+      <div class="form-group">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" value="<?php echo htmlspecialchars($firstName); ?>" readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="middle_name">Middle Name:</label>
+        <input type="text" id="middle_name" name="middle_name" value="<?php echo htmlspecialchars($middleName); ?>" readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="suffix">Suffix:</label>
+        <input type="text" id="suffix" name="suffix" value="<?php echo htmlspecialchars($suffix); ?>" readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="purpose">Purpose of Request:</label>
+        <textarea id="purpose" name="purpose" rows="4" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="supporting_document">Supporting Document (optional):</label>
+        <input type="file" id="supporting_document" name="supporting_document" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+      </div>
+
+      <div class="form-group submit-button">
+        <button type="submit">Submit Request</button>
+      </div>
+    </form>
   </div>
-</div>
 </main>
   </div>
 </body>

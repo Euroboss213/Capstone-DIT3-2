@@ -59,6 +59,7 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    border-top: none;
   }
   
   .form-group {
@@ -106,9 +107,15 @@
   
   .modal-buttons {
     display: flex;
-    justify-content: flex-end;
-    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
     margin-top: 20px;
+  }
+  
+  .left-buttons,
+  .right-buttons {
+    display: flex;
+    gap: 10px;
   }
   
   .btn {
@@ -130,9 +137,18 @@
     background-color: #f44336;
     color: white;
   }
-  
+  .remvfile-btn {
+    background-color: #555;
+    color: white;
+    font-size: 12px;
+  }
   .btn:hover {
     transform: translateY(-2px);
+  }
+
+  .btn-viewPdf {
+    background-color: #3399FF;
+    color: white;
   }
   
   @media (max-width: 600px) {
@@ -140,4 +156,63 @@
       padding: 20px;
     }
   }
-  
+  .file-upload-container {
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.file-upload-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.file-upload-custom {
+    margin-top: 5px;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f7f7f7;
+    font-size: 12px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.file-upload-custom:hover {
+    background-color: #e0e0e0;
+}
+
+.file-upload-custom input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+}
+
+#existingFileLink {
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+#existingFileLink:hover {
+  text-decoration: underline;
+}
+
+#existingFileLink a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.file-upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Ensures left alignment */
+  gap: 10px; /* Space between file input and remove button */
+  margin-top: 10px;
+}

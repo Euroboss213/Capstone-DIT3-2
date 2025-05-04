@@ -1,108 +1,113 @@
-/* General Styles */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f7fa;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
-  
-  /* Form Container */
-  .form-container {
-    background-color: #ffffff;
-    padding: 2rem 2.5rem;
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 500px;
-  }
-  
-  /* Labels */
-  form label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 0.3rem;
-    color: #444;
-  }
-  
-  /* Inputs and Textarea */
-  form input[type="text"],
-  form input[type="file"],
-  form textarea {
-    width: 100%;
-    padding: 0.7rem;
-    margin-bottom: 1.2rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.3s;
-  }
-  
-  form input[type="text"]:read-only {
-    background-color: #f0f0f0;
-  }
-  
-  form input:focus,
-  form textarea:focus {
-    border-color: #3b82f6;
-    outline: none;
-  }
-  
-  /* Textarea */
-  form textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-  
-  /* Button */
-  form button {
-    width: 100%;
-    background-color: #3b82f6;
-    color: white;
-    border: none;
-    padding: 0.9rem;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  form button:hover {
-    background-color: #2563eb;
-  }
-  .form-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  .form-header h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    font-size: 1.8rem;
-    color: #333;
-  }
-  
-  .icon-back-button {
-    font-size: 22px;
-    text-decoration: none;
-    color: #333;
-    background-color: #3b82f6;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s ease;
-  }
-  
-  .icon-back-button:hover {
-    background-color:#2563eb;
-  }
-  
-  
+/* request_form.css */
+
+/* Container */
+.form-container {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  padding: 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Header */
+.form-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: none;
+}
+
+.icon-back-button {
+  text-decoration: none;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  color: #3182ce;
+}
+
+.form-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0;
+}
+
+/* Form Structure */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  border-top: none;
+}
+
+/* Labels and Inputs */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group input[type="file"] {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 0.5rem;
+  background-color: #f7fafc;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input[type="text"]:read-only {
+  background-color: #edf2f7;
+  color: #4a5568;
+  cursor: not-allowed;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus,
+.form-group input[type="file"]:focus {
+  border-color: #3182ce;
+  box-shadow: 0 0 0 2px rgba(49, 130, 206, 0.25);
+  outline: none;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Submit Button */
+.submit-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submit-button button {
+  background-color: #3182ce;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button button:hover {
+  background-color: #2b6cb0;
+}
+
+/* File input style override (optional enhancement) */
+input[type="file"] {
+  padding: 0.5rem;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e0;
+  border-radius: 0.5rem;
+}

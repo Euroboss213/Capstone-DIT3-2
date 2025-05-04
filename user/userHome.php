@@ -80,7 +80,7 @@ if ($row['count'] > 0) {
     <aside class="sidebar">
       <h2 class="user-name"><?php echo htmlspecialchars($userName); ?></h2>
       <button class="side-button-active" onclick="window.location.href='userHome.php'">Home</button>
-      <button class="side-button" onclick="window.location.href='userViewReq.php'">View My Requests</button>
+      <button class="side-button" onclick="window.location.href='userViewReq.php'">My Requests</button>
     </aside>
 
     <!-- Main Content -->
@@ -91,7 +91,7 @@ if ($row['count'] > 0) {
     href="#"
     onclick="showRequestAlert(); return false;"
     <?php else: ?>
-    href="request_indigency.php"
+    href="userRequest_Indigency.php"
     <?php endif; ?>
     class="action-button"
     >

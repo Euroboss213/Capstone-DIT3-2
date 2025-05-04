@@ -110,13 +110,16 @@ $conn->close();
             </div>
 
             <div class="modal-buttons">
-            <input type="hidden" id="requestId" value="12345"> <!-- Example hidden field -->
-                <button type="button" onclick="generateAndViewPDF(document.getElementById('requestId').value)">
-                   View PDF
-                </button>
-                <button type="button" id="deleteBtn" class="btn btn-delete">Delete</button>
-                <button type="submit" id="saveBtn" class="btn btn-save">Save</button>
-            </div>
+  <div class="left-buttons">
+    <button type="button" id="deleteBtn" class="btn btn-delete">Delete</button>
+  </div>
+  <div class="right-buttons">
+    <button type="button" class="btn btn-viewPdf" onclick="generateAndViewPDF(document.getElementById('requestId').value)">
+      View PDF
+    </button>
+    <button type="submit" id="saveBtn" class="btn btn-save">Save</button>
+  </div>
+</div>
             </form>
         </div>
     </div>

@@ -64,7 +64,7 @@ $userName = $_SESSION['user_name'];
     <aside class="sidebar">
       <h2 class="user-name"><?php echo htmlspecialchars($userName); ?></h2>
       <button class="side-button" onclick="window.location.href='userHome.php'">Home</button>
-      <button class="side-button-active" onclick="window.location.href='userViewReq.php'">View My Requests</button>
+      <button class="side-button-active" onclick="window.location.href='userViewReq.php'">My Requests</button>
     </aside>
 
     <!-- Main Content -->

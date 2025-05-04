@@ -67,27 +67,32 @@ $userName = $_SESSION['user_name'];
   </form>
 
 </div>
-  <div class="document-buttons-container">
-    <button class="document-button" onclick="window.location.href='adminDocReq_indigency.php'">
-      <i class="fas fa-hand-holding-heart document-icon"></i>
-      <span>Certificate of Indigency</span>
-    </button>
-
-    <button class="document-button">
-      <i class="fas fa-file-signature document-icon"></i>
-      <span>Barangay Permit</span>
-    </button>
-
-    <button class="document-button">
-      <i class="fas fa-home document-icon"></i>
-      <span>Certificate of Residency</span>
-    </button>
-
-    <button class="document-button">
-      <i class="fas fa-id-badge document-icon"></i>
-      <span>Barangay Business Clearance</span>
-    </button>
+<div class="document-buttons-container">
+  <div class="document-button">
+    <i class="fas fa-hand-holding-heart document-icon"></i>
+    <span>Certificate of Indigency</span>
+    <button class="view-requests-button" onclick="window.location.href='adminDocReq_indigency.php'">View Requests</button>
   </div>
+
+  <div class="document-button">
+    <i class="fas fa-file-signature document-icon"></i>
+    <span>Barangay Permit</span>
+    <button class="view-requests-button" onclick="window.location.href=''">View Requests</button>
+  </div>
+
+  <div class="document-button">
+    <i class="fas fa-home document-icon"></i>
+    <span>Certificate of Residency</span>
+    <button class="view-requests-button" onclick="window.location.href=''">View Requests</button>
+  </div>
+
+  <div class="document-button">
+    <i class="fas fa-id-badge document-icon"></i>
+    <span>Barangay Business Clearance</span>
+    <button class="view-requests-button" onclick="window.location.href=''">View Requests</button>
+  </div>
+</div>
+
 </main>
   </div>
 </body>
