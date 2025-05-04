@@ -53,6 +53,7 @@ if ($result->num_rows > 0) {
             <tbody>";
     while($row = $result->fetch_assoc()) {
         $fullName = $row["first_name"] . " " . ($row["middle_name"] ? $row["middle_name"] . " " : "") . $row["last_name"] . ($row["suffix"] ? ", " . $row["suffix"] : "");
+        $row['supporting_document'] = $row['supporting_document'] ?? '';
         $disableEdit = in_array($row['status'], ['For Pickup', 'Completed']) ? 'disabled' : '';
         echo "<tr>
             <td>{$row['user_id']}</td> 
@@ -81,7 +82,7 @@ if ($result->num_rows > 0) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Barangay Document Request</title>
   <link rel="stylesheet" href="../styles/formModal_style.css" />
-  <script src="../js/users_openModal.js" defer></script>
+  <script src="../js/users_openIndigencyModal.js" defer></script>
 </head>
 <body>
     <!-- Modal part -->
@@ -107,9 +108,21 @@ if ($result->num_rows > 0) {
                 <textarea id="purpose" name="purpose"></textarea>
             </div>
 
-            <div class="form-group">
-                <label>Upload Supporting Document:</label>
-                <input type="file" id="supportingDocument" name="supportingDocument" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+                        <div class="file-upload-container">
+                <label class="file-upload-label">Supporting Document:</label>
+                <div id="existingFileLink"></div>
+
+                <div class="file-upload-wrapper">
+                <button type="button" id="removeFileBtn" class="btn remvfile-btn">Remove File</button>
+                    <label class="file-upload-custom" id="fileLabel">
+                        <span id="fileLabelText">Choose File</span>
+                        <input type="file" id="supportingDocument" name="supportingDocument" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+                        <div id="newFilePreview" style="margin-top: 10px;"></div>
+                    </label>
+
+                </div>
+
+                <input type="hidden" name="removeFile" id="removeFile" value="0">
             </div>
 
             <div class="form-group">

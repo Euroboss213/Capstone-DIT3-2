@@ -65,7 +65,7 @@ if (!file_exists($pdfPath)) {
     <!-- Main Content -->
     <main class="main-content">
     <div class="top-bar">
-                <button class="back-btn" onclick="window.location.href='adminDocReq.php'">Go Back</button>
+    <button class="back-btn" onclick="history.back()">Go Back</button>
             </div>
 
             <h2>Viewing PDF Document</h2>
@@ -80,10 +80,6 @@ if (!file_exists($pdfPath)) {
                     <p>PDF not found for this request.</p>
                 <?php endif; ?>
             </div>
-
-            <!-- Optional: Button to return back -->
-            <br><br>
-            <a href="adminDocReq.php">Back to Document Requests</a>
     </main>
   </div>
 </body>

@@ -92,10 +92,12 @@ function filterTable() {
   
     const fileName = data.supporting_document;
     if (fileName) {
-      const filePath = `../uploads/${fileName}`; // Adjust if uploads folder is different
-      document.getElementById('supportingDocumentLink').href = filePath;
-      document.getElementById('supportingDocumentLink').textContent = "View Document";
-    } else {
+      const filePath = `../uploads/${fileName}`;
+      const justFileName = fileName.split('/').pop(); // Removes any folder paths
+      const linkElement = document.getElementById('supportingDocumentLink');
+      linkElement.href = filePath;
+      linkElement.textContent = `View Document (${justFileName})`;
+    }else {
       document.getElementById('supportingDocumentLink').href = "#";
       document.getElementById('supportingDocumentLink').textContent = "No file uploaded";
     }
