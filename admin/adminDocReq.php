@@ -1,9 +1,14 @@
 <?php
 include "../php/auth_check.php";
+include "../database/connect_db_reqwest.php"; 
 
 // Get the user's name from session
 $userName = $_SESSION['user_name'];
+$userId = $_SESSION['id'];
 ?>
+
+<?php include '../php/get_unread_notifications.php' ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +21,7 @@ $userName = $_SESSION['user_name'];
 
   <script src="../js/admindDocReq_indigency_script.js"></script>
   <script src="../js/adminNav.js" defer></script>
+  <script src="../js/unread_to_read_notif.js" defer></script>
 </head>
 <!-- Font Awesome CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -69,9 +75,12 @@ $userName = $_SESSION['user_name'];
 </div>
 <div class="document-buttons-container">
   <div class="document-button">
+    <?php if ($hasUnread): ?>
+      <span class="notif-dot" id="notifDot"></span>
+    <?php endif; ?>
     <i class="fas fa-hand-holding-heart document-icon"></i>
     <span>Certificate of Indigency</span>
-    <button class="view-requests-button" onclick="window.location.href='adminDocReq_indigency.php'">View Requests</button>
+    <button class="view-requests-button" id="notifButton" onclick="window.location.href='adminDocReq_indigency.php'">View Requests</button>
   </div>
 
   <div class="document-button">

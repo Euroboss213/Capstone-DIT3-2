@@ -3,6 +3,7 @@ include "../php/auth_check.php";
 
 // Get the user's name from session
 $userName = $_SESSION['user_name'];
+
 ?>
 
 <!DOCTYPE html>

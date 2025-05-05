@@ -5,6 +5,7 @@
 }
 
 .document-button {
+  position: relative;
   background-color: #f8fafc;
   border-radius: 12px;
   padding: 20px;
@@ -98,4 +99,14 @@
   
   .view-requests-button:hover {
     background-color: #2563eb;
+  }
+
+  .notif-dot {
+    position: absolute; /* Position relative to the button */
+    top: -2px; /* Adjust as needed to move the dot up */
+    right: -2px; /* Adjust as needed to move the dot to the right */
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
   }

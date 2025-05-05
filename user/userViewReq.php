@@ -1,9 +1,13 @@
 <?php
 include "../php/auth_check.php";
+include "../database/connect_db_reqwest.php"; 
 
 // Get the user's name from session
 $userName = $_SESSION['user_name'];
+$userId = $_SESSION['id'];
 ?>
+
+<?php include '../php/get_unread_notifications.php' ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,6 +27,7 @@ $userName = $_SESSION['user_name'];
   <script src="../js/chatBot.js" defer></script>
   <script src="../js/autoChat.js" defer></script>
   <script src="../js/displayChats.js" defer></script>
+  <script src="../js/unread_to_read_notif.js" defer></script>
 </head>
 <body>
   <!-- Navbar -->
@@ -70,26 +75,29 @@ $userName = $_SESSION['user_name'];
     <main class="main-content">
   <div class="document-buttons-container">
   <div class="document-button">
+    <?php if ($hasUnread): ?>
+      <span class="notif-dot" id="notifDot"></span>
+    <?php endif; ?>
     <i class="fas fa-hand-holding-heart document-icon"></i>
-    <span>Certificate of Indigency</span>
-    <button class="view-requests-button" onclick="window.location.href='userViewReq_indigency.php'">View My Requests</button>
+    <span class="cert-text">Certificate of Indigency</span>
+    <button class="view-requests-button" id="notifButton" onclick="window.location.href='userViewReq_indigency.php'">View My Requests</button>
   </div>
 
   <div class="document-button">
     <i class="fas fa-file-signature document-icon"></i>
-    <span>Barangay Permit</span>
+    <span class="cert-text">Barangay Permit</span>
     <button class="view-requests-button" onclick="window.location.href=''">View My Requests</button>
   </div>
 
   <div class="document-button">
     <i class="fas fa-home document-icon"></i>
-    <span>Certificate of Residency</span>
+    <span class="cert-text">Certificate of Residency</span>
     <button class="view-requests-button" onclick="window.location.href=''">View My Requests</button>
   </div>
 
   <div class="document-button">
     <i class="fas fa-id-badge document-icon"></i>
-    <span>Barangay Business Clearance</span>
+    <span class="cert-text">Barangay Business Clearance</span>
     <button class="view-requests-button" onclick="window.location.href=''">View My Requests</button>
   </div>
 </div>

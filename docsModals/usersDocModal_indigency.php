@@ -90,8 +90,14 @@ if ($result->num_rows > 0) {
         <div class="modal-content">
         <span class="close">&times;</span>
         <h2 class="modal-title">Review Request</h2>
-            <form id="reviewForm" class="form">
+            <form id="reviewForm" class="form" name="update_usersIndigency">
+            <!-- hidden Inputs -->
+            <input type="hidden" name="form_origin" value="update_usersIndigency"> <!-- or 'admin_updateIndigency' -->
+            <input type="hidden" name="actor_id" value="<?= $user_id ?>">
+            <input type="hidden" name="is_read" value=0>
+                
             <input type="hidden" id="requestId" name="requestId">
+            <!-- end of hidden Inputs -->
 
             <div class="form-group">
                 <label>User ID:</label>

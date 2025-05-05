@@ -362,3 +362,17 @@ form input[type="file"] {
     flex: 0 0 100%; /* Stack in smaller screens */
   }
 }
+
+.side-button{
+  position: relative;
+}
+
+.notif-dot {
+  position: absolute; /* Position relative to the button */
+  top: -2px; /* Adjust as needed to move the dot up */
+  right: -2px; /* Adjust as needed to move the dot to the right */
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+}
