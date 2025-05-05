@@ -6,6 +6,7 @@ include "../database/connect_db_reqwest.php";
 $userName = $_SESSION['user_name'];
 $userId = $_SESSION['id'];
 
+
 // Check for existing indigency request with Ongoing or For Pickup status
 $hasPendingIndigency = false;
 $query = "SELECT COUNT(*) as count FROM indigency WHERE user_id = ? AND status IN ('Ongoing', 'For Pickup')";
@@ -20,6 +21,7 @@ if ($row['count'] > 0) {
 }
 ?>
 
+<?php include '../php/get_unread_notifications.php' ?>
 <?php include "../alertModals/alertModal_Home.php"; ?>
 
 <!DOCTYPE html>
@@ -80,7 +82,12 @@ if ($row['count'] > 0) {
     <aside class="sidebar">
       <h2 class="user-name"><?php echo htmlspecialchars($userName); ?></h2>
       <button class="side-button-active" onclick="window.location.href='userHome.php'">Home</button>
-      <button class="side-button" onclick="window.location.href='userViewReq.php'">My Requests</button>
+      <button class="side-button" onclick="window.location.href='userViewReq.php'">
+        My Requests
+          <?php if ($hasUnread): ?>
+            <span class="notif-dot"></span>
+          <?php endif; ?>
+      </button>
     </aside>
 
     <!-- Main Content -->

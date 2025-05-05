@@ -1,9 +1,14 @@
 <?php
 include "../php/auth_check.php";
+include "../database/connect_db_reqwest.php"; 
 
 // Get the user's name from session
 $userName = $_SESSION['user_name'];
+$userId = $_SESSION['id'];
 ?>
+
+<?php include '../php/get_unread_notifications.php' ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +49,12 @@ $userName = $_SESSION['user_name'];
     <aside class="sidebar">
       <h2 class="user-name">Admin Account</h2>
       <button id="dashboard" class="side-button" onclick="window.location.href='adminDashboard.php'">Dashboard</button>
-      <button id="doc-req" class="side-button" onclick="window.location.href='adminDocReq.php'">Document Requests</button>
+      <button id="doc-req" class="side-button" onclick="window.location.href='adminDocReq.php'">
+        Document Requests
+        <?php if ($hasUnread): ?>
+            <span class="notif-dot"></span>
+        <?php endif; ?>
+      </button>
       <button id="registered-residents" class="side-button" onclick="window.location.href='adminResidents.php'">Registered Residents</button>
       <button id="user-accounts" class="side-button" onclick="window.location.href='adminUserAccounts.php'">User Accounts</button>
     </aside>
