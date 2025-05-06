@@ -1,0 +1,70 @@
+#notificationModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+#notificationModal.hidden {
+    display: none;
+}
+
+#notificationModal .modal-content {
+    background-color: #fff;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+#notificationModal .close-button {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#notificationModal .modal-title {
+    font-weight: bold;
+    color: #3182ce;
+}
+
+#notificationModal .notification-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+#notificationModal .notif-message {
+    margin: 0;
+    font-weight: bold;
+}
+
+#notificationModal .notif-date {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+#notificationModal .view-button {
+    background-color: #3182ce;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+#notificationModal .button-wrapper {
+    text-align: right;
+}

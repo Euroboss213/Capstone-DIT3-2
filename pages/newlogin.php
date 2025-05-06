@@ -6,6 +6,7 @@
     <title>Login/Signup Form</title>
     <!--STYLES-->
     <link rel="stylesheet" href="../styles/newlogin.css">
+    <link rel="stylesheet" href="../styles/alertModal_style.css">
     <!--FONTS-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -122,6 +123,7 @@
     </div>
 
     <script src="../js/newlogin.js"></script>
-    
+    <?php include '../alertModals/login_error_modal.php'; ?>
+    <?php include '../alertModals/signup_error_modal.php'; ?>
 </body>
 </html>
