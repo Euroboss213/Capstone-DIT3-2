@@ -16,7 +16,8 @@ if($year) {
 $result = $conn->query($sql);
 
 if ($result->num_rows == 0) {
-    die("No completed requests found.");
+    header("Location: /capstone/Capstone-DIT3-2/alertModals/modal_noList.php");
+    exit;
 }
 
 // Create new PDF document

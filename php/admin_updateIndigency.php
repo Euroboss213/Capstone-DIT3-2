@@ -16,6 +16,7 @@ $actor_role = ($form_origin === 'admin_updateIndigency') ? 'admin' : 'user'; // 
 $sql = "UPDATE indigency SET status='$status', comment='$comment' WHERE id='$id'";
 
 if ($conn->query($sql) === TRUE) {
+    echo "Request Updated Successfully";
     // Include the notification handler
     include '../php/handle-notification.php';
 

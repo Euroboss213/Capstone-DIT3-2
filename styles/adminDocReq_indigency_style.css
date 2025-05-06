@@ -2,7 +2,7 @@
 
 .action-btn {
     padding: 10px 20px;
-    background-color: #3399FF;
+    background-color: #3182ce;
     color: white;
     border: none;
     border-radius: 20px;
@@ -30,10 +30,6 @@
   background-color: #3399FF;
   font-weight: bold;
   color: #ffffff;
-}
-
-#doc-req {
-  color: #3182ce; /* Set font color to #3182ce */
 }
 
 .indigency-table tr:nth-child(even) {
