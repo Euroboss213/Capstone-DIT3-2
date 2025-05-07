@@ -1,4 +1,4 @@
-document.getElementById('notifButton').addEventListener('click', function () {
+document.getElementById('notifButton-unread').addEventListener('click', function () {
     fetch('../php/make_unread_notif_to_read.php')
         .then(response => response.text())
         .then(data => {

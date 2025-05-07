@@ -13,8 +13,10 @@ $userName = $_SESSION['user_name'];
   <link rel="stylesheet" href="../styles/adminTemplate.css" />
   <link rel="stylesheet" href="../styles/adminUserAccounts_style.css" />
   <link rel="stylesheet" href="../styles/notifModal.css" />
+
   <script src="../js/adminUserAccounts.js" defer></script>
   <script src="../js/adminNav.js" defer></script>
+  <script src="../js/unread_to_read_notif.js" defer></script>
 </head>
 <body>
   <!-- Navbar -->

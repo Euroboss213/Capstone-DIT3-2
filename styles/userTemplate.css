@@ -141,6 +141,7 @@ body {
 }
 
 .side-button {
+  position: relative;
   margin-top: 10px;
   width: 100%;
   background-color: #e2e8f0; /* bg-gray-300 */
@@ -152,6 +153,7 @@ body {
 }
 
 .side-button-active {
+  position: relative;
   margin-top: 10px;
   width: 100%;
   background-color: #e2e8f0; /* bg-gray-300 */
@@ -184,8 +186,8 @@ body {
   left: 10%;        /* adjust this if you want it centered */
   width: 88%;
   height: 60%;
-  z-index: 100;
-  gap: 20px;
+  z-index: -1;
+  gap: 20px;  
 }
 
 .exit-header {

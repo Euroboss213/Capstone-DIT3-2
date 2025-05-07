@@ -3,7 +3,7 @@ function sendNotificationToTarget($requestId, $actorId, $actorRole, $actorName, 
     global $conn;
 
     // Message content
-    $message = "$actorName updated a request (ID: $requestId).";
+    $message = "$actorName updated a request for indigency (ID: $requestId).";
 
     // Determine recipient(s)
     $sentToUser = null;

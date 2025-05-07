@@ -24,5 +24,5 @@ $stmt->bind_param("i", $userId);
 $stmt->execute();
 $stmt->close();
 $conn->close();
-// echo "Notifications marked as read";
+echo "Notifications marked as read";
 ?>

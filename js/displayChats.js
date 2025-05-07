@@ -2,8 +2,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Get references to the buttons and chat containers
     const chatBotBtn = document.getElementById('chatBot-btn');
     const autoChatBtn = document.getElementById('autoChat-btn');
-    const chatBotContainer = document.querySelector('.chatBot-container');
+    const chatBotContainer = document.querySelector('.chatBot-container');      
     const autoChatContainer = document.querySelector('.autoChat-container');
+    const idCont = document.getElementById("id_cont");
     
     // Get references to the exit buttons
     const botExitBtn = document.querySelector('.bot-exit-btn');
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Hide both containers
         chatBotContainer.style.display = 'none';
         autoChatContainer.style.display = 'none';
+        idCont.style.zIndex = "100";
 
         // Show the selected container
         containerToShow.style.display = 'flex';
@@ -32,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function hideChatContainer() {
         chatBotContainer.style.display = 'none';
         autoChatContainer.style.display = 'none';
+        idCont.style.zIndex = "-1";
     }
 
     // Add event listeners to exit buttons

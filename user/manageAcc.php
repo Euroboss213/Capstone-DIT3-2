@@ -3,7 +3,7 @@ include "../php/auth_check.php";
 include "../database/connect_db_reqwest.php"; 
 
 // Get the user's name from session
-$userName = $_SESSION['user_name'];
+$username = $_SESSION['userName'] ;
 $userId = $_SESSION['id'];
 
 ?>
@@ -27,6 +27,7 @@ $userId = $_SESSION['id'];
   <script src="../js/autoChat.js" defer></script>
   <script src="../js/displayChats.js" defer></script>
   <script src="../js/alerts.js" defer></script>
+  <script src="../js/unread_to_read_notif.js" defer></script>
 </head>
 <body>
   <!-- Navbar -->
@@ -41,12 +42,12 @@ $userId = $_SESSION['id'];
     <!-- Main Content -->
     <main class="main-content">
   <section class="user-credentials-form">
-    <form action="update_credentials.php" method="POST">
+    <form action="../php/update_credentials.php" method="POST">
       <h2 class="form-title">Manage Account</h2>
 
       <div class="form-group">
         <label for="existing_username">Existing Username</label>
-        <input type="text" id="existing_username" name="existing_username" class="form-input" value="alen@gmail.com" readonly />
+        <input type="text" id="existing_username" name="existing_username" class="form-input" value="<?php echo htmlspecialchars($_SESSION['userName']); ?>" readonly />
       </div>
 
       <div class="form-group">

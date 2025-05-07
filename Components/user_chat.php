@@ -1,4 +1,4 @@
-<div class="chat-containers">
+<div class="chat-containers" id="id_cont">
   <!-- AI Assistant Chat -->
   <div class="chatBot-container">
     <div class="exit-header">
