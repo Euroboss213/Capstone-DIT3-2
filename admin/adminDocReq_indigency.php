@@ -20,6 +20,7 @@ $userName = $_SESSION['user_name'];
   <script src="../js/adminNav.js" defer></script>
   <script src="../js/admindDocReq_indigency_script.js" defer></script>
   <script src="../js/status.js" defer></script>
+  <script src="../js/unread_to_read_notif.js" defer></script>
   
 </head>
 <!-- Font Awesome CDN -->

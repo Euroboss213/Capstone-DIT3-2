@@ -15,6 +15,7 @@ $userName = $_SESSION['user_name'];
   <link rel="stylesheet" href="../styles/notifModal.css" />
   <script src="../js/" defer></script>
   <script src="../js/adminNav.js" defer></script>
+  <script src="../js/unread_to_read_notif.js" defer></script>
 </head>
 <body>
   <!-- Navbar -->

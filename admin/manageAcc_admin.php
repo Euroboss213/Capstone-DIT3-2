@@ -13,8 +13,10 @@ $userName = $_SESSION['user_name'];
   <link rel="stylesheet" href="../styles/adminTemplate.css" />
   <link rel="stylesheet" href="../styles/notifModal.css" />
   <link rel="stylesheet" href="../styles/manageAcc_style.css">
+
   <script src="../js/" defer></script>
   <script src="../js/adminNav.js" defer></script>
+  <script src="../js/unread_to_read_notif.js" defer></script>
 </head>
 <body>
   <!-- Navbar -->
@@ -29,12 +31,12 @@ $userName = $_SESSION['user_name'];
     <!-- Main Content -->
     <main class="main-content">
     <section class="user-credentials-form">
-    <form action="update_credentials.php" method="POST">
+    <form action="../php/update_credentials.php" method="POST">
       <h2 class="form-title">Manage Account</h2>
 
       <div class="form-group">
         <label for="existing_username">Existing Username</label>
-        <input type="text" id="existing_username" name="existing_username" class="form-input" value="superadmin@gmail.com" readonly />
+        <input type="text" id="existing_username" name="existing_username" class="form-input" value="<?php echo htmlspecialchars($_SESSION['userName']); ?>" readonly />
       </div>
 
       <div class="form-group">

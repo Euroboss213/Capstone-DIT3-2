@@ -43,6 +43,7 @@ if ($row['count'] > 0) {
   <script src="../js/autoChat.js" defer></script>
   <script src="../js/displayChats.js" defer></script>
   <script src="../js/alerts.js" defer></script>
+  <script src="../js/unread_to_read_notif.js" defer></script>
 </head>
 <body>
   <!-- Navbar -->

@@ -30,8 +30,8 @@ $userId = $_SESSION['id'];
 <body>
   <!-- Navbar -->
   <?php include '../components/admin_nav.php'; ?>
-<!-- Notification Modal -->
-<?php include 'adminNotif.php'; ?>
+  <!-- Notification Modal -->
+  <?php include 'adminNotif.php'; ?>
  
   <div class="flex-container">
     <!-- Sidebar -->
@@ -58,7 +58,7 @@ $userId = $_SESSION['id'];
     <?php endif; ?>
     <i class="fas fa-hand-holding-heart document-icon"></i>
     <span>Certificate of Indigency</span>
-    <button class="view-requests-button" id="notifButton" onclick="window.location.href='adminDocReq_indigency.php'">View Requests</button>
+    <button class="view-requests-button" id="notifButton-unread" onclick="window.location.href='adminDocReq_indigency.php'">View Requests</button>
   </div>
 
   <div class="document-button">

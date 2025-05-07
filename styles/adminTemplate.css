@@ -130,6 +130,7 @@ body {
 }
 
 .side-button {
+  position: relative;
   margin-top: 10px;
   width: 100%;
   background-color: #e2e8f0;
@@ -144,6 +145,7 @@ body {
   background-color: #cbd5e0;
 }
 .side-button-active {
+  position: relative;
   margin-top: 10px;
   width: 100%;
   background-color: #e2e8f0; /* bg-gray-300 */

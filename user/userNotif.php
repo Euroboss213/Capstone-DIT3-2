@@ -5,20 +5,7 @@
     <div class="notification-list">
 
       <!-- Placeholder Notifications -->
-      <div class="notification-item">
-        <p class="notif-message">Request for Certificate of Indigency Status: For Pickup</p>
-        <p class="notif-date">April 30, 2025, 10:15 AM</p>
-        <div class="button-wrapper">
-    <button class="view-button">View</button>
-  </div>
-      </div>
-      <div class="notification-item">
-        <p class="notif-message">Request for Barangay Business Clearance Status: Returned</p>
-        <p class="notif-date">April 28, 2025, 2:45 PM</p>
-        <div class="button-wrapper">
-    <button class="view-button">View</button>
-  </div>
-      </div>
+      <?php include '../php/fetch-notifications.php'; ?>
 
       <!-- Add more placeholders as needed -->
 

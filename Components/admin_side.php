@@ -12,7 +12,11 @@
   <button class="<?php echo $isDashboard ? 'side-button-active' : 'side-button'; ?>" onclick="window.location.href='adminDashboard.php'">Dashboard</button>
 
   <button class="<?php echo  $isDocReqPage ? 'side-button-active' : 'side-button'; ?>" onclick="window.location.href='adminDocReq.php'">
-  Document Requests </button>
+  Document Requests 
+  <?php if (isset($hasUnread) && $hasUnread): ?>
+    <span class="notif-dot"></span>
+  <?php endif; ?>
+  </button>
 
   <button class="<?php echo $isResidents ? 'side-button-active' : 'side-button'; ?>" onclick="window.location.href='adminResidents.php'">Registered Residents</button>
 
