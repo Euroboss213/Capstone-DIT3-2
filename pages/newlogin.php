@@ -23,11 +23,11 @@
             </div>
         </div>
         <nav class="navbar">
-            <a href="landing.php">Home</a>
-            <a href="services.php">Services</a>
-            <a href="aboutus.php">About Us</a>
-            <a href="faq.php">FAQ</a>
-            <a href="contact.php">Contact Us</a>
+            <a href="newlanding.php">Home</a>
+            <a href="newservices.php">Services</a>
+            <a href="newabout.php">About Us</a>
+            <a href="newfaq.php">FAQ</a>
+            <a href="newcontact.php">Contact Us</a>
             <a href="newlogin.php" class="active">Login</a>
         </nav>
     </header>
