@@ -1,12 +1,19 @@
-function showRequestAlert() {
+function showRequestAlertIndigency() {
   const alert = document.getElementById("requestAlertIndigency");
   alert.style.display = "flex";
   alert.style.visibility = "visible";
   alert.style.opacity = "1";
 }
 
-function closeAlert() {
-  const alert = document.getElementById("requestAlertIndigency");
+function showRequestAlertResidency() {
+  const alert = document.getElementById("requestAlertResidency");
+  alert.style.display = "flex";
+  alert.style.visibility = "visible";
+  alert.style.opacity = "1";
+}
+
+function closeAlert(alertId) {
+  const alert = document.getElementById(alertId);
   alert.style.display = "none";
   alert.style.visibility = "hidden";
   alert.style.opacity = "0";

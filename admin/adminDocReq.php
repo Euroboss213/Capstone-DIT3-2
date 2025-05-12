@@ -19,14 +19,12 @@ $userId = $_SESSION['id'];
   <link rel="stylesheet" href="../styles/adminTemplate.css" />
   <link rel="stylesheet" href="../styles/adminDocReqLanding.css" />
   <link rel="stylesheet" href="../styles/notifModal.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-ZzzA..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <script src="../js/admindDocReq_indigency_script.js"></script>
   <script src="../js/adminNav.js" defer></script>
   <script src="../js/unread_to_read_notif.js" defer></script>
 </head>
-<!-- Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <body>
   <!-- Navbar -->
   <?php include '../components/admin_nav.php'; ?>
@@ -56,25 +54,25 @@ $userId = $_SESSION['id'];
     <?php if ($hasUnread): ?>
       <span class="notif-dot" id="notifDot"></span>
     <?php endif; ?>
-    <i class="fas fa-hand-holding-heart document-icon"></i>
+    <i class="fa-solid fa-file document-icon"></i>
     <span>Certificate of Indigency</span>
     <button class="view-requests-button" id="notifButton-unread" onclick="window.location.href='adminDocReq_indigency.php'">View Requests</button>
   </div>
 
   <div class="document-button">
-    <i class="fas fa-file-signature document-icon"></i>
+    <i class="fa-solid fa-clipboard-check document-icon"></i>
     <span>Barangay Permit</span>
     <button class="view-requests-button" onclick="window.location.href=''">View Requests</button>
   </div>
 
   <div class="document-button">
-    <i class="fas fa-home document-icon"></i>
+    <i class="fa-solid fa-home document-icon"></i>
     <span>Certificate of Residency</span>
-    <button class="view-requests-button" onclick="window.location.href=''">View Requests</button>
+    <button class="view-requests-button" onclick="window.location.href='adminDocReq_certResidency.php'">View Requests</button>
   </div>
 
   <div class="document-button">
-    <i class="fas fa-id-badge document-icon"></i>
+    <i class="fa-solid fa-briefcase document-icon"></i>
     <span>Barangay Business Clearance</span>
     <button class="view-requests-button" onclick="window.location.href=''">View Requests</button>
   </div>

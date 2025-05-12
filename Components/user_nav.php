@@ -7,11 +7,11 @@
     </div>
   </div>
   <div class="profile-menu">
-    <button id="chatButton" class="chat-button">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v7z" />
-      </svg>
-    </button>
+  <button id="chatButton" class="chat-button">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 8.5A6.5 6.5 0 018.5 2h7a6.5 6.5 0 016.5 6.5v3a6.5 6.5 0 01-6.5 6.5h-2.586a1 1 0 00-.707.293l-3.414 3.414A1 1 0 0110 21v-2.5a1 1 0 00-1-1H8.5A6.5 6.5 0 012 14.5v-6z" />
+  </svg>
+</button>
      <!-- Notification Button -->
      <button id="notifButton" class="notif-button">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -23,17 +23,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function filterByStatus() {
     const filter = document.getElementById("statusFilter").value.toLowerCase();
-    const table = document.querySelector(".indigency-table");
-    const rows = table.querySelectorAll("tbody tr");
+    const tables = document.querySelectorAll(".indigency-table, .certresidency-table"); // ← multiple classes
   
-    rows.forEach(row => {
-      const statusCell = row.querySelector(".status"); 
-      const status = statusCell ? statusCell.textContent.toLowerCase() : "";
+    tables.forEach(table => {
+      const rows = table.querySelectorAll("tbody tr");
   
-      if (filter === "" || status.includes(filter)) {
-        row.style.display = "";
-      } else {
-        row.style.display = "none";
-      }
+      rows.forEach(row => {
+        const statusCell = row.querySelector(".status");
+        const status = statusCell ? statusCell.textContent.toLowerCase() : "";
+  
+        if (filter === "" || status.includes(filter)) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
     });
   }
+  

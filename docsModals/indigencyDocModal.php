@@ -115,7 +115,7 @@ $conn->close();
 
                 <div class="form-group">
                     <label>Comment:</label>
-                    <textarea id="comment" name="comment" rows="4" placeholder="Add a comment..." ></textarea>
+                    <textarea id="comment" name="comment" rows="4" placeholder="Add a comment..."  required></textarea>
                 </div>
 
                 <div class="modal-buttons">
