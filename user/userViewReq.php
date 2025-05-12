@@ -21,8 +21,8 @@ $userId = $_SESSION['id'];
   <link rel="stylesheet" href="../styles/autoChat.css">
   <link rel="stylesheet" href="../styles/userViewReq_style.css">
   <link rel="stylesheet" href="../styles/notifModal.css">
-  <!-- Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-ZzzA..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <!--SCRIPTS-->
   <script src="../js/userHome_script.js" defer></script>
   <script src="../js/chatBot.js" defer></script>
@@ -46,28 +46,29 @@ $userId = $_SESSION['id'];
     <?php if ($hasUnread): ?>
       <span class="notif-dot" id="notifDot"></span>
     <?php endif; ?>
-    <i class="fas fa-hand-holding-heart document-icon"></i>
+    <i class="fa-solid fa-file document-icon"></i>
     <span class="cert-text">Certificate of Indigency</span>
     <button class="view-requests-button" id="notifButton-unread" onclick="window.location.href='userViewReq_indigency.php'">View My Requests</button>
   </div>
 
   <div class="document-button">
-    <i class="fas fa-file-signature document-icon"></i>
+    <i class="fa-solid fa-clipboard-check document-icon"></i>
     <span class="cert-text">Barangay Permit</span>
     <button class="view-requests-button" onclick="window.location.href=''">View My Requests</button>
   </div>
 
   <div class="document-button">
-    <i class="fas fa-home document-icon"></i>
+    <i class="fa-solid fa-home document-icon"></i>
     <span class="cert-text">Certificate of Residency</span>
-    <button class="view-requests-button" onclick="window.location.href=''">View My Requests</button>
+    <button class="view-requests-button" onclick="window.location.href='userViewReq_certResidency.php'">View My Requests</button>
   </div>
 
   <div class="document-button">
-    <i class="fas fa-id-badge document-icon"></i>
+    <i class="fa-solid fa-briefcase document-icon"></i>
     <span class="cert-text">Barangay Business Clearance</span>
     <button class="view-requests-button" onclick="window.location.href=''">View My Requests</button>
   </div>
+
 </div>
  <!-- Chat Container -->
  <?php include '../components/user_chat.php'; ?>

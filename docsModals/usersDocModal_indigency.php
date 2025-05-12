@@ -157,8 +157,8 @@ if ($result->num_rows > 0) {
             </div>
 
             <div class="modal-buttons">
-                <button type="button" id="deleteBtn" class="btn btn-delete">Delete</button>
-                <button type="submit" id="saveBtn" class="btn btn-save">Save</button>
+                <button type="button" id="deleteBtn" class="btn btn-delete">Cancel</button>
+                <button type="submit" id="saveBtn" class="btn btn-save">Submit</button>
             </div>
             </form>
         </div>

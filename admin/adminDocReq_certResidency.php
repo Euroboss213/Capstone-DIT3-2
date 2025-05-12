@@ -11,13 +11,14 @@ $userName = $_SESSION['user_name'];
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Barangay Document Request</title>
+
   <link rel="stylesheet" href="../styles/adminTemplate.css" />
-  <link rel="stylesheet" href="../styles/adminDocReq_indigency_style.css" />
   <link rel="stylesheet" href="../styles/formModal_style.css" />
   <link rel="stylesheet" href="../styles/status.css" />
   <link rel="stylesheet" href="../styles/notifModal.css" />
+  <link rel="stylesheet" href="../styles/adminDocReq_certResidency_style.css" />
   <script src="../js/adminNav.js" defer></script>
-  <script src="../js/admindDocReq_indigency_script.js" defer></script>
+  <script src="../js/adminDocReq_certResidency_script.js" defer></script>
   <script src="../js/status.js" defer></script>
   <script src="../js/unread_to_read_notif.js" defer></script>
   
@@ -52,7 +53,7 @@ $userName = $_SESSION['user_name'];
 </div>
 
       <div id="indigency" class="table-container" style="display: block;">
-        <?php include '../docsModals/indigencyDocModal.php'; ?>
+        <?php include '../docsModals/certResidencyDocModal.php'; ?>
       </div>
 
 </main>

@@ -73,11 +73,11 @@ body {
   border: 2px solid white; /* Optional: gives a nice border look */
   z-index: 1;
 }
-.chat-button:hover, .profile-button:hover, .notif-button {
+.chat-button:hover, .profile-button:hover, .notif-button:hover {
   background-color: #cbd5e0; /* darker gray on hover */
 }
 
-.chat-button:focus, .profile-button:focus, .notif-button {
+.chat-button:focus, .profile-button:focus, .notif-button:focus {
   outline: none;
   background-color: #cbd5e0;
 }

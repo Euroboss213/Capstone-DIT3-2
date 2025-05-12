@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const removeFileBtn = document.getElementById('removeFileBtn');
   const closeBtn = document.querySelector('.close');
 
+  // Store original values to detect changes
+  let originalPurpose = ''; // <-- added
+  let originalFileChanged = false; // <-- added
+  let fileRemoved = false;  // <-- added to track file removal
+
   function resetFilePreview() {
     fileInput.value = '';
     previewDiv.innerHTML = '';
@@ -37,12 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('status').value = data.status;
     document.getElementById('comment').value = data.comment ?? '';
 
-    const isReadOnly = data.status === 'For Pickup' || data.status === 'Completed';
-    document.getElementById('purpose').readOnly = isReadOnly;
-    fileInput.disabled = isReadOnly;
-    document.getElementById('documentType').readOnly = isReadOnly;
-    document.getElementById('comment').readOnly = true;
-    document.getElementById('saveBtn').disabled = isReadOnly;
+    // Store original values to detect changes
+    originalPurpose = data.purpose; // <-- added
 
     // Show existing file or fallback text
     if (data.supporting_document) {
@@ -58,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // File input preview
   fileInput.addEventListener('change', function () {
+    originalFileChanged = true; // <-- added
     const file = this.files[0];
     previewDiv.innerHTML = '';
 
@@ -88,12 +90,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Remove file
   removeFileBtn.addEventListener('click', () => {
+    fileRemoved = true;  // <-- added to track file removal
     resetFilePreview();
   });
 
   // Form submission
   reviewForm.onsubmit = function (e) {
     e.preventDefault();
+
+    // Get current values to compare with original
+    const currentPurpose = document.getElementById('purpose').value.trim();
+    const hasChanges =
+      originalFileChanged || fileRemoved || currentPurpose !== originalPurpose;  // <-- updated
+
+    if (!hasChanges) {
+      alert('You won\'t be able to submit if there are no changes.');
+      return;
+    }
+
     const formData = new FormData(reviewForm);
 
     fetch('../php/update_usersIndigency_request.php', {

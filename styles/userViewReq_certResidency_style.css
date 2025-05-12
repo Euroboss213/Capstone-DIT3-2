@@ -22,19 +22,19 @@
   filter: brightness(0.9);
 }
 
-.indigency-table {
+.certresidency-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
 }
 
-.indigency-table th, .indigency-table td {
+.certresidency-table th, .certresidency-table td {
   border: 1px solid #ccc;
   padding: 8px 12px;
   text-align: left;
 }
 
-.indigency-table th {
+.certresidency-table th {
   background-color: #3399FF;
   font-weight: bold;
   color: #ffffff;
@@ -70,11 +70,11 @@
   margin: 20px 0 10px 20px;
 }
 
-.indigency-table tr:nth-child(even) {
+.certresidency-table tr:nth-child(even) {
     background-color: #f2f2f2; /* Light grey for even rows */
   }
   
-  .indigency-table tr:nth-child(odd) {
+  .certresidency-table tr:nth-child(odd) {
     background-color: #ffffff; /* White for odd rows */
   }
   .back-btn {

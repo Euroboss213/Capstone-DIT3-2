@@ -1,3 +1,5 @@
+let originalStatus = '';
+
 function filterTable() {
     const input = document.getElementById("searchInput");
     const filter = input.value.toLowerCase();
@@ -23,16 +25,29 @@ function filterTable() {
   function openReviewModal(data) {
     document.getElementById('reviewModal').style.display = 'block';
   
+    originalStatus = data.status; // Store original status
+  
     document.getElementById('requestId').value = data.id;
     document.getElementById('userId').value = data.user_id;
     document.getElementById('fullName').value = `${data.first_name} ${data.middle_name ?? ''} ${data.last_name} ${data.suffix ?? ''}`;
     document.getElementById('purpose').value = data.purpose;
-    document.getElementById('supportingDocument').value = data.supporting_document;
     document.getElementById('documentType').value = data.document_type;
     document.getElementById('dateRequested').value = data.date_requested;
     document.getElementById('status').value = data.status;
     document.getElementById('comment').value = data.comment ?? '';
-  }
+  
+    const fileName = data.supporting_document;
+    const linkElement = document.getElementById('supportingDocumentLink');
+    if (fileName) {
+      const filePath = `../uploads/${fileName}`;
+      const justFileName = fileName.split('/').pop();
+      linkElement.href = filePath;
+      linkElement.textContent = `View Document (${justFileName})`;
+    } else {
+      linkElement.href = "#";
+      linkElement.textContent = "No file uploaded";
+    }
+  }  
   
   // Close modal
   document.querySelector('.close').onclick = function() {
@@ -42,6 +57,13 @@ function filterTable() {
   // Save changes
   document.getElementById('reviewForm').onsubmit = function(e) {
     e.preventDefault();
+  
+    const newStatus = document.getElementById('status').value;
+  
+    if (newStatus === originalStatus) {
+      alert('Please change the status before saving.');
+      return;
+    }
   
     const formData = new FormData(this);
   
@@ -76,32 +98,6 @@ function filterTable() {
     }
   };
   
-  //Review Modal
-
-  function openReviewModal(data) {
-    document.getElementById('reviewModal').style.display = 'block';
-  
-    document.getElementById('requestId').value = data.id;
-    document.getElementById('userId').value = data.user_id;
-    document.getElementById('fullName').value = `${data.first_name} ${data.middle_name ?? ''} ${data.last_name} ${data.suffix ?? ''}`;
-    document.getElementById('purpose').value = data.purpose;
-    document.getElementById('documentType').value = data.document_type;
-    document.getElementById('dateRequested').value = data.date_requested;
-    document.getElementById('status').value = data.status;
-    document.getElementById('comment').value = data.comment ?? '';
-  
-    const fileName = data.supporting_document;
-    if (fileName) {
-      const filePath = `../uploads/${fileName}`;
-      const justFileName = fileName.split('/').pop(); // Removes any folder paths
-      const linkElement = document.getElementById('supportingDocumentLink');
-      linkElement.href = filePath;
-      linkElement.textContent = `View Document (${justFileName})`;
-    }else {
-      document.getElementById('supportingDocumentLink').href = "#";
-      document.getElementById('supportingDocumentLink').textContent = "No file uploaded";
-    }
-  }
   function generateAndViewPDF(requestId) {
     // Redirect to the correct PHP script to generate the PDF
     window.location.href = 'http://localhost/capstone/Capstone-DIT3-2/forPrints/template-pdf.php?id=' + requestId;

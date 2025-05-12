@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
     $conn->close();
 } else {
-    header("Location: ../user/request_indigency.php");
+    header("Location: ../user/userRequest_indigency.php");
     exit();
 }
 ?>
