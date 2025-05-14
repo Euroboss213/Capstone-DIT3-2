@@ -5,41 +5,43 @@ include "../php/auth_check.php";
 $userName = $_SESSION['user_name'];
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Barangay Document Request</title>
-  <link rel="stylesheet" href="../styles/adminTemplate.css" />
-  <link rel="stylesheet" href="../styles/adminDocReq_indigency_style.css" />
-  <link rel="stylesheet" href="../styles/formModal_style.css" />
+  <!--STYLES-->
+  <link rel="stylesheet" href="../styles/userViewReq_permit_style.css" />
+  <link rel="stylesheet" href="../styles/userTemplate.css" />
+  <link rel="stylesheet" href="../styles/chatBot.css" />
+  <link rel="stylesheet" href="../styles/autoChat.css">
   <link rel="stylesheet" href="../styles/status.css" />
-  <link rel="stylesheet" href="../styles/notifModal.css" />
-  <script src="../js/adminNav.js" defer></script>
-  <script src="../js/adminDocReq_indigency_script.js" defer></script>
+  <link rel="stylesheet" href="../styles/notifModal.css">
+
+  <!--SCRIPTS-->
   <script src="../js/status.js" defer></script>
+  <script src="../js/userHome_script.js" defer></script>
+  <script src="../js/chatBot.js" defer></script>
+  <script src="../js/autoChat.js" defer></script>
+  <script src="../js/displayChats.js" defer></script>
   <script src="../js/unread_to_read_notif.js" defer></script>
-  
 </head>
-<!-- Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <body>
-
-  <!-- Navbar -->
-  <?php include '../components/admin_nav.php'; ?>
-<!-- Notification Modal -->
- <?php include 'adminNotif.php'; ?>
- 
-  <div class="flex-container">
-    <!-- Sidebar -->
-    <?php include '../components/admin_side.php'; ?>
+   <!-- Navbar -->
+   <?php include '../components/user_nav.php'; ?>
+<div class="flex-container">
+   <!-- Notification Modal -->
+   <?php include 'userNotif.php'; ?>
+  <!-- Sidebar -->
+  <?php include '../components/user_side.php'; ?>
 
     <!-- Main Content -->
     <main class="main-content">
+      <!-- Main Content -->
+    <main class="main-content">
     <div class="top-bar">
-    <input type="text" id="searchInput" placeholder="Search indigency requests..." class="search-bar" onkeyup="filterTable()" />
     <select id="statusFilter" class="filter-dropdown" onchange="filterByStatus()">
     <option value="">All Statuses</option>
     <option value="Ongoing">Ongoing</option>
@@ -48,13 +50,13 @@ $userName = $_SESSION['user_name'];
     <option value="For Pickup">For Pickup</option>
     <option value="Completed">Completed</option>
   </select>
-  <button class="back-btn" onclick="window.location.href='adminDocReq.php'">Go Back</button>
+  <button class="back-btn" onclick="window.location.href='userViewReq.php'">Go Back</button>
 </div>
 
       <div id="indigency" class="table-container" style="display: block;">
-        <?php include '../docsModals/indigencyDocModal.php'; ?>
+        <?php include '../DocsModals/usersDocModal_permit.php'; ?>
       </div>
-
+      <?php include '../components/user_chat.php'; ?>
 </main>
   </div>
 </body>

@@ -8,19 +8,18 @@ $lastName = $_SESSION['last_name'] ?? '';
 $firstName = $_SESSION['first_name'] ?? '';
 $middleName = $_SESSION['middle_name'] ?? '';
 $suffix = $_SESSION['suffix'] ?? '';
-$address = '';
 $contactNumber = '';
 
-// Fetch address and contact_number from residences table by joining with users
+// Fetch contact_number from residences table by joining with users
 $stmt = $conn->prepare("
-    SELECT r.address, r.contact_number
+    SELECT r.contact_number
     FROM users u
     JOIN residences r ON u.residence_id = r.id
     WHERE u.id = ?
 ");
 $stmt->bind_param("i", $userId);
 $stmt->execute();
-$stmt->bind_result($address, $contactNumber);
+$stmt->bind_result($contactNumber);
 $stmt->fetch();
 $stmt->close();
 ?>
@@ -59,11 +58,11 @@ $stmt->close();
   <div class="form-container">
     <div class="form-header">
       <a href="javascript:history.back()" class="icon-back-button" aria-label="Go back">⮌</a>
-      <h2>Barangay Certificate of Residency Request Form</h2>
+      <h2>Barangay Permit Request Form</h2>
     </div>
 
-    <form method="POST" action="../php/handle_request_certResidency.php" enctype="multipart/form-data">
-      <input type="hidden" name="document_type" value="Certificate of Residency">
+    <form method="POST" action="../php/handle_request_permit.php" enctype="multipart/form-data">
+      <input type="hidden" name="document_type" value="Barangay Permit">
 
       <div class="form-group">
         <label for="last_name">Last Name:</label>
@@ -85,7 +84,7 @@ $stmt->close();
         <input type="text" id="suffix" name="suffix" value="<?php echo htmlspecialchars($suffix); ?>" readonly>
       </div>
 
-   <div class="form-group">
+      <div class="form-group">
   <label for="contact_number">Contact Number:</label>
   <input
     type="text"
@@ -99,21 +98,25 @@ $stmt->close();
   >
 </div>
 
-      <div class="form-group">
-  <label for="address">Address:</label>
-  <input type="text" id="address" name="address" value="<?php echo htmlspecialchars($address); ?>" readonly>
-</div>
-
-<div class="form-group">
-        <label for="supporting_document">Supporting Document (Utility Bill, Lease Contract, or Barangay ID):</label>
-        <input type="file" id="supporting_document" name="supporting_document" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx" required>
-      </div>
+ <div class="form-group">
+                <label>Barangay Permit Type:</label>
+                <select id="permit-type" name="permit-type" required>
+                <option value="Employment">Barangay Permit for Employment</option>
+                <option value="School Requirements">Barangay Permit for School Requirements</option>
+                <option value="Travel">Barangay Permit for Travel</option>
+                </select>
+            </div>
 
       <div class="form-group">
         <label for="purpose">Purpose of Request:</label>
         <textarea id="purpose" name="purpose" rows="4" required></textarea>
       </div>
 
+      <div class="form-group">
+        <label for="supporting_document">Supporting Document (Optional):</label>
+        <input type="file" id="supporting_document" name="supporting_document" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+      </div>
+      
       <div class="form-group submit-button">
         <button type="submit">Submit Request</button>
       </div>

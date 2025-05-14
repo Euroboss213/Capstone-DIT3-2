@@ -6,7 +6,7 @@
     $isDashboard = ($currentPage === 'adminDashboard.php');
     $isResidents = ($currentPage === 'adminResidents.php');
     $isUserAccounts = ($currentPage === 'adminUserAccounts.php');
-    $isDocReqPage = in_array($currentPage, ['adminDocReq.php', 'adminPrintList.php', 'adminDocReq_indigency.php', 'adminPrintIndigency.php']);
+    $isDocReqPage = in_array($currentPage, ['adminDocReq.php', 'adminPrintList.php', 'adminDocReq_indigency.php', 'adminPrintIndigency.php', 'adminDocReq_certResidency.php', 'adminDocReq_permit.php']);
   ?>
 
   <button class="<?php echo $isDashboard ? 'side-button-active' : 'side-button'; ?>" onclick="window.location.href='adminDashboard.php'">Dashboard</button>

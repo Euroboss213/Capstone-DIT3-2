@@ -111,3 +111,29 @@ input[type="file"] {
   border: 1px solid #cbd5e0;
   border-radius: 0.5rem;
 }
+.form-group select {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 0.5rem;
+  background-color: #f7fafc;
+  color: #4a5568;
+  appearance: none; /* Remove default arrow (for most browsers) */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill='%234a5568'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group select:focus {
+  border-color: #3182ce;
+  box-shadow: 0 0 0 2px rgba(49, 130, 206, 0.25);
+  outline: none;
+}
+
+.form-group select:disabled {
+  background-color: #edf2f7;
+  cursor: not-allowed;
+  color: #a0aec0;
+}

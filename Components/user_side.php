@@ -4,7 +4,7 @@
   <?php
     $currentPage = basename($_SERVER['PHP_SELF']);
     $isMyHomePage = in_array($currentPage, ['userHome.php', 'userRequest_Indigency.php']);
-    $isMyRequestsPage = in_array($currentPage, ['userViewReq.php', 'userViewReq_indigency.php']);
+    $isMyRequestsPage = in_array($currentPage, ['userViewReq.php', 'userViewReq_indigency.php', 'userViewReq_certResidency.php', 'userViewReq_permit.php']);
   ?>
 
   <button class="<?php echo $isMyHomePage ? 'side-button-active' : 'side-button'; ?>" onclick="window.location.href='userHome.php'">Home</button>

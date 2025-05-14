@@ -75,7 +75,7 @@ $suffix = $_SESSION['suffix'] ?? '';
       </div>
 
       <div class="form-group">
-        <label for="supporting_document">Supporting Document (optional):</label>
+        <label for="supporting_document">Supporting Document (Optional):</label>
         <input type="file" id="supporting_document" name="supporting_document" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
       </div>
 
