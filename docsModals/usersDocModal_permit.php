@@ -20,7 +20,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM certresidency WHERE user_id = ?";
+$sql = "SELECT * FROM permit WHERE user_id = ?";
 $stmt = $conn->prepare($sql);
 
 if (!$stmt) {
@@ -32,11 +32,12 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
-    echo "<table class='certresidency-table'>
+    echo "<table class='permit-table'>
             <thead>
               <tr>
                 <th>User ID</th>
                 <th>Full Name</th>
+                <th>Permit Type</th>
                 <th>Purpose</th>
                 <th>Status</th>
                 <th>Date Requested</th>
@@ -56,6 +57,7 @@ if ($result->num_rows > 0) {
         echo "<tr>
                 <td>{$row['user_id']}</td>
                 <td>{$fullName}</td>
+                <td>{$row['permit_type']}</td>
                 <td>{$row['purpose']}</td>
                 <td class='status'>{$row['status']}</td>
                 <td>{$row['date_requested']}</td>
@@ -80,17 +82,17 @@ $conn->close();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Certificate of Residency Request</title>
+  <title>Barangay Permit Request</title>
   <link rel="stylesheet" href="../styles/formModal_style.css" />
-  <script src="../js/users_openCertResidencyModal.js" defer></script>
+  <script src="../js/users_openPermitModal.js" defer></script>
 </head>
 <body>
   <div id="reviewModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
       <h2 class="modal-title">Review Request</h2>
-      <form id="reviewResidencyForm" class="form" name="update_usersCertResidency">
-        <input type="hidden" name="form_origin" value="update_usersCertResidency">
+      <form id="reviewPermitForm" class="form" name="update_usersPermit">
+        <input type="hidden" name="form_origin" value="update_usersPermit">
         <input type="hidden" name="actor_id" value="<?= $user_id ?>">
         <input type="hidden" name="is_read" value=0>
         <input type="hidden" id="requestId" name="requestId">
@@ -104,13 +106,7 @@ $conn->close();
           <label>Full Name:</label>
           <input type="text" id="fullName" readonly>
         </div>
-
-        <div class="form-group">
-          <label>Address:</label>
-          <input type="text" id="address" name="address" readonly>
-        </div>
-
-      <div class="form-group">
+<div class="form-group">
   <label>Contact Number:</label>
   <input
     type="text"
@@ -127,27 +123,35 @@ $conn->close();
           <label>Document Type:</label>
           <input type="text" id="documentType" name="document_type" readonly>
         </div>
-
+       <div class="form-group">
+                <label>Barangay Permit Type:</label>
+                <select id="permitType" name="permit_type" required>
+                <option value="Employment">Barangay Permit for Employment</option>
+                <option value="School Requirements">Barangay Permit for School Requirements</option>
+                <option value="Travel">Barangay Permit for Travel</option>
+                </select>
+            </div>
         <div class="form-group">
           <label>Purpose:</label>
-          <textarea id="purpose" name="purpose" required></textarea>
+          <textarea id="purpose" name="purpose"></textarea required>
         </div>
 
-        <div class="file-upload-container">
-          <label class="file-upload-label">Supporting Document:</label>
-          <div id="existingFileLink"></div>
+           <div class="file-upload-container">
+                <label class="file-upload-label">Supporting Document:</label>
+                <div id="existingFileLink"></div>
 
-          <div class="file-upload-wrapper">
-            <button type="button" id="removeFileBtn" class="btn remvfile-btn">Remove File</button>
-            <label class="file-upload-custom" id="fileLabel">
-              <span id="fileLabelText">Choose File</span>
-              <input type="file" id="supportingDocument" name="supportingDocument" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" required>
-              <div id="newFilePreview" style="margin-top: 10px;"></div>
-            </label>
-          </div>
+                <div class="file-upload-wrapper">
+                <button type="button" id="removeFileBtn" class="btn remvfile-btn">Remove File</button>
+                    <label class="file-upload-custom" id="fileLabel">
+                        <span id="fileLabelText">Choose File</span>
+                        <input type="file" id="supportingDocument" name="supporting_document" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+                        <div id="newFilePreview" style="margin-top: 10px;"></div>
+                    </label>
 
-          <input type="hidden" name="removeFile" id="removeFile" value="0">
-        </div>
+                </div>
+
+                <input type="hidden" name="removeFile" id="removeFile" value="0">
+            </div>
 
         <div class="form-group">
           <label>Date Requested:</label>

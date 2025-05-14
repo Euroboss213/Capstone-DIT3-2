@@ -55,6 +55,7 @@ if ($result->num_rows > 0) {
         $fullName = $row["first_name"] . " " . ($row["middle_name"] ? $row["middle_name"] . " " : "") . $row["last_name"] . ($row["suffix"] ? ", " . $row["suffix"] : "");
         $row['supporting_document'] = $row['supporting_document'] ?? '';
         $disableEdit = in_array($row['status'], ['For Pickup', 'Completed']) ? 'disabled' : '';
+        $disableCancel = $row['status'] === 'Completed' ? 'disabled' : '';
         echo "<tr>
             <td>{$row['user_id']}</td> 
             <td>{$fullName}</td>
@@ -64,7 +65,7 @@ if ($result->num_rows > 0) {
             <td>{$row['comment']}</td> <!-- 🆕 Added this -->
             <td>
                <button class='action-btn' onclick='openReviewModal(".json_encode($row).")' $disableEdit>Edit Request</button>
-                <button class='action-btn delete-btn' onclick='deleteFromRow({$row['id']})'>Cancel</button>
+                <button class='action-btn delete-btn' onclick='deleteFromRow({$row['id']})' $disableCancel>Cancel</button>
             </td>
         </tr>";
     }
@@ -109,9 +110,14 @@ if ($result->num_rows > 0) {
                 <input type="text" id="fullName" readonly>
             </div>
 
+               <div class="form-group">
+                <label>Document Type:</label>
+                <input type="text" id="documentType">
+            </div>
+
             <div class="form-group">
                 <label>Purpose:</label>
-                <textarea id="purpose" name="purpose"></textarea>
+                <textarea id="purpose" name="purpose"></textarea required>
             </div>
 
                         <div class="file-upload-container">
@@ -129,11 +135,6 @@ if ($result->num_rows > 0) {
                 </div>
 
                 <input type="hidden" name="removeFile" id="removeFile" value="0">
-            </div>
-
-            <div class="form-group">
-                <label>Document Type:</label>
-                <input type="text" id="documentType">
             </div>
 
             <div class="form-group">

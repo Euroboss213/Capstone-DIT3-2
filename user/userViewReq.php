@@ -54,7 +54,7 @@ $userId = $_SESSION['id'];
   <div class="document-button">
     <i class="fa-solid fa-clipboard-check document-icon"></i>
     <span class="cert-text">Barangay Permit</span>
-    <button class="view-requests-button" onclick="window.location.href=''">View My Requests</button>
+    <button class="view-requests-button" onclick="window.location.href='userViewReq_permit.php'">View My Requests</button>
   </div>
 
   <div class="document-button">
