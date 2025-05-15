@@ -37,7 +37,6 @@ if ($result->num_rows > 0) {
               <tr>
                 <th>User ID</th>
                 <th>Full Name</th>
-                <th>Purpose</th>
                 <th>Status</th>
                 <th>Date Requested</th>
                 <th>Document Type</th>
@@ -56,7 +55,6 @@ if ($result->num_rows > 0) {
         echo "<tr>
                 <td>{$row['user_id']}</td>
                 <td>{$fullName}</td>
-                <td>{$row['purpose']}</td>
                 <td class='status'>{$row['status']}</td>
                 <td>{$row['date_requested']}</td>
                 <td>{$row['document_type']}</td>

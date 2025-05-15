@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function filterByStatus() {
     const filter = document.getElementById("statusFilter").value.toLowerCase();
-    const tables = document.querySelectorAll(".indigency-table, .certresidency-table. permit-table"); // ← multiple classes
+    const tables = document.querySelectorAll(".indigency-table, .certresidency-table, .permit-table, .good-moral-table"); // ← multiple classes
   
     tables.forEach(table => {
       const rows = table.querySelectorAll("tbody tr");

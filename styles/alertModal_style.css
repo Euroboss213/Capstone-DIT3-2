@@ -37,9 +37,10 @@
   }
   
   .custom-alert-box p {
-    font-size: 16px;
+      font-size: 18px;
     color: #333;
     margin-bottom: 24px;
+    font-weight: bold; /* Added this line */
   }
   
   .custom-alert-box button {
@@ -51,9 +52,10 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+      min-width: 120px; /* Adjust this value as needed */
+    width: auto; /* Allows the button to resize based on text */
   }
   
   .custom-alert-box button:hover {
     background-color: #001d3a;
   }
-  
