@@ -64,9 +64,9 @@ $userId = $_SESSION['id'];
   </div>
 
   <div class="document-button">
-    <i class="fa-solid fa-briefcase document-icon"></i>
-    <span class="cert-text">Barangay Business Clearance</span>
-    <button class="view-requests-button" onclick="window.location.href=''">View My Requests</button>
+    <i class="fa-solid fa-user-check document-icon"></i>
+    <span class="cert-text">Barangay Good Moral Certificate</span>
+    <button class="view-requests-button" onclick="window.location.href='userViewReq_goodMoral.php'">View My Requests</button>
   </div>
 
 </div>

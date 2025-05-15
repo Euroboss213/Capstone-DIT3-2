@@ -17,7 +17,12 @@ function showRequestAlertPermit() {
   alert.style.visibility = "visible";
   alert.style.opacity = "1";
 }
-
+function showRequestAlertGoodMoral() {
+  const alert = document.getElementById("requestAlertGoodMoral");
+  alert.style.display = "flex";
+  alert.style.visibility = "visible";
+  alert.style.opacity = "1";
+}
 function closeAlert(alertId) {
   const alert = document.getElementById(alertId);
   alert.style.display = "none";

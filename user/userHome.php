@@ -21,7 +21,9 @@ function hasPendingRequest($conn, $userId, $table) {
 $hasPendingIndigency = hasPendingRequest($conn, $userId, 'indigency');
 $hasPendingResidency = hasPendingRequest($conn, $userId, 'certResidency');
 $hasPendingPermit = hasPendingRequest($conn, $userId, 'permit');
+$hasPendingGoodMoral = hasPendingRequest($conn, $userId, 'good_moral');
 ?>
+
 
 <?php include '../php/get_unread_notifications.php'; ?>
 <?php include "../alertModals/alertModal_Home.php"; ?>
@@ -99,9 +101,17 @@ $hasPendingPermit = hasPendingRequest($conn, $userId, 'permit');
             Request Barangay Permit
         </a>
 
-        <a href="request_clearance.php" class="action-button">
-            <i class="fa-solid fa-briefcase"></i>
-            Request Barangay Business Clearance
+               <a 
+            <?php if ($hasPendingGoodMoral): ?>
+            href="#"
+            onclick="showRequestAlertGoodMoral(); return false;"
+            <?php else: ?>
+            href="userRequest_goodMoral.php"
+            <?php endif; ?>
+            class="action-button"
+        >
+            <i class="fa-solid fa-user-check"></i>
+            Request Barangay Good Moral Certificate
         </a>
       </div>
 

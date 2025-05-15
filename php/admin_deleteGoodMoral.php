@@ -1,0 +1,22 @@
+<?php
+$conn = new mysqli("localhost", "root", "", "reqwest");
+
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$id = $_POST['id'];
+
+$sql = "DELETE FROM good_moral WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $id);
+
+if ($stmt->execute()) {
+  echo "Request deleted successfully.";
+} else {
+  echo "Error deleting record: " . $stmt->error;
+}
+
+$stmt->close();
+$conn->close();
+?>
