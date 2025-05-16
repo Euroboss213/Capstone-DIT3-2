@@ -26,13 +26,10 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.655 6.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
       </svg>
     </button>
-    <div id="acc-dropdownMenu" class="dropdown-menu">
-    <form action="../user/manageAcc.php" method="post">
-  <button type="submit" class="dropdown-item-btn">Manage Account</button>
-</form>
-  <form action="../php/tologout.php" method="post">
-  <button type="submit" class="dropdown-item-btn">Logout</button>
-  </form>
+  <div id="acc-dropdownMenu" class="dropdown-menu">
+  <button class="dropdown-item-btn" onclick="location.href='../user/manageAcc.php'">Manage Account</button>
+  <button class="dropdown-item-btn" onclick="location.href='../php/tologout.php'">Logout</button>
+</div>
 </div>
 <div id="chat-dropdownMenu" class="dropdown-menu">
   <button type="submit" class="dropdown-item-btn" id="chatBot-btn">AI Assistant</button>

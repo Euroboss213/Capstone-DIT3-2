@@ -4,19 +4,6 @@ include "../php/auth_check.php";
 // Get the user's name from session
 $userName = $_SESSION['user_name'];
 
-// Check if the 'id' query parameter is set
-if (isset($_GET['id'])) {
-  $id = $_GET['id'];
-  $pdfPath = "../temp/barangay_{$id}.pdf";  // Construct the PDF path
-} else {
-  // If no 'id' parameter is provided, show an error or redirect
-  die("No ID specified.");
-}
-
-// Ensure the file exists
-if (!file_exists($pdfPath)) {
-  die("The requested PDF does not exist.");
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,16 +32,7 @@ if (!file_exists($pdfPath)) {
     <div class="top-bar">
     <button class="back-btn" onclick="history.back()">Go Back</button>
             </div>
-            <!-- Embed the PDF in the page -->
-            <div id="pdf-container">
-                <?php if ($pdfPath): ?>
-                    <object data="<?= $pdfPath ?>" type="application/pdf" width="100%" height="600px">
-                        <p>Your browser does not support PDFs. <a href="<?= $pdfPath ?>">Download the PDF</a>.</p>
-                    </object>
-                <?php else: ?>
-                    <p>PDF not found for this request.</p>
-                <?php endif; ?>
-            </div>
+
     </main>
   </div>
 </body>
