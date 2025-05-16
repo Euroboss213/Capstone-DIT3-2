@@ -50,7 +50,7 @@ $userName = $_SESSION['user_name'];
     <option value="For Pickup">For Pickup</option>
     <option value="Completed">Completed</option>
   </select>
-  <button class="back-btn" onclick="window.location.href='userViewReq.php'">Go Back</button>
+  <button class="back-btn" onclick="history.back()">Go Back</button>
 </div>
 
       <div id="indigency" class="table-container" style="display: block;">

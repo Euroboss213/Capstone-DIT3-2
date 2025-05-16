@@ -1,0 +1,91 @@
+.help-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.help-modal-content {
+  background-color: #ffffff;
+  margin: 8% auto;
+  padding: 2.5rem 3rem 3rem 3rem;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  position: relative;
+  color: #333;
+  line-height: 1.6;
+}
+
+.help-modal h2 {
+  margin-top: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #3a5ca8; /* Elegant Blue */
+  border-bottom: 3px solid #3a5ca8;
+  border-width: 100%;
+  padding-bottom: 0.3rem;
+  letter-spacing: 0.05em;
+}
+
+.help-modal p {
+  font-size: 1rem;
+  margin: 1rem 0 1.5rem 0;
+  color: #4a4a4a;
+}
+
+.help-modal ul {
+  padding-left: 1.4rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.help-modal ul li {
+  margin-bottom: 0.6rem;
+  list-style-type: disc;
+}
+
+.label-uses {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.7rem;
+  color: #3a5ca8;
+  padding-left: 0.6rem;
+  letter-spacing: 0.02em;
+}
+
+.help-modal .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: #888;
+  transition: color 0.3s ease;
+  user-select: none;
+}
+
+.help-modal .close-btn:hover {
+  color: #3a5ca8;
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .help-modal-content {
+    padding: 1.5rem 2rem 2rem 2rem;
+  }
+  .help-modal h2 {
+    font-size: 1.5rem;
+  }
+}

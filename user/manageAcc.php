@@ -40,34 +40,44 @@ $userId = $_SESSION['id'];
     <?php include '../components/user_side.php'; ?>
 
     <!-- Main Content -->
-    <main class="main-content">
+   <main class="main-content">
   <section class="user-credentials-form">
-    <form action="../php/update_credentials.php" method="POST">
-      <h2 class="form-title">Manage Account</h2>
+    <h2 class="form-title">Manage User Account</h2>
 
+    <form action="../php/update_credentials.php" method="POST" class="form-container">
+      <div class="section-title">Change Username</div>
       <div class="form-group">
         <label for="existing_username">Existing Username</label>
-        <input type="text" id="existing_username" name="existing_username" class="form-input" value="<?php echo htmlspecialchars($_SESSION['userName']); ?>" readonly />
+        <input type="text" id="existing_username" name="existing_username" class="form-input" 
+               value="<?php echo htmlspecialchars($_SESSION['userName']); ?>" readonly />
       </div>
 
       <div class="form-group">
-        <label for="new_username">New Username</label>
-        <input type="text" id="new_username" name="new_username" class="form-input" placeholder="Enter new Username" />
+        <label for="new_username">Enter New Username</label>
+        <input type="text" id="new_username" name="new_username" class="form-input" 
+               placeholder="Enter new Username" />
+      </div>
+
+      <div class="section-title">Change Password</div>
+      <div class="form-group">
+        <label for="current_password">Enter Current Password</label>
+        <input type="password" id="current_password" name="current_password" class="form-input" 
+               placeholder="Enter Current Password" />
       </div>
 
       <div class="form-group">
-        <label for="new_password">New Password</label>
-        <input type="password" id="new_password" name="new_password" class="form-input" placeholder="Enter new Password" />
+        <label for="new_password">Enter New Password</label>
+        <input type="password" id="new_password" name="new_password" class="form-input" 
+               placeholder="Enter New Password" />
       </div>
 
       <div class="form-group">
-        <label for="confirm_password">Confirm Password</label>
-        <input type="password" id="confirm_password" name="confirm_password" class="form-input" placeholder="Confirm new Password" />
+        <label for="confirm_password">Confirm New Password</label>
+        <input type="password" id="confirm_password" name="confirm_password" class="form-input" 
+               placeholder="Confirm New Password" />
       </div>
 
-      <div class="form-group">
-        <button type="submit" class="form-button">Save Changes</button>
-      </div>
+      <button type="submit" class="form-button">Save Changes</button>
     </form>
   </section>
 </main>

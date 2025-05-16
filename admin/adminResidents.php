@@ -106,7 +106,12 @@ if (isset($_SESSION['import_message'])) {
             <option value="Female">Female</option>
           </select>
         </label>
-        <label>Civil Status: <input type="text" id="civil_status" name="civil_status" required /></label>
+        <label>Civil Status: 
+          <select id="civil_status" name="civil_status" required>
+              <option value ="Single">Single</option>
+              <option value ="Married">Married</option>
+          </select>
+          </label>
         <label>Nationality: <input type="text" id="nationality" name="nationality" required /></label>
         <label>Religion: <input type="text" id="religion" name="religion" required /></label>
         <label>Occupation: <input type="text" id="occupation" name="occupation" required /></label>
@@ -145,7 +150,14 @@ if (isset($_SESSION['import_message'])) {
         <label>Pag-IBIG No: <input type="text" id="pagibig_no" name="pagibig_no" pattern="\d{4}-\d{4}-\d{4}" title="Format: 1234-5678-9012" /></label>
         <label>TIN No: <input type="text" id="tin_no" name="tin_no" pattern="\d{3}-\d{3}-\d{3}" title="Format: 123-456-789" /></label>
         <label>Voter's ID No: <input type="text" id="voters_id_no" name="voters_id_no" pattern="VIN-\d{4}-\d{4}" title="Format: VIN-XXXX-XXXX" required /></label>
-        <label>COVID Status: <input type="text" id="covid_status" name="covid_status" required /></label>
+        <label>COVID Status: 
+          <select id="covid_status" name="covid_status" required>
+              <option value="Postive">Postive</option>
+              <option value="Negative">Negative</option>
+              <option value="Recovered">Recovered</option>
+              <option value="Not Checked Up">Not Checked Up</option>
+          </select>
+          </label>
         <label>Vaccinated: 
           <select id="vaccinated" name="vaccinated" required>
             <option value="Yes">Yes</option>

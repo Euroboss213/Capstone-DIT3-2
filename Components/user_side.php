@@ -3,16 +3,9 @@
 
   <?php
     $currentPage = basename($_SERVER['PHP_SELF']);
-    $isMyHomePage = in_array($currentPage, ['userHome.php', 'userRequest_Indigency.php']);
-    $isMyRequestsPage = in_array($currentPage, ['userViewReq.php', 'userViewReq_indigency.php', 'userViewReq_certResidency.php', 'userViewReq_permit.php', 'userViewReq_goodMoral.php']);
+    $isMyHomePage = in_array($currentPage, ['userHome.php', 'userRequest_Indigency.php', 'userRequest_goodMoral.php', 'userRequest_permit.php', 'userRequest_certResidency.php','userViewReq_goodMoral.php', 'userViewReq_permit.php', 'userViewReq_certResidency.php', 'userViewReq_Indigency.php']);
+    $isMyRequestsPage = in_array($currentPage, ['userViewReq.php']);
   ?>
 
-  <button class="<?php echo $isMyHomePage ? 'side-button-active' : 'side-button'; ?>" onclick="window.location.href='userHome.php'">Home</button>
-
-  <button class="<?php echo $isMyRequestsPage ? 'side-button-active' : 'side-button'; ?>" onclick="window.location.href='userViewReq.php'">
-  My Requests
-  <?php if (isset($hasUnread) && $hasUnread): ?>
-    <span class="notif-dot"></span>
-  <?php endif; ?>
-</button>
+  <button class="<?php echo $isMyHomePage ? 'side-button-active' : 'side-button'; ?>" onclick="window.location.href='userHome.php'">Request Document</button>
 </aside>

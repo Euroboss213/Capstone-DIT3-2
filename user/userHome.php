@@ -41,6 +41,7 @@ $hasPendingGoodMoral = hasPendingRequest($conn, $userId, 'good_moral');
   <link rel="stylesheet" href="../styles/autoChat.css">
   <link rel="stylesheet" href="../styles/alertModal_style.css">
   <link rel="stylesheet" href="../styles/notifModal.css">
+  <link rel="stylesheet" href="../styles/helpModal.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
   <script src="../js/userHome_script.js" defer></script>
   <script src="../js/chatBot.js" defer></script>
@@ -60,68 +61,89 @@ $hasPendingGoodMoral = hasPendingRequest($conn, $userId, 'good_moral');
     <?php include '../components/user_side.php'; ?>
 
     <!-- Main Content -->
-    <main class="main-content">
-      <div class="button-grid">
-        <a 
-            <?php if ($hasPendingIndigency): ?>
-            href="#"
-            onclick="showRequestAlertIndigency(); return false;"
-            <?php else: ?>
-            href="userRequest_Indigency.php"
-            <?php endif; ?>
-            class="action-button"
-        >
-            <i class="fa-solid fa-file"></i>
-            Request Certificate of Indigency
-        </a>
-
-        <a 
-            <?php if ($hasPendingResidency): ?>
-            href="#"
-            onclick="showRequestAlertResidency(); return false;"
-            <?php else: ?>
-            href="userRequest_certResidency.php"
-            <?php endif; ?>
-            class="action-button"
-        >
-            <i class="fa-solid fa-home"></i>
-            Request Certificate of Residency
-        </a>
-
-        <a 
-            <?php if ($hasPendingPermit): ?>
-            href="#"
-            onclick="showRequestAlertPermit(); return false;"
-            <?php else: ?>
-            href="userRequest_permit.php"
-            <?php endif; ?>
-            class="action-button"
-        >
-            <i class="fa-solid fa-clipboard-check"></i>
-            Request Barangay Permit
-        </a>
-
-               <a 
-            <?php if ($hasPendingGoodMoral): ?>
-            href="#"
-            onclick="showRequestAlertGoodMoral(); return false;"
-            <?php else: ?>
-            href="userRequest_goodMoral.php"
-            <?php endif; ?>
-            class="action-button"
-        >
-            <i class="fa-solid fa-user-check"></i>
-            Request Barangay Good Moral Certificate
-        </a>
+  <main class="main-content">
+  <div class="button-grid">
+    <!-- Certificate of Indigency -->
+    <div class="request-card">
+      <div class="request-card-header">
+        <div class="icon-box">
+          <i class="fa-solid fa-file"></i>
+        </div>
+        <h3>Certificate of Indigency</h3>
       </div>
-
-      <!-- Image Container -->
-      <div class="image-container">
-        <img src="../assets/step.png" alt="Your Image" class="image" />
+       <button class="question-icon" onclick="openHelpModal('helpIndigency')">?</button>
+      <div class="request-card-actions">
+        <?php if ($hasPendingIndigency): ?>
+          <button onclick="showRequestAlertIndigency()">Request</button>
+        <?php else: ?>
+          <a href="userRequest_Indigency.php" class="btn">Request</a>
+        <?php endif; ?>
+        <a href="userViewReq_Indigency.php" class="btn">View My Request</a>
       </div>
-      <!-- Chat Container -->
-      <?php include '../components/user_chat.php'; ?>
-    </main>
+    </div>
+
+    <!-- Certificate of Residency -->
+    <div class="request-card">
+      <div class="request-card-header">
+        <div class="icon-box">
+          <i class="fa-solid fa-home"></i>
+        </div>
+        <h3>Certificate of Residency</h3>
+      </div>
+       <button class="question-icon" onclick="openHelpModal('helpResidency')">?</button>
+      <div class="request-card-actions">
+        <?php if ($hasPendingResidency): ?>
+          <button onclick="showRequestAlertResidency()">Request</button>
+        <?php else: ?>
+          <a href="userRequest_certResidency.php" class="btn">Request</a>
+        <?php endif; ?>
+        <a href="userViewReq_certResidency.php" class="btn">View My Request</a>
+      </div>
+    </div>
+
+    <!-- Barangay Permit -->
+    <div class="request-card">
+      <div class="request-card-header">
+        <div class="icon-box">
+          <i class="fa-solid fa-clipboard-check"></i>
+        </div>
+        <h3>Barangay Permit</h3>
+      </div>
+       <button class="question-icon" onclick="openHelpModal('helpPermit')">?</button>
+      <div class="request-card-actions">
+        <?php if ($hasPendingPermit): ?>
+          <button onclick="showRequestAlertPermit()">Request</button>
+        <?php else: ?>
+          <a href="userRequest_permit.php" class="btn">Request</a>
+        <?php endif; ?>
+        <a href="userViewReq_permit.php" class="btn">View My Request</a>
+      </div>
+    </div>
+
+    <!-- Good Moral Certificate -->
+    <div class="request-card">
+      <div class="request-card-header">
+        <div class="icon-box">
+          <i class="fa-solid fa-user-check"></i>
+        </div>
+        <h3>Barangay Good Moral Certificate</h3>
+      </div>
+       <button class="question-icon" onclick="openHelpModal('helpGoodMoral')">?</button>
+      <div class="request-card-actions">
+        <?php if ($hasPendingGoodMoral): ?>
+          <button onclick="showRequestAlertGoodMoral()">Request</button>
+        <?php else: ?>
+          <a href="userRequest_goodMoral.php" class="btn">Request</a>
+        <?php endif; ?>
+        <a href="userViewReq_goodMoral.php" class="btn">View My Request</a>
+      </div>
+    </div>
+  </div>
+<?php include "usersHelpModal.php"; ?>
+  <!-- Chat Container -->
+  <?php include '../components/user_chat.php'; ?>
+</main>
+
   </div>
 </body>
 </html>

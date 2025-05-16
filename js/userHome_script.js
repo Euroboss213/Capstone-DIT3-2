@@ -48,3 +48,21 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+// helpModals.js
+
+function openHelpModal(id) {
+  document.getElementById(id).style.display = "block";
+}
+
+function closeHelpModal(id) {
+  document.getElementById(id).style.display = "none";
+}
+
+window.addEventListener("click", function(event) {
+  const modals = document.querySelectorAll(".help-modal");
+  modals.forEach(modal => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+});
