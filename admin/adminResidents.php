@@ -1,9 +1,14 @@
 <?php
 include "../php/auth_check.php";
+include "../database/connect_db_reqwest.php"; 
 
 // Get the user's name from session
 $userName = $_SESSION['user_name'];
+$userId = $_SESSION['id'];
 ?>
+
+<?php include '../php/get_unread_notifications.php' ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,42 +17,20 @@ $userName = $_SESSION['user_name'];
   <title>Barangay Document Request</title>
   <link rel="stylesheet" href="../styles/adminResidents_style.css" />
   <link rel="stylesheet" href="../styles/adminTemplate.css" />
+  <link rel="stylesheet" href="../styles/notifModal.css" />
   <script src="../js/adminResidents_script.js" defer></script>
   <script src="../js/uploadCV.js" defer></script>
   <script src="../js/adminNav.js" defer></script>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo-container">
-      <img src="../assets/logo.png" alt="REQWEST Logo" class="logo-img" />
-      <div class="barangay-name">
-        <span class="barangay">Barangay West Kamias</span>
-        <span class="city">Quezon City</span>
-      </div>
-    </div>
-    <div class="profile-menu">
-      <button id="profileButton" class="profile-button">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.655 6.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-      </button>
-      <div id="dropdownMenu" class="dropdown-menu">
-        <a href="#" class="dropdown-item">Change Password</a>
-        <a href="../pages/newlogin.php" class="dropdown-item">Logout</a>
-      </div>
-    </div>
-  </nav>
-
-  <div class="flex-container">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <h2 class="user-name">Admin Account</h2>
-      <button id="dashboard" class="side-button" onclick="window.location.href='adminDashboard.php'">Dashboard</button>
-      <button id="doc-req" class="side-button" onclick="window.location.href='adminDocReq.php'">Document Requests</button>
-      <button id="registered-residents" class="side-button" onclick="window.location.href='adminResidents.php'">Registered Residents</button>
-      <button id="user-accounts" class="side-button" onclick="window.location.href='adminUserAccounts.php'">User Accounts</button>
-    </aside>
+   <!-- Navbar -->
+   <?php include '../components/admin_nav.php'; ?>
+<!-- Notification Modal -->
+<?php include 'adminNotif.php'; ?>
+ 
+<div class="flex-container">
+  <!-- Sidebar -->
+  <?php include '../components/admin_side.php'; ?>
 
     <!-- Main Content -->
     <main class="main-content">
@@ -93,7 +76,7 @@ if (isset($_SESSION['import_message'])) {
                   <td>{$row['contact_number']}</td>
                   <td>{$row['address']}</td>
                   <td>{$row['date_of_registration']}</td>
-                  <td><button class='more-info-btn' onclick='openModal(" . json_encode($row) . ")'>View and Edit</button></td>
+                  <td><button class='more-info-btn' onclick='openModal(" . json_encode($row) . ")'>View or Edit</button></td>
                 </tr>";
         }
         echo "</tbody></table>";
@@ -123,7 +106,12 @@ if (isset($_SESSION['import_message'])) {
             <option value="Female">Female</option>
           </select>
         </label>
-        <label>Civil Status: <input type="text" id="civil_status" name="civil_status" required /></label>
+        <label>Civil Status: 
+          <select id="civil_status" name="civil_status" required>
+              <option value ="Single">Single</option>
+              <option value ="Married">Married</option>
+          </select>
+          </label>
         <label>Nationality: <input type="text" id="nationality" name="nationality" required /></label>
         <label>Religion: <input type="text" id="religion" name="religion" required /></label>
         <label>Occupation: <input type="text" id="occupation" name="occupation" required /></label>
@@ -162,7 +150,14 @@ if (isset($_SESSION['import_message'])) {
         <label>Pag-IBIG No: <input type="text" id="pagibig_no" name="pagibig_no" pattern="\d{4}-\d{4}-\d{4}" title="Format: 1234-5678-9012" /></label>
         <label>TIN No: <input type="text" id="tin_no" name="tin_no" pattern="\d{3}-\d{3}-\d{3}" title="Format: 123-456-789" /></label>
         <label>Voter's ID No: <input type="text" id="voters_id_no" name="voters_id_no" pattern="VIN-\d{4}-\d{4}" title="Format: VIN-XXXX-XXXX" required /></label>
-        <label>COVID Status: <input type="text" id="covid_status" name="covid_status" required /></label>
+        <label>COVID Status: 
+          <select id="covid_status" name="covid_status" required>
+              <option value="Postive">Postive</option>
+              <option value="Negative">Negative</option>
+              <option value="Recovered">Recovered</option>
+              <option value="Not Checked Up">Not Checked Up</option>
+          </select>
+          </label>
         <label>Vaccinated: 
           <select id="vaccinated" name="vaccinated" required>
             <option value="Yes">Yes</option>

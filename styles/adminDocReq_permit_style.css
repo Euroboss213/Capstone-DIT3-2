@@ -1,0 +1,44 @@
+
+
+.action-btn {
+    padding: 10px 20px;
+    background-color: #3182ce;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+.action-btn:hover {
+  filter: brightness(0.9);
+}
+
+.permit-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.permit-table th, .permit-table td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.permit-table th {
+  background-color: #3399FF;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.permit-table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Light grey for even rows */
+  }
+  
+  .permit-table tr:nth-child(odd) {
+    background-color: #ffffff; /* White for odd rows */
+  }
+
+
+

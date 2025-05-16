@@ -6,6 +6,7 @@
     <title>Login/Signup Form</title>
     <!--STYLES-->
     <link rel="stylesheet" href="../styles/newlogin.css">
+    <link rel="stylesheet" href="../styles/alertModal_style.css">
     <!--FONTS-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,11 +23,11 @@
             </div>
         </div>
         <nav class="navbar">
-            <a href="landing.php">Home</a>
-            <a href="services.php">Services</a>
-            <a href="aboutus.php">About Us</a>
-            <a href="faq.php">FAQ</a>
-            <a href="contact.php">Contact Us</a>
+            <a href="newlanding.php">Home</a>
+            <a href="newservices.php">Services</a>
+            <a href="newabout.php">About Us</a>
+            <a href="newfaq.php">FAQ</a>
+            <a href="newcontact.php">Contact Us</a>
             <a href="newlogin.php" class="active">Login</a>
         </nav>
     </header>
@@ -122,6 +123,7 @@
     </div>
 
     <script src="../js/newlogin.js"></script>
-    
+    <?php include '../alertModals/login_error_modal.php'; ?>
+    <?php include '../alertModals/signup_error_modal.php'; ?>
 </body>
 </html>

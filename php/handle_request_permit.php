@@ -1,0 +1,66 @@
+<?php
+include "../php/auth_check.php";
+include "../database/connect_db_reqwest.php";
+
+// Check if the form is submitted via POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    // Get user information from session
+    $userId = $_SESSION['id'];
+    $lastName = $_POST['last_name'] ?? '';
+    $firstName = $_POST['first_name'] ?? '';
+    $middleName = $_POST['middle_name'] ?? '';
+    $suffix = $_POST['suffix'] ?? '';
+    $contactNumber = $_POST['contact_number'] ?? '';
+    $permitType = $_POST['permit-type'] ?? '';
+    $purpose = $_POST['purpose'] ?? '';
+    $documentType = $_POST['document_type'] ?? 'Certificate of Residency';
+
+    // Check if a file was uploaded
+    $supportingDocument = null;
+    if (isset($_FILES['supporting_document']) && $_FILES['supporting_document']['error'] === UPLOAD_ERR_OK) {
+        $targetDir = "../uploads/";
+        $fileName = basename($_FILES['supporting_document']['name']);
+        $targetFile = $targetDir . uniqid() . "_" . $fileName;
+
+        // Check if directory exists, if not, create it
+        if (!is_dir($targetDir)) {
+            mkdir($targetDir, 0777, true);
+        }
+
+        // Move uploaded file to target directory
+        if (move_uploaded_file($_FILES['supporting_document']['tmp_name'], $targetFile)) {
+            $supportingDocument = $targetFile;
+        } else {
+            echo "Error uploading file.";
+            exit;
+        }
+    }
+
+    // Prepare the SQL statement
+    $stmt = $conn->prepare("
+        INSERT INTO permit 
+        (user_id, last_name, first_name, middle_name, suffix, contact_number, permit_type, purpose, supporting_document, document_type) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ");
+
+    if (!$stmt) {
+        die("Error preparing statement: " . $conn->error);
+    }
+
+    // Bind parameters and execute
+    $stmt->bind_param("isssssssss", $userId, $lastName, $firstName, $middleName, $suffix, $contactNumber, $permitType, $purpose, $supportingDocument, $documentType);
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Request submitted successfully!'); window.location.href='../user/userHome.php';</script>";
+    } else {
+        echo "Error submitting request: " . $stmt->error;
+    }
+
+    $stmt->close();
+} else {
+    echo "Invalid request method.";
+}
+
+$conn->close();
+?>

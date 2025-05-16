@@ -7,13 +7,24 @@ if ($conn->connect_error) {
 
 $id = $_POST['id'];
 
-$sql = "DELETE FROM indigency WHERE id='$id'";
+// First, delete related notifications
+$notifSql = "DELETE FROM notifications WHERE request_id = ?";
+$notifStmt = $conn->prepare($notifSql);
+$notifStmt->bind_param("i", $id);
+$notifStmt->execute();
+$notifStmt->close();
 
-if ($conn->query($sql) === TRUE) {
+// Then, delete the request from the indigency table
+$sql = "DELETE FROM indigency WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $id);
+
+if ($stmt->execute()) {
   echo "Request deleted successfully.";
 } else {
-  echo "Error deleting record: " . $conn->error;
+  echo "Error deleting record: " . $stmt->error;
 }
 
+$stmt->close();
 $conn->close();
 ?>

@@ -30,6 +30,7 @@ if ($stmt->num_rows == 1) {
 
         // Set session variables
         $_SESSION['id'] = $id;
+        $_SESSION['userName'] = $username;   
         $_SESSION['user_name'] = $full_name;
         $_SESSION['role'] = $role;
         $_SESSION['first_name'] = $first_name;

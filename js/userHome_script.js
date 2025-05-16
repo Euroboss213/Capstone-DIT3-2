@@ -24,3 +24,45 @@ window.addEventListener('click', (e) => {
     chatdropdownMenu.classList.remove('show');
   }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  const notifButton = document.getElementById('notifButton');
+  const modal = document.getElementById('notificationModal');
+  const closeModal = document.getElementById('closeModal');
+
+  if (notifButton && modal && closeModal) {
+    notifButton.addEventListener('click', () => {
+      modal.classList.remove('hidden');
+    });
+
+    closeModal.addEventListener('click', () => {
+      modal.classList.add('hidden');
+    });
+
+    window.addEventListener('click', function (e) {
+      // Close only if clicking directly on the overlay (not inside modal-content)
+      if (e.target === modal) {
+        modal.classList.add('hidden');
+      }
+    });
+  }
+});
+
+// helpModals.js
+
+function openHelpModal(id) {
+  document.getElementById(id).style.display = "block";
+}
+
+function closeHelpModal(id) {
+  document.getElementById(id).style.display = "none";
+}
+
+window.addEventListener("click", function(event) {
+  const modals = document.querySelectorAll(".help-modal");
+  modals.forEach(modal => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+});
