@@ -7,6 +7,13 @@ if ($conn->connect_error) {
 
 $id = $_POST['id'];
 
+// delete also from the notifications
+$notifSql = "DELETE FROM notifications WHERE request_id = ?";
+$notifStmt = $conn->prepare($notifSql);
+$notifStmt->bind_param("i", $id);
+$notifStmt->execute();
+$notifStmt->close();
+
 $sql = "DELETE FROM certresidency WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $id);
