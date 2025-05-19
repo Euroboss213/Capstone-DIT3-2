@@ -53,18 +53,18 @@ $userName = $_SESSION['user_name'];
         <label for="current_password">Enter Current Password</label>
         <input type="password" id="current_password" name="current_password" class="form-input" 
                placeholder="Enter Current Password" />
-      </div>
+      </div
 
       <div class="form-group">
         <label for="new_password">Enter New Admin Password</label>
         <input type="password" id="new_password" name="new_password" class="form-input" 
-               placeholder="Enter New Password" />
+               placeholder="Enter New Password"  pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,><#^()])[A-Za-z\d@$!%*?&]{8,}$"/>
       </div>
 
       <div class="form-group">
         <label for="confirm_password">Confirm New Admin Password</label>
         <input type="password" id="confirm_password" name="confirm_password" class="form-input" 
-               placeholder="Confirm New Password" />
+               placeholder="Confirm New Password"  pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,><#^()])[A-Za-z\d@$!%*?&]{8,}$"/>
       </div>
 
       <button type="submit" class="form-button">Save Changes</button>

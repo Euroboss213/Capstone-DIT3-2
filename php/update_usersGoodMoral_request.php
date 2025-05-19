@@ -9,6 +9,19 @@ $userId = $_SESSION['id'] ?? '';
 $id = $_POST['requestId'] ?? '';
 $purpose = $_POST['purpose'] ?? '';
 $removeFile = isset($_POST['removeFile']) && $_POST['removeFile'] === '1';
+$form_origin = $_POST['form_origin']; 
+$actor_id = $_POST['actor_id']; // passed via hidden input
+$actor_role = 'user';
+
+$docTypes = ['indigency', 'certresidency', 'good_moral', 'permit'];
+$documentType = null;
+
+foreach ($docTypes as $type) {
+    if (stripos($form_origin, $type) !== false) {
+        $documentType = $type;
+        break;
+    }
+}
 
 // Ensure required fields
 if (empty($id) || empty($purpose)) {
@@ -57,6 +70,9 @@ $updateStmt = $conn->prepare("UPDATE good_moral SET purpose = ?, supporting_docu
 $updateStmt->bind_param("ssi", $purpose, $supporting_document, $id);
 
 if ($updateStmt->execute()) {
+    include '../php/handle-notification.php';
+
+    sendNotificationToTarget($documentType, $id, $actor_id, $actor_role, $userName, $type);
     echo "Request updated successfully.";
 } else {
     echo "Error updating request: " . $conn->error;

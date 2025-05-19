@@ -13,7 +13,7 @@
   </svg>
 </button>
      <!-- Notification Button -->
-     <button id="notifButton" class="notif-button">
+     <button id="notifButton" id="notifButton-unread" class="notif-button">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405C18.2 14.79 18 13.918 18 13V9a6 6 0 10-12 0v4c0 .918-.2 1.79-.595 2.595L4 17h5m6 0v1a3 3 0 11-6 0v-1h6z" />
       </svg>

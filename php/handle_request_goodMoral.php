@@ -1,6 +1,8 @@
 <?php
 include "../php/auth_check.php"; 
 include "../database/connect_db_reqwest.php";
+include "../php/handle-notification.php";
+
 
 // Get user data from session
 $user_id = $_SESSION['id']; 
@@ -46,10 +48,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Insert request
    $stmt = $conn->prepare("INSERT INTO good_moral (user_id, last_name, first_name, middle_name, suffix, purpose, document_type, supporting_document, status, date_requested) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
-$stmt->bind_param("issssssss", $user_id, $lastName, $firstName, $middleName, $suffix, $purpose, $documentType, $supportingDocument, $status);
+    $stmt->bind_param("issssssss", $user_id, $lastName, $firstName, $middleName, $suffix, $purpose, $documentType, $supportingDocument, $status);
 
     if ($stmt->execute()) {
         $request_id = $stmt->insert_id;
+
+        $adminQuery = $conn->query("SELECT id FROM users WHERE role = 'admin' LIMIT 1");
+        if($adminRow = $adminQuery->fetch_assoc()) {
+            $admin_id = $adminRow['id'];
+
+            $notifMsg = "$firstName $lastName submitted a request for Certificate of Good Moral.";
+            $notifStmt = $conn->prepare("INSERT INTO notifications (request_id, document_type, actor_id, actor_role, message, sent_to, is_read) VALUES (?, ?, ?, ?, ?, ?, 0)");
+            $role = 'user';
+            $notifStmt->bind_param("isissi", $request_id, $documentType, $user_id, $role, $notifMsg, $admin_id);
+            $notifStmt->execute();
+            $notifStmt->close();
+        }
 
         echo "<script>alert('Request submitted successfully!'); window.location.href='../user/userHome.php';</script>";
     } else {

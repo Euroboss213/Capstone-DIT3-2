@@ -12,6 +12,18 @@ $contact_number = $_POST['contact_number'] ?? '';
 $permit_type = $_POST['permit_type'] ?? '';
 $removeFile = isset($_POST['removeFile']) && $_POST['removeFile'] === '1';
 $form_origin = $_POST['form_origin']; // form name: 'admin_updatePermit' or 'update_usersPermit'
+$actor_id = $_POST['actor_id']; // passed via hidden input
+$actor_role = 'user';
+
+$docTypes = ['indigency', 'certresidency', 'good_moral', 'permit'];
+$documentType = null;
+
+foreach ($docTypes as $type) {
+    if (stripos($form_origin, $type) !== false) {
+        $documentType = $type;
+        break;
+    }
+}
 
 // Ensure necessary data is available
 if (empty($id) || empty($purpose) || empty($contact_number) || empty($permit_type)) {
@@ -60,6 +72,9 @@ $updateStmt = $conn->prepare("UPDATE permit SET purpose = ?, contact_number = ?,
 $updateStmt->bind_param("ssssi", $purpose, $contact_number, $permit_type, $supporting_document, $id);
 
 if ($updateStmt->execute()) {
+    include '../php/handle-notification.php';
+
+    sendNotificationToTarget($documentType, $id, $actor_id, $actor_role, $userName, $type);
     echo "Request updated successfully.";
 } else {
     echo "Error updating request: " . $conn->error;

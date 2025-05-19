@@ -30,6 +30,9 @@
           case 'db_prepare_insert':
             echo "A database error occurred. Please contact support.";
             break;
+          case 'weak_password':
+            echo "The password did not meet the requirements";
+            break;
           default:
             echo "An unknown error occurred. Please try again.";
         }

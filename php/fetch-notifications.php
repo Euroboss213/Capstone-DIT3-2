@@ -16,26 +16,28 @@ while ($row = $result->fetch_assoc()) {
     $documentType = '';
 
     // Optional logic to determine document type from message text
-    if (strpos($message, 'Indigency') !== false) {
+    if (strpos($message, 'Indigency') !== false || strpos($message, 'indigency') !== false) {
         $documentType = 'indigency';
-    } elseif (strpos($message, 'Permit') !== false) {
+    } elseif (strpos($message, 'Permit') !== false || strpos($message, 'permit') !== false) {
         $documentType = 'permit';
-    } elseif (strpos($message, 'Residency') !== false) {
+    } elseif (strpos($message, 'Residency') !== false || strpos($message, 'residency') !== false) {
         $documentType = 'residency';
-    } elseif (strpos($message, 'Business Clearance') !== false) {
-        $documentType = 'business';
+    } elseif (strpos($message, 'Good Moral') !== false || strpos($message, 'good moral') !== false) {
+        $documentType = 'good_moral';
     }
 
     // Determine which base path to use
-    $pagePrefix = ($role === 'admin') ? 'adminDocReq_indigency' : 'userViewReq_indigency';
+    $pagePrefix = ($role === 'user') ? 'userViewReq_' : 'adminDocReq_';
     $targetPage = $pagePrefix . $documentType . '.php';
 
-    echo '<div class="notification-item">';
+    echo '<div class="notification-item" id="notif-' . htmlspecialchars($row['id']) . '">';
     echo '<p class="notif-message">' . htmlspecialchars($message) . '</p>';
     echo '<p class="notif-date">' . htmlspecialchars($row['created_at']) . '</p>';
     echo '<div class="button-wrapper">';
-    echo '<button id="notifButton-unread" class="view-button" onclick="window.location.href=\'' . $targetPage . '\'">View</button>';
+    echo '<button class="view-button" id="notifButton-unread" onclick="window.location.href=\'' . $targetPage . '\'">View</button>';
+    echo '<button class="delete-button" onclick="deleteNotification(' . htmlspecialchars($row['id']) . ')">Delete</button>';
     echo '</div>';
     echo '</div>';
+
 }
 ?>

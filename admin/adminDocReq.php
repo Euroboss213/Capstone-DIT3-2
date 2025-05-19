@@ -51,12 +51,9 @@ $userId = $_SESSION['id'];
 </div>
 <div class="document-buttons-container">
   <div class="document-button">
-    <?php if ($hasUnread): ?>
-      <span class="notif-dot" id="notifDot"></span>
-    <?php endif; ?>
     <i class="fa-solid fa-file document-icon"></i>
     <span>Certificate of Indigency</span>
-    <button class="view-requests-button" id="notifButton-unread" onclick="window.location.href='adminDocReq_indigency.php'">View Requests</button>
+    <button class="view-requests-button" onclick="window.location.href='adminDocReq_indigency.php'">View Requests</button>
   </div>
 
   <div class="document-button">
@@ -68,13 +65,13 @@ $userId = $_SESSION['id'];
   <div class="document-button">
     <i class="fa-solid fa-home document-icon"></i>
     <span>Certificate of Residency</span>
-    <button class="view-requests-button" onclick="window.location.href='adminDocReq_certResidency.php'">View Requests</button>
+    <button class="view-requests-button" onclick="window.location.href='adminDocReq_residency.php'">View Requests</button>
   </div>
 
   <div class="document-button">
     <i class="fa-solid fa-user-check document-icon"></i>
     <span>Barangay Good Moral Certificate</span>
-    <button class="view-requests-button" onclick="window.location.href='adminDocReq_goodMoral.php'">View Requests</button>
+    <button class="view-requests-button" onclick="window.location.href='adminDocReq_good_moral.php'">View Requests</button>
   </div>
 </div>
 

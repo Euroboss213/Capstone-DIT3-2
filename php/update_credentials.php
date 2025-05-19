@@ -45,6 +45,13 @@ if ($newUsername !== $existingUsername) {
 
 // If new password is given, hash and update
 if (!empty($newPassword)) {
+    $password_requirements = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/";
+
+    if (!preg_match($password_requirements, $newPassword)) {
+        echo "<script>alert('Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.'); window.history.back();</script>";
+        exit();
+    }
+
     $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
     $updateFields[] = "password = ?";
     $params[] = $hashedPassword;
@@ -67,11 +74,12 @@ if (count($updateFields) > 0) {
     call_user_func_array([$stmt, 'bind_param'], $bind_names);
     $stmt->execute();
 
-    // Update session username
-    $_SESSION['userName'] = $newUsername;
+    // Destroy session after update to force re-login
+    session_unset();
+    session_destroy();
 
-    echo "<script>alert('Account updated successfully!'); window.location.href='../pages/newlogin.php';</script>";
-} else {
-    echo "<script>alert('No changes made.'); window.history.back();</script>";
-}
+    echo "<script>alert('Account updated successfully! Please log in again.'); window.location.href='../pages/newlogin.php';</script>";
+    } else {
+        echo "<script>alert('No changes made.'); window.history.back();</script>";
+    }
 ?>

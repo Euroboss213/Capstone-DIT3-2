@@ -82,7 +82,8 @@
                         <i class='bx bxs-lock-alt'></i>
                     </div>
                     <div class="input-box">
-                        <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password" required>
+                        <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password" required
+                            pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,><#^()])[A-Za-z\d@$!%*?&]{8,}$">
                         <i class='bx bxs-lock-alt'></i>
                     </div>
                 </div>

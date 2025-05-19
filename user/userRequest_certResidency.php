@@ -63,7 +63,7 @@ $stmt->close();
     </div>
 
     <form method="POST" action="../php/handle_request_certResidency.php" enctype="multipart/form-data">
-      <input type="hidden" name="document_type" value="Certificate of Residency">
+      <input type="hidden" name="document_type" value="Residency">
 
       <div class="form-group">
         <label for="last_name">Last Name:</label>

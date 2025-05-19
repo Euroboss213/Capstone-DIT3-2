@@ -27,4 +27,28 @@ profileButton.addEventListener('click', (e) => {
       });
     }
   });
+
+  function deleteNotification(notifId) {
+
+    const formData = new FormData();
+    formData.append('notif_id', notifId);
+
+    fetch('../php/delete-notification.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const notifElement = document.getElementById('notif-' + notifId);
+            if (notifElement) notifElement.remove();
+        } else {
+            alert('Failed to delete notification: ' + (data.error || 'Unknown error'));
+        }
+    })
+    .catch(error => {
+        console.error('Fetch error:', error);
+        alert('An error occurred while deleting the notification.');
+    });
+}
   

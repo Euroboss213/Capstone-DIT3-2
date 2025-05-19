@@ -7,12 +7,21 @@ $userName = $_SESSION['user_name'];
 $userId = $_SESSION['id'];
 
 $id = $_POST['requestId'] ?? '';
-$is_read = (int)$_POST['is_read'];
 $purpose = $_POST['purpose'] ?? '';
 $removeFile = isset($_POST['removeFile']) && $_POST['removeFile'] === '1';
 $form_origin = $_POST['form_origin']; // form name: 'admin_updateIndigency' or 'update_usersIndigency'
 $actor_id = $_POST['actor_id']; // passed via hidden input
 $actor_role = 'user';
+
+$docTypes = ['indigency', 'certresidency', 'good_moral', 'permit'];
+$documentType = null;
+
+foreach ($docTypes as $type) {
+    if (stripos($form_origin, $type) !== false) {
+        $documentType = $type;
+        break;
+    }
+}
 
 $stmtRole = $conn->prepare("SELECT role FROM users WHERE id = ?");
 $stmtRole->bind_param("i", $userId);
@@ -71,7 +80,8 @@ $updateStmt->bind_param("ssi", $purpose, $supporting_document, $id);
 
 if ($updateStmt->execute()) {
     include '../php/handle-notification.php';
-    sendNotificationToTarget($id, $actor_id, $actor_role, $userName, $is_read);
+
+    sendNotificationToTarget($documentType, $id, $actor_id, $actor_role, $userName, $type);
     echo "Request updated successfully.";
 } else {
     echo "Error updating request: " . $conn->error;

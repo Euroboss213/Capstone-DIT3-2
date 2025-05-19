@@ -4,7 +4,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$userId = $_SESSION['id'];
+$user_id = $_SESSION['id'];
 
 if (isset($_SESSION['import_message'])) {
     echo $_SESSION['import_message'];
@@ -135,7 +135,7 @@ $conn->close();
                         <button type="button" id="deleteBtn" class="btn btn-delete">Delete</button>
                     </div>
                     <div class="right-buttons">
-                        <button type="button" class="btn btn-viewPdf" onclick="generateAndViewPDF(document.getElementById('requestId').value)">
+                        <button type="button" class="btn btn-viewPdf" onclick="generateAndViewPDF(document.getElementById('requestId').value, 'permit')">
                             View PDF
                         </button>
                         <button type="submit" id="saveBtn" class="btn btn-save">Save</button>
