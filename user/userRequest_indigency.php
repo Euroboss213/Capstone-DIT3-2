@@ -47,7 +47,7 @@ $suffix = $_SESSION['suffix'] ?? '';
     </div>
 
     <form method="POST" action="../php/handle_request_indigency.php" enctype="multipart/form-data">
-      <input type="hidden" name="document_type" value="Certificate of Indigency">
+      <input type="hidden" name="document_type" value="Indigency">
 
       <div class="form-group">
         <label for="last_name">Last Name:</label>

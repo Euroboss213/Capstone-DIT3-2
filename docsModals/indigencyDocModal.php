@@ -123,7 +123,7 @@ $conn->close();
                     <button type="button" id="deleteBtn" class="btn btn-delete">Delete</button>
                   </div>
                   <div class="right-buttons">
-                    <button type="button" class="btn btn-viewPdf" onclick="generateAndViewPDF(document.getElementById('requestId').value)">
+                    <button type="button" class="btn btn-viewPdf" onclick="generateAndViewPDF(document.getElementById('requestId').value, 'indigency')">
                       View PDF
                     </button>
                     <button type="submit" id="saveBtn" class="btn btn-save">Save</button>

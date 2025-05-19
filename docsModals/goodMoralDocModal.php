@@ -66,7 +66,7 @@ $conn->close();
             <h2 class="modal-title">Review Good Moral Request</h2>
             <form id="reviewForm" class="form" name="admin_updateGoodMoral">
                 <!-- Hidden Inputs -->
-                <input type="hidden" name="form_origin" value="admin_updateGoodMoral">
+                <input type="hidden" name="form_origin" value="admin_updategood_moral">
                 <input type="hidden" name="actor_id" value="<?= $userId ?>">
                 <input type="hidden" name="is_read" value=0>
                 <input type="hidden" id="requestId" name="requestId">
@@ -122,7 +122,7 @@ $conn->close();
                         <button type="button" id="deleteBtn" class="btn btn-delete">Delete</button>
                     </div>
                     <div class="right-buttons">
-                        <button type="button" class="btn btn-viewPdf" onclick="generateAndViewPDF(document.getElementById('requestId').value)">
+                        <button type="button" class="btn btn-viewPdf" onclick="generateAndViewPDF(document.getElementById('requestId').value, 'good_moral')">
                             View PDF
                         </button>
                         <button type="submit" id="saveBtn" class="btn btn-save">Save</button>

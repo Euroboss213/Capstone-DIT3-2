@@ -98,10 +98,18 @@ function filterTable() {
     }
   };
   
-  function generateAndViewPDF(requestId) {
-    // Redirect to the correct PHP script to generate the PDF
-    window.location.href = 'http://localhost/capstone/Capstone-DIT3-2/forPrints/template-pdf.php?id=' + requestId;
+  function generateAndViewPDF(requestId, type) {
+    if (!requestId || !type) {
+      alert('Missing request ID or document type.');
+      return;
+    }
+  
+    // Debugging logs (optional)
+    // alert('Generating PDF for:\nID: ' + requestId + '\nType: ' + type);
+  
+    window.location.href = 'http://localhost/capstone/Capstone-DIT3-2/forPrints/template-pdf.php?id=' + requestId + "&type=" + type;
   }
+  
 
   function printCompleteList() {
     // Redirect to the correct PHP script to generate the PDF

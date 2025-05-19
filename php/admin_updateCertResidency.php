@@ -8,6 +8,26 @@ $userId = $_SESSION['id'] ?? '';
 $id = $_POST['id'] ?? '';
 $status = $_POST['status'] ?? 'Ongoing';
 $comment = trim($_POST['comment'] ?? '');
+$form_origin = $_POST['form_origin']; // Form name: 'admin_updateIndigency' or 'update_usersIndigency'
+$actor_id = $_POST['actor_id']; // Actor ID (admin or user who made the update)
+$actor_role = ($form_origin === 'admin_updateCertResidency') ? 'admin' : 'user'; // Determine the role
+
+// Detect the document type from the form_origin value
+$docTypes = ['indigency', 'certresidency', 'good_moral', 'permit'];
+$documentType = null;
+
+foreach ($docTypes as $type) {
+    if (stripos($form_origin, $type) !== false) {
+        $documentType = $type;
+        break;
+    }
+}
+
+if ($documentType === null) {
+    echo "Error: Unknown document type in form_origin";
+    exit;
+}
+
 
 if (empty($id)) {
     echo "Invalid request. Missing ID.";
@@ -29,6 +49,15 @@ $updateStmt->bind_param("ssi", $status, $comment, $id);
 
 if ($updateStmt->execute()) {
     echo "Request updated successfully.";
+
+     // Include the notification handler
+    include '../php/handle-notification.php';
+
+    // Prepare type (status becomes the notification type)
+    $type = $status;
+
+    // Send notification to target (user or admin)
+    sendNotificationToTarget($type, $id, $actor_id, $actor_role, $userName, $documentType);
 } else {
     echo "Error updating request: " . $conn->error;
 }

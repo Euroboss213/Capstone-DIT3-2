@@ -6,6 +6,10 @@ if ($conn->connect_error) {
 
 $userId = $_SESSION['id'];
 
+if (isset($_SESSION['import_message'])) {
+    echo $_SESSION['import_message'];
+    unset($_SESSION['import_message']);
+}
 $sql = "SELECT * FROM certresidency";
 $result = $conn->query($sql);
 
@@ -53,6 +57,12 @@ $conn->close();
     <h2 class="modal-title">Review Request</h2>
     <form id="reviewResidencyForm" class="form" name="admin_updateCertResidency">
       <input type="hidden" id="requestId" name="id">
+      <!-- Hidden Inputs -->
+      <input type="hidden" name="form_origin" value="admin_updateCertResidency">
+      <input type="hidden" name="actor_id" value="<?= $userId ?>">
+      <input type="hidden" name="is_read" value=0>
+      <input type="hidden" id="requestId" name="requestId">
+      <!-- End of Hidden Inputs -->
 
       <div class="form-group">
         <label>User ID:</label>
@@ -114,7 +124,7 @@ $conn->close();
           <button type="button" class="btn btn-delete" id="deleteBtn">Delete</button>
         </div>
         <div class="right-buttons">
-          <button type="button" class="btn btn-viewPdf" onclick="generateAndViewPDF(document.getElementById('requestId').value)">View PDF</button>
+          <button type="button" class="btn btn-viewPdf" onclick="generateAndViewPDF(document.getElementById('requestId').value, 'certresidency')">View PDF</button>
           <button type="submit" class="btn btn-save">Save</button>
         </div>
       </div>

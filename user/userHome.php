@@ -95,9 +95,9 @@ $hasPendingGoodMoral = hasPendingRequest($conn, $userId, 'good_moral');
         <?php if ($hasPendingResidency): ?>
           <button onclick="showRequestAlertResidency()">Request</button>
         <?php else: ?>
-          <a href="userRequest_certResidency.php" class="btn">Request</a>
+          <a href="userRequest_residency.php" class="btn">Request</a>
         <?php endif; ?>
-        <a href="userViewReq_certResidency.php" class="btn">View My Request</a>
+        <a href="userViewReq_residency.php" class="btn">View My Request</a>
       </div>
     </div>
 
@@ -133,9 +133,9 @@ $hasPendingGoodMoral = hasPendingRequest($conn, $userId, 'good_moral');
         <?php if ($hasPendingGoodMoral): ?>
           <button onclick="showRequestAlertGoodMoral()">Request</button>
         <?php else: ?>
-          <a href="userRequest_goodMoral.php" class="btn">Request</a>
+          <a href="userRequest_good_moral.php" class="btn">Request</a>
         <?php endif; ?>
-        <a href="userViewReq_goodMoral.php" class="btn">View My Request</a>
+        <a href="userViewReq_good_moral.php" class="btn">View My Request</a>
       </div>
     </div>
   </div>

@@ -59,6 +59,14 @@ if ($result->num_rows > 0) {
         header("Location: ../pages/newlogin.php?signup_error=duplicate_user");
         exit();
     } else {
+        $password_requirements = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/';
+
+        if (!preg_match($password_requirements, $password)) {
+            header("Location: ../pages/newlogin.php?signup_error=weak_password");
+            exit();
+        }
+        
+
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $residence_id = $residence_data['id'];
 

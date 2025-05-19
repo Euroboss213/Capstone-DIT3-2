@@ -77,7 +77,7 @@ document.getElementById('reviewResidencyForm').onsubmit = function (e) {
     })
     .catch(error => console.error('Error:', error));
 };
-
+ 
 document.getElementById('deleteBtn').onclick = function () {
     if (confirm('Are you sure you want to delete this certificate request?')) {
         const id = document.getElementById('requestId').value;
@@ -95,3 +95,21 @@ document.getElementById('deleteBtn').onclick = function () {
         .catch(error => console.error('Error:', error));
     }
 };
+
+  function generateAndViewPDF(requestId, type) {
+    if (!requestId || !type) {
+      alert('Missing request ID or document type.');
+      return;
+    }
+  
+    // Debugging logs (optional)
+    // alert('Generating PDF for:\nID: ' + requestId + '\nType: ' + type);
+  
+    window.location.href = 'http://localhost/capstone/Capstone-DIT3-2/forPrints/template-pdf.php?id=' + requestId + "&type=" + type;
+  }
+
+  function printCompleteList() {
+    // Redirect to the correct PHP script to generate the PDF
+    window.location.href = 'http://localhost/capstone/Capstone-DIT3-2/forPrints/completeReqList.php?';
+  }
+

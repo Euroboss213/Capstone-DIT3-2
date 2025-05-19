@@ -97,6 +97,7 @@ $conn->close();
                 <input type="hidden" id="requestId" name="requestId">
                 <input type="hidden" name="actor_id" value="<?= $user_id ?>">
                 <input type="hidden" name="is_read" value="0">
+                <input type="hidden" name="form_origin" value="update_usersGoodMoral">
                 
                 <div class="form-group">
                     <label>User ID:</label>

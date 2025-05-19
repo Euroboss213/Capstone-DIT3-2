@@ -2,37 +2,33 @@
 require_once('libs/tcpdf/tcpdf.php');
 include "../database/connect_db_reqwest.php";
 
-// Debugging: Check if 'id' is passed via the URL
-// if (!isset($_GET['id']) || empty($_GET['id'])) {
-//     die("No request ID provided.");
-// } else {
-//     echo "ID from URL: " . $_GET['id'] . "<br>";
-// }
+// Validate ID and type from the URL
+if (!isset($_GET['id']) || !isset($_GET['type'])) {
+    die("Missing parameters.");
+}
 
 $id = intval($_GET['id']);
-$sql = "SELECT * FROM indigency WHERE id = $id";
+$type = $_GET['type']; // e.g., 'indigency' or 'certResidency'
 
-// Debugging: Show SQL query
-// echo "SQL Query: " . $sql . "<br>";
+// Whitelist table names for security
+$allowedTables = ['indigency', 'certresidency', 'good_moral', 'permit'];
+
+if (!in_array($type, $allowedTables)) {
+    die("Invalid document type.");
+}
+
+// Dynamic table name based on type
+$table = $conn->real_escape_string($type);
+$sql = "SELECT * FROM `$table` WHERE id = $id";
 
 $result = $conn->query($sql);
-
 if ($result->num_rows == 0) {
     die("Request not found.");
-} else {
-    // echo "Number of rows found: " . $result->num_rows . "<br>";
 }
 
 $row = $result->fetch_assoc();
-
-// Debugging: Show the contents of $row
-// echo "<pre>";
-// print_r($row);
-// echo "</pre>";
-
-// Check if the data exists before accessing array values
 if (is_null($row)) {
-    die("Database returned no data for the given ID.");
+    die("No data found for the given ID.");
 }
 
 $fullName = htmlspecialchars($row['first_name'] . ' ' . ($row['middle_name'] ? $row['middle_name'] . ' ' : '') . $row['last_name'] . ($row['suffix'] ? ', ' . $row['suffix'] : ''));
@@ -44,12 +40,11 @@ $date = htmlspecialchars($row['date_requested']);
 $pdf = new TCPDF();
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('Barangay Office');
-$pdf->SetTitle('Barangay Document');
-$pdf->SetHeaderData('', 0, 'Barangay Document', '');
+$pdf->SetTitle("Barangay Certificate of $docType");
+$pdf->SetHeaderData('', 0, "Barangay Certificate of $docType", '');
 
-$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', 14));
-$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', 10));
-$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+$pdf->setHeaderFont([PDF_FONT_NAME_MAIN, '', 14]);
+$pdf->setFooterFont([PDF_FONT_NAME_DATA, '', 10]);
 $pdf->SetMargins(20, 20, 20);
 $pdf->SetAutoPageBreak(TRUE, 20);
 $pdf->AddPage();
@@ -65,16 +60,11 @@ $html = "
 <p style='text-align:right;'>Authorized Signature</p>
 ";
 
-// Debugging: Show the HTML content
-// echo "<hr>";
-// echo "HTML Content: <br>";
-// echo $html;
-// echo "<hr>";
-
 $pdf->writeHTML($html, true, false, true, false, '');
-$pdf->Output(__DIR__ . "/../temp/barangay_$id.pdf", 'F');
- // Save to a temporary file
+$pdfPath = __DIR__ . "/../temp/barangay_{$type}_$id.pdf";
+$pdf->Output($pdfPath, 'F');
 
-header('Location: /capstone/Capstone-DIT3-2/admin/adminPrintIndigency.php?id=' . $id);
+// Redirect back to the appropriate modal/view page
+header("Location: /capstone/Capstone-DIT3-2/admin/adminPrint{$type}.php?id={$type}_{$id}");
 exit;
 ?>
