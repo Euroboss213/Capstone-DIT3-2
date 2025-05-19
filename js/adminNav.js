@@ -51,4 +51,6 @@ profileButton.addEventListener('click', (e) => {
         alert('An error occurred while deleting the notification.');
     });
 }
+
+ 
   

@@ -10,3 +10,4 @@ document.getElementById('notifButton-unread').addEventListener('click', function
             console.error("Error updating notifications:", error);
         });
 });
+

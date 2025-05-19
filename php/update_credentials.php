@@ -12,8 +12,8 @@ $existingUsername = $_SESSION['userName'];
 
 // Get form data and sanitize
 $newUsername = trim($_POST['new_username']);
-$newPassword = $_POST['new_password'];
-$confirmPassword = $_POST['confirm_password'];
+$newPassword = trim($_POST['new_password']);
+$confirmPassword = trim($_POST['confirm_password']);
 
 // If both username and password are empty, alert and exit
 if (empty($newUsername) && empty($newPassword)) {
@@ -45,12 +45,30 @@ if ($newUsername !== $existingUsername) {
 
 // If new password is given, hash and update
 if (!empty($newPassword)) {
-    $password_requirements = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/";
+    $currentPassword = $_POST['current_password'];
 
-    if (!preg_match($password_requirements, $newPassword)) {
-        echo "<script>alert('Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.'); window.history.back();</script>";
+    if (empty($currentPassword)) {
+    echo "<script>alert('Please enter your current password.'); window.history.back();</script>";
+    exit();
+    }
+
+    $sql = "SELECT password FROM users WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+
+    if (!$row || !password_verify($currentPassword, $row['password'])) {
+        echo "<script>alert('Current password is incorrect.'); window.history.back();</script>";
         exit();
     }
+
+    // $password_requirements = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/";
+
+    // if (!preg_match($password_requirements, $newPassword)) {
+    //     exit();
+    // }
 
     $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
     $updateFields[] = "password = ?";

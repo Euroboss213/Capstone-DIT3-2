@@ -25,7 +25,7 @@ function sendNotificationToTarget($status, $requestId, $actorId, $actorRole, $ac
     } else if ($status === 'Completed' && $actorRole === 'admin') {
         $message = "Admin updated your request for Certificate of $displayType. Please check the status and comments.";   
     } else if ($actorRole === 'user'){
-        $message = "{$actorName}updated his/her request for Certificate of $displayType.";
+        $message = "{$actorName}(USER ID NO.({$actorId})) have re-submitted a request for Certificate of $displayType.";
     } else {
         $message = "{$actorName}submitted a request for Certificate of $displayType.";
     }
