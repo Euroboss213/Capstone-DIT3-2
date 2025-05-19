@@ -14,7 +14,7 @@ $userName = $_SESSION['user_name'];
   <link rel="stylesheet" href="../styles/notifModal.css" />
   <link rel="stylesheet" href="../styles/manageAcc_style.css">
 
-  <script src="../js/" defer></script>
+  <script src="../js/newpassRequirements.js" defer></script>
   <script src="../js/adminNav.js" defer></script>
   <script src="../js/unread_to_read_notif.js" defer></script>
 </head>
@@ -38,13 +38,13 @@ $userName = $_SESSION['user_name'];
       <div class="section-title">Change Admin Username</div>
       <div class="form-group">
         <label for="existing_username">Existing Admin Username</label>
-        <input type="text" id="existing_username" name="existing_username" class="form-input" 
+        <input type="email" id="existing_username" name="existing_username" class="form-input" 
                value="<?php echo htmlspecialchars($_SESSION['userName']); ?>" readonly />
       </div>
 
       <div class="form-group">
         <label for="new_username">Enter New Admin Username</label>
-        <input type="text" id="new_username" name="new_username" class="form-input" 
+        <input type="email" id="new_username" name="new_username" class="form-input" 
                placeholder="Enter new Username" />
       </div>
 
@@ -53,18 +53,21 @@ $userName = $_SESSION['user_name'];
         <label for="current_password">Enter Current Password</label>
         <input type="password" id="current_password" name="current_password" class="form-input" 
                placeholder="Enter Current Password" />
-      </div
-
+      </div>
+      
       <div class="form-group">
         <label for="new_password">Enter New Admin Password</label>
         <input type="password" id="new_password" name="new_password" class="form-input" 
-               placeholder="Enter New Password"  pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,><#^()])[A-Za-z\d@$!%*?&]{8,}$"/>
+          placeholder="Enter New Password" 
+          />
+          <small id="password_error" class="error-text"></small>
       </div>
 
       <div class="form-group">
         <label for="confirm_password">Confirm New Admin Password</label>
         <input type="password" id="confirm_password" name="confirm_password" class="form-input" 
-               placeholder="Confirm New Password"  pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,><#^()])[A-Za-z\d@$!%*?&]{8,}$"/>
+               placeholder="Confirm New Password"  
+               />
       </div>
 
       <button type="submit" class="form-button">Save Changes</button>

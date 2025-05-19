@@ -28,6 +28,7 @@ $userId = $_SESSION['id'];
   <script src="../js/displayChats.js" defer></script>
   <script src="../js/alerts.js" defer></script>
   <script src="../js/unread_to_read_notif.js" defer></script>
+  <script src="../js/newpassRequirements.js" defer></script>
 </head>
 <body>
   <!-- Navbar -->
@@ -48,13 +49,13 @@ $userId = $_SESSION['id'];
       <div class="section-title">Change Username</div>
       <div class="form-group">
         <label for="existing_username">Existing Username</label>
-        <input type="text" id="existing_username" name="existing_username" class="form-input" 
+        <input type="email" id="existing_username" name="existing_username" class="form-input" 
                value="<?php echo htmlspecialchars($_SESSION['userName']); ?>" readonly />
       </div>
 
       <div class="form-group">
         <label for="new_username">Enter New Username</label>
-        <input type="text" id="new_username" name="new_username" class="form-input" 
+        <input type="email" id="new_username" name="new_username" class="form-input" 
                placeholder="Enter new Username" />
       </div>
 
@@ -68,13 +69,14 @@ $userId = $_SESSION['id'];
       <div class="form-group">
         <label for="new_password">Enter New Password</label>
         <input type="password" id="new_password" name="new_password" class="form-input" 
-               placeholder="Enter New Password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,><#^()])[A-Za-z\d@$!%*?&]{8,}$" />
+               placeholder="Enter New Password"/>
+               <small id="password_error" class="error-text"></small>
       </div>
 
       <div class="form-group">
         <label for="confirm_password">Confirm New Password</label>
         <input type="password" id="confirm_password" name="confirm_password" class="form-input" 
-               placeholder="Confirm New Password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,><#^()])[A-Za-z\d@$!%*?&]{8,}$" />
+               placeholder="Confirm New Password"/>
       </div>
 
       <button type="submit" class="form-button">Save Changes</button>

@@ -56,7 +56,7 @@
         if($adminRow = $adminQuery->fetch_assoc()) {
             $admin_id = $adminRow['id'];
 
-            $notifMsg = "$firstName $lastName submitted a request for Certificate of Indigency.";
+            $notifMsg = "$firstName $lastName (USER ID NO.({$user_id})) have submitted a request for Certificate of Indigency.";
             $notifStmt = $conn->prepare("INSERT INTO notifications (request_id, document_type, actor_id, actor_role, message, sent_to, is_read) VALUES (?, ?, ?, ?, ?, ?, 0)");
             $role = 'user';
             $notifStmt->bind_param("isissi", $request_id, $documentType, $user_id, $role, $notifMsg, $admin_id);
