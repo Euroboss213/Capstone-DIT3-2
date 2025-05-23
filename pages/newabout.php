@@ -36,15 +36,12 @@
       <div class="container">
         <h2>Who We Are</h2>
         <p>
-          EquiChem provides high-quality pest control services and environmentally friendly solutions.
-          Our company has over two decades of experience delivering safe and effective treatments to
-          residential, commercial, and industrial sectors.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque et odio a diam ultrices venenatis ultricies et enim. Duis tempor consequat lacus, et aliquet mi venenatis vehicula. Donec venenatis nisi id lacinia iaculis. Aenean interdum.
         </p>
 
         <h2>Our Mission</h2>
         <p>
-          To protect homes and businesses using proven methods and innovative approaches while promoting
-          sustainability and health safety.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque et odio a diam ultrices venenatis ultricies et enim. Duis tempor consequat lacus, et aliquet mi venenatis vehicula. Donec venenatis nisi id lacinia iaculis. Aenean interdum.
         </p>
       </div>
     </div>
@@ -56,7 +53,7 @@
     <div class="mission-text">
       <h2>Mission</h2>
       <p>
-        Our mission is to provide high-quality, eco-friendly pest control equipment and chemicals to our clients, ensuring their homes and businesses remain pest-free. We are committed to delivering exceptional customer service, maintaining the highest standards of safety, and contributing to the wellbeing and health of our communities.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et eros sed nulla dignissim consectetur ut sed lorem. Praesent tincidunt non metus commodo pellentesque. Phasellus eu tortor eu justo interdum mollis. Donec non dolor at arcu accumsan rutrum. Praesent placerat id purus eget volutpat.
       </p>
     </div>
     <div class="mission-image">
@@ -68,7 +65,7 @@
     <div class="vision-text">
       <h2>Vision</h2>
       <p>
-        Our vision is to be the leading supplier of pest control solutions in the industry, recognized for our innovative products, sustainable practices, and dedication to customer satisfaction. We aim to set the standard for excellence in pest control, influencing the industry towards safer, more effective solutions.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et eros sed nulla dignissim consectetur ut sed lorem. Praesent tincidunt non metus commodo pellentesque. Phasellus eu tortor eu justo interdum mollis. Donec non dolor at arcu accumsan rutrum. Praesent placerat id purus eget volutpat.
       </p>
     </div>
   </div>

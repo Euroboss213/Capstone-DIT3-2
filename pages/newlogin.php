@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login/Signup Form</title>
+    <title>Login/Signup</title>
     <!--STYLES-->
     <link rel="stylesheet" href="../styles/newlogin.css">
     <link rel="stylesheet" href="../styles/alertModal_style.css">
@@ -16,21 +16,19 @@
     <script src="../js/confirmPass.js"></script>
 </head>
 <body>
-<header class="header">
-        <div class="column1">
-            <div class="barangay-title">
-                <img src="../assets/reqwest-logo.png" alt="Barangay Logo" class="logo">
-            </div>
-        </div>
-        <nav class="navbar">
-            <a href="newlanding.php">Home</a>
-            <a href="newservices.php">Services</a>
-            <a href="newabout.php">About Us</a>
-            <a href="newfaq.php">FAQ</a>
-            <a href="newcontact.php">Contact Us</a>
-            <a href="newlogin.php" class="active">Login</a>
-        </nav>
-    </header>
+  <header class="header">
+    <div class="logo">REQ<span>WEST</span></div>
+    <nav>
+      <ul>
+        <li><a href="newlanding.php">Home</a></li>
+        <li><a href="newservices.php">Services</a></li>
+        <li><a href="newabout.php">About Us</a></li>
+        <li><a href="newfaq.php">FAQ</a></li>
+        <li><a href="newcontact.php">Contact Us</a></li>
+        <li><a class="take-action" href="newlogin.php">Login</a></li>
+      </ul>
+    </nav>
+  </header>
 
     <div class="container">
         <div class="form-box login">
@@ -114,7 +112,6 @@
             </div>
 
             <div class="toggle-panel toggle-right">
-                
                 <h1>Registration</h1>
                 <h2>Hello, Welcome!</h2>
                 <p>Already have an account?</p>

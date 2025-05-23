@@ -31,11 +31,9 @@
   <!-- Hero Section -->
   <section class="hero" data-aos="fade-up">
     <div class="content">
-      <h1>Equipping Pest Control Providers</h1>
+      <h1>Barangay Document Request System</h1>
       <p>
-        EQUICHEM is a well-established and reputable company in the pest control
-        industry, with a strong commitment to providing high-quality products
-        and services to our customers.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce placerat id neque vitae mattis. In a tortor lectus. Pellentesque tortor ex, efficitur a felis eu, ullamcorper laoreet nisi. Proin lobortis.
       </p>
       <a href="aboutus.php" class="learn-more">Learn More</a>
     </div>
@@ -50,11 +48,7 @@
     <div class="text">
       <h2>25 Long Years Of Manufacturing Excellence With Quality At It's Best!</h2>
       <p>
-        EQUICHEM is committed to providing comprehensive support and guidance
-        to our customers. We understand the importance of proper training and
-        technical assistance in maximizing the effectiveness of our pest control
-        chemicals. Our team of experienced professionals is dedicated to offering training
-        programs and ongoing support to ensure our customers achieve optimal results.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tincidunt mi tortor, eget dapibus mauris facilisis vel. Aenean lobortis ultricies nibh, a condimentum neque semper quis. Aenean elit felis, sollicitudin ac tellus suscipit, dictum aliquet diam. Donec faucibus ex lacus, at euismod lacus pulvinar eget. Pellentesque in nunc sit amet augue luctus egestas at ac risus. Aenean id diam at.
       </p>
       <a href="aboutus.php" class="learn-more">Learn More</a>
     </div>

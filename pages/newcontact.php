@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us</title>
+  <title>Contact Us</title>
   <link rel="stylesheet" href="../styles/newcontact.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,13 +36,13 @@
     <div class="info-section">
       <h2>Support & Inquiries</h2>
       <p>
-        Looking for high-quality chemicals, products, and equipment? We've got you covered! Contact us for inquiries, quotations, or expert advice.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet, dui id condimentum sodales, orci erat rhoncus sem, nec egestas.
       </p>
       <ul>
         <li><i class="fas fa-map-marker-alt"></i> 2 K-10th, Cubao, Quezon City, 1109 Metro Manila</li>
-        <li><i class="fas fa-envelope"></i> sales@equichem.ph</li>
-        <li><i class="fas fa-phone"></i> 0966 665 0728</li>
-        <li><i class="fab fa-facebook"></i> EquiChem Pest Control Equipment</li>
+        <li><i class="fas fa-envelope"></i> krisdacones1@gmail.com</li>
+        <li><i class="fas fa-phone"></i> 0917 568 9448</li>
+        <li><i class="fab fa-facebook"></i> Barangay West Kamias Quezon City </li>
       </ul>
     </div>
     <div class="form-section">
