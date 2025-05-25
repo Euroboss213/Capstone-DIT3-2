@@ -4,7 +4,7 @@
     <div class="exit-header">
       <div class="chat-title">
         <img src="https://cdn-icons-png.flaticon.com/512/4712/4712137.png" alt="Bot Icon" class="bot-icon">
-        <span>AI Assistant</span>
+        <span>AI Assistant (General Questions)</span>
       </div>
      <button class="bot-exit-btn" title="Close Chat">&times;</button>
     </div>
@@ -22,7 +22,7 @@
   <div class="exit-header">
   <div class="chat-title">
     <img src="https://cdn-icons-png.flaticon.com/512/4712/4712106.png" alt="Bot Icon" class="bot-icon">
-    <span>Chat Bot </span>
+    <span>REQWEST Chat Bot</span>
   </div>
   <button class="chat-exit-btn" title="Close Chat">&times;</button>
 </div>

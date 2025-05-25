@@ -65,7 +65,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const chatBox = document.getElementById("chatBotBox");
   const welcomeMessage = document.createElement("div");
   welcomeMessage.className = "bot-message";
-  welcomeMessage.textContent = "Welcome, ka-barangay. How can I help you?";
+  welcomeMessage.textContent = "Hi! How can I assist you today?";
   chatBox.appendChild(welcomeMessage);
 });
 

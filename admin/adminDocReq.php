@@ -21,7 +21,6 @@ $userId = $_SESSION['id'];
   <link rel="stylesheet" href="../styles/notifModal.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-ZzzA..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <script src="../js/admindDocReq_indigency_script.js"></script>
   <script src="../js/adminNav.js" defer></script>
   <script src="../js/unread_to_read_notif.js" defer></script>
 </head>

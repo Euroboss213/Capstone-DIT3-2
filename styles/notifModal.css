@@ -64,6 +64,9 @@
     cursor: pointer;
     margin-top: 5px;
 }
+#notificationModal .view-button:hover {
+   filter: brightness(0.9);
+}
 
 .delete-button {
     background-color: #e74c3c;

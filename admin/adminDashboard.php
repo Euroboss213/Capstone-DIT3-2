@@ -31,6 +31,7 @@ $data = mysqli_fetch_assoc($result);
 
 
 ?>
+<?php include '../php/get_unread_notifications.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

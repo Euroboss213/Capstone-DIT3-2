@@ -81,7 +81,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $notifStmt->close();
         }
 
-        echo "<script>alert('Request submitted successfully!'); window.location.href='../user/userHome.php';</script>";
+           $_SESSION['show_success_modal'] = true;
+                header("Location: ../user/userHome.php");
+                 exit();
     } else {
         echo "Error: " . $stmt->error;
     }

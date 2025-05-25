@@ -36,17 +36,17 @@
                 <li>Barangay Indigency Certificate</li>
                 <li>Barangay Residency Certificate</li>
                 <li>Barangay Permit</li>
-                <li>Barangay Clearance</li>
+                <li>Barangay Good Moral</li>
             </ul>
         </div>
         <div class="faq-item">
             <h2>What are the requirements for requesting a document?</h2>
             <p>Generally, you need to provide:</p>
             <ul>
-                <li>A valid ID (e.g., government-issued ID, school ID)</li>
-                <li>Proof of residency (e.g., utility bill, lease contract)</li>
-                <li>Completed application form (available on the website)</li>
-                <li>Payment for the applicable fee</li>
+                <li>Lorem ipsum</li>
+                <li>Lorem ipsum</li>
+                <li>Lorem ipsum</li>
+                <li>Lorem ipsum</li>
             </ul>
             <p>Requirements may vary depending on the specific document and barangay policies.</p>
         </div>
@@ -65,16 +65,15 @@
         </div>
         <div class="faq-item">
             <h2>Is there a fee for requesting documents online?</h2>
-            <p>Yes, there is a nominal fee for processing each document. The exact amount depends on the type of document and barangay regulations. Payment details will be provided during the request process.</p>
+            <p>Yes, there is a nominal fee for processing each document. The exact amount depends on the type of document and barangay regulations. Payment details will be provided during the Pickup process.</p>
         </div>
         <div class="faq-item">
             <h2>How will I receive my requested document?</h2>
             <p>You can choose to:</p>
             <ul>
                 <li>Pick up the document at the barangay hall</li>
-                <li>Receive it via courier service (additional fees may apply)</li>
             </ul>
-            <p>Select your preferred method during the application process.</p>
+            <p>Lorem ipsum Lorem ipsum Lorem ipsum.</p>
         </div>
         <div class="faq-item">
             <h2>What should I do if I encounter issues with my request?</h2>

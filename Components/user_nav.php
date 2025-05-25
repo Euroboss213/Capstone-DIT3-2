@@ -32,8 +32,8 @@
 </div>
 </div>
 <div id="chat-dropdownMenu" class="dropdown-menu">
-  <button type="submit" class="dropdown-item-btn" id="chatBot-btn">AI Assistant</button>
-  <button type="submit" class="dropdown-item-btn" id="autoChat-btn">Chat Bot</button>
+  <button type="submit" class="dropdown-item-btn" id="chatBot-btn">AI Assistant </button>
+  <button type="submit" class="dropdown-item-btn" id="autoChat-btn">Chat Bot </button>
 </div>
   </div>
 </nav>

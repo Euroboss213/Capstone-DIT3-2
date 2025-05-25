@@ -59,3 +59,38 @@
   .custom-alert-box button:hover {
     background-color: #001d3a;
   }
+.confirm-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.btn-confirm,
+.btn-cancel {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  min-width: 100px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-confirm {
+  background-color: #3182ce;
+  color: #fff;
+}
+
+.btn-confirm:hover {
+  background-color: #001d3a;
+}
+
+.btn-cancel {
+  background-color: #ccc;
+  color: #333;
+}
+
+.btn-cancel:hover {
+  background-color: #999;
+}

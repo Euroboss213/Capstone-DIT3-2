@@ -38,23 +38,23 @@
   <div class="services-grid">
         <div class="service-box">
             <h2>Request Barangay Indigency</h2>
-            <p>For availing government assistance and other social services.</p>
-            <a href="#" class="btn-small">Request Now</a>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            <a href="newlogin.php" class="btn-small">Request Now</a>
         </div>
         <div class="service-box">
             <h2>Request Barangay Residency</h2>
-            <p>Proof of your residence for legal, educational, or employment needs.</p>
-            <a href="#" class="btn-small">Request Now</a>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            <a href="newlogin.php" class="btn-small">Request Now</a>
         </div>
         <div class="service-box">
             <h2>Request Barangay Permit</h2>
-            <p>For business operations, construction, or other barangay-regulated activities.</p>
-            <a href="#" class="btn-small">Request Now</a>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            <a href="newlogin.php" class="btn-small">Request Now</a>
         </div>
         <div class="service-box">
-            <h2>Request Barangay Clearance</h2>
-            <p>Required for employment, travel, or other legal processes within the barangay.</p>
-            <a href="#" class="btn-small">Request Now</a>
+            <h2>Request Barangay Good Moral</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            <a href="newlogin.php" class="btn-small">Request Now</a>
         </div>
     </div>
 

@@ -60,37 +60,37 @@
 
     <div class="team-grid">
         <div class="team-member">
-            <img src="../assets/member2.jpg" alt="Warren Baugbog">
+            <img src="../assets/member.png" alt="Warren Baugbog">
             <h3>Warren Baugbog</h3>
             <p>Lead Developer and Project Head</p>
         </div>
         <div class="team-member">
-            <img src="../assets/member2.jpg" alt="Germain Tan">
+            <img src="../assets/member.png" alt="Germain Tan">
             <h3>Germain Tan</h3>
-            <p>UI/UX Designer</p>
+            <p>Documentation and Research</p>
         </div>
         <div class="team-member">
-            <img src="../assets/member2.jpg" alt="Alen Jerru Ganotice">
+            <img src="../assets/member.png" alt="Alen Jerru Ganotice">
             <h3>Alen Jerru Ganotice</h3>
             <p>Backend Developer</p>
         </div>
         <div class="team-member">
-            <img src="../assets/member2.jpg" alt="Ronald Bong Querubin">
+            <img src="../assets/member.png" alt="Ronald Bong Querubin">
             <h3>Ronald Bong Querubin</h3>
             <p>Frontend Developer</p>
         </div>
         <div class="team-member">
-            <img src="../assets/member2.jpg" alt="Lester Mapa">
+            <img src="../assets/member.png" alt="Lester Mapa">
             <h3>Lester Mapa</h3>
-            <p>UI/UX Designer</p>
+            <p>Documentation and Research</p>
         </div>
         <div class="team-member">
-            <img src="../assets/member2.jpg" alt="Ceejhay Caponga">
+            <img src="../assets/member.png" alt="Ceejhay Caponga">
             <h3>Ceejhay Caponga</h3>
             <p>Documentation and Research</p>
         </div>
         <div class="team-member">
-            <img src="../assets/member2.jpg" alt="Ivan Alonsagay">
+            <img src="../assets/member.png" alt="Ivan Alonsagay">
             <h3>Ivan Alonsagay</h3>
             <p>Documentation and Research</p>
         </div>
