@@ -46,7 +46,7 @@
       <p class="equichem-tagline">"Barangay Document Request System"</p>
     </div>
     <div class="text">
-      <h2>25 Long Years Of Manufacturing Excellence With Quality At It's Best!</h2>
+      <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit!</h2>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tincidunt mi tortor, eget dapibus mauris facilisis vel. Aenean lobortis ultricies nibh, a condimentum neque semper quis. Aenean elit felis, sollicitudin ac tellus suscipit, dictum aliquet diam. Donec faucibus ex lacus, at euismod lacus pulvinar eget. Pellentesque in nunc sit amet augue luctus egestas at ac risus. Aenean id diam at.
       </p>
@@ -65,43 +65,43 @@
     <div class="officials-grid">
       <!-- 10 Officials -->
       <div class="official-card" data-aos="zoom-in" data-aos-delay="100">
-        <img src="../assets/member1.jpg" alt="Official 1">
-        <h3>Juan Dela Cruz</h3>
+        <img src="../assets/member.png" alt="Official 1">
+        <h3>Lorem ipsum</h3>
         <p>Barangay Captain</p>
       </div>
       <div class="official-card" data-aos="zoom-in" data-aos-delay="150">
-        <img src="../assets/member2.jpg" alt="Official 2">
-        <h3>Maria Santos</h3>
+        <img src="../assets/member.png" alt="Official 2">
+        <h3>Lorem ipsum</h3>
         <p>Kagawad</p>
       </div>
       <div class="official-card" data-aos="zoom-in" data-aos-delay="200">
-        <img src="../assets/member3.jpg" alt="Official 3">
-        <h3>Jose Ramirez</h3>
+        <img src="../assets/member.png" alt="Official 3">
+        <h3>Lorem ipsum</h3>
         <p>Kagawad</p>
       </div>
       <div class="official-card" data-aos="zoom-in" data-aos-delay="350">
-        <img src="../assets/member6.jpg" alt="Official 6">
-        <h3>Gloria Mendez</h3>
+        <img src="../assets/member.png" alt="Official 6">
+        <h3>Lorem ipsum</h3>
         <p>Kagawad</p>
       </div>
       <div class="official-card" data-aos="zoom-in" data-aos-delay="400">
-        <img src="../assets/member7.jpg" alt="Official 7">
-        <h3>Pedro Cruz</h3>
+        <img src="../assets/member.png" alt="Official 7">
+        <h3>Lorem ipsum</h3>
         <p>Secretary</p>
       </div>
       <div class="official-card" data-aos="zoom-in" data-aos-delay="450">
-        <img src="../assets/member8.jpg" alt="Official 8">
-        <h3>Lucia Rivera</h3>
+        <img src="../assets/member.png" alt="Official 8">
+        <h3>Lorem ipsum</h3>
         <p>Treasurer</p>
       </div>
       <div class="official-card" data-aos="zoom-in" data-aos-delay="500">
-        <img src="../assets/member9.jpg" alt="Official 9">
-        <h3>Ramon Torres</h3>
+        <img src="../assets/member.png" alt="Official 9">
+        <h3>Lorem ipsum</h3>
         <p>SK Chairman</p>
       </div>
       <div class="official-card" data-aos="zoom-in" data-aos-delay="550">
-        <img src="../assets/member10.jpg" alt="Official 10">
-        <h3>Isabel Cruz</h3>
+        <img src="../assets/member.png" alt="Official 10">
+        <h3>Lorem ipsum</h3>
         <p>Tanod Chief</p>
       </div>
     </div>

@@ -15,7 +15,7 @@
           <path stroke="#dc3545" stroke-width="2" stroke-linecap="round" d="M12 8v4m0 4h.01"/>
         </svg>
       </div>
-      <p>There are no completed indigency requests for the selected year.</p>
+      <p>There are no Completed Document Request.</p>
       <div class="modal-footer justify-content-center">
         <button class="btn btn-primary" onclick="history.back()">Go Back</button>
       </div>

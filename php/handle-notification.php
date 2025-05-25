@@ -19,11 +19,11 @@ function sendNotificationToTarget($status, $requestId, $actorId, $actorRole, $ac
     $displayType = $docTypeName[$documentType] ?? $documentType;
 
     if ($status === 'For Pickup' && $actorRole === 'admin') {
-        $message = "Admin approved your request for Certificate of $displayType, make sure to read the comment before picking up";
+        $message = "Your request for Certificate of $displayType has been Approved. Please read the comment before picking up.";
     } else if ($status === 'Returned' && $actorRole === 'admin') {
-        $message = "Admin returned your request for Certificate of $displayType, make sure to read the comment";
+        $message = "Your request for Certificate of $displayType has been Returned. Please read the comment.";
     } else if ($status === 'Completed' && $actorRole === 'admin') {
-        $message = "Admin updated your request for Certificate of $displayType. Please check the status and comments.";   
+        $message = "Your request for Certificate of $displayType has been Completed. Thank you for using REQWEST.";   
     } else if ($actorRole === 'user'){
         $message = "{$actorName}(USER ID NO.({$actorId})) have re-submitted a request for Certificate of $displayType.";
     } else {

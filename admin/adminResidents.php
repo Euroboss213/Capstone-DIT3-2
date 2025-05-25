@@ -117,6 +117,12 @@ if (isset($_SESSION['import_message'])) {
         <label>Occupation: <input type="text" id="occupation" name="occupation" required /></label>
         <label>Contact Number: <input type="text" id="contact_number" name="contact_number" required /></label>
         <label>Address: <input type="text" id="address" name="address" required /></label>
+            <label>Indigent: 
+          <select id="indigent" name="indigent" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </label>
         <label>PWD: 
           <select id="pwd" name="pwd" required>
             <option value="Yes">Yes</option>
@@ -124,12 +130,6 @@ if (isset($_SESSION['import_message'])) {
           </select>
         </label>
         <label>PWD ID No: <input type="text" id="pwd_id_no" name="pwd_id_no" pattern="PWD-\d{4}-\d{4}" title="Format: PWD-XXXX-XXXX" /></label>
-        <label>Indigent: 
-          <select id="indigent" name="indigent" required>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-          </select>
-        </label>
         <label>Solo Parent: 
           <select id="solo_parent" name="solo_parent" required>
             <option value="Yes">Yes</option>

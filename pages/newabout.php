@@ -57,10 +57,10 @@
       </p>
     </div>
     <div class="mission-image">
-      <img src="../assets/landing-bg3.png" alt="Mission Image">
+      <img src="../assets/mis.jpg" alt="Mission Image">
     </div>
     <div class="vision-image">
-      <img src="../assets/landing-bg4.png" alt="Vision Image">
+      <img src="../assets/vis.jpg" alt="Vision Image">
     </div>
     <div class="vision-text">
       <h2>Vision</h2>
@@ -79,41 +79,41 @@
     </div>
   <div class="team-row leaders">
     <div class="team-member">
-      <img src="../assets/member2.jpg" alt="Warren Baugbog">
+      <img src="../assets/member.png" alt="Warren Baugbog">
       <h3>Warren Baugbog</h3>
-      <p>Lead Developer and Project Head</p>
+      <p>Lorem ipsum</p>
     </div>
     <div class="team-member">
-      <img src="../assets/member2.jpg" alt="Germain Tan">
+      <img src="../assets/member.png" alt="Germain Tan">
       <h3>Germain Tan</h3>
-      <p>UI/UX Designer</p>
+      <p>Lorem ipsum</p>
     </div>
   </div>
   <div class="team-row members">
     <div class="team-member">
-      <img src="../assets/member2.jpg" alt="Alen Jerru Ganotice">
+      <img src="../assets/member.png" alt="Alen Jerru Ganotice">
       <h3>Alen Jerru Ganotice</h3>
-      <p>Backend Developer</p>
+      <p>Lorem ipsum</p>
     </div>
     <div class="team-member">
-      <img src="../assets/member2.jpg" alt="Ronald Bong Querubin">
+      <img src="../assets/member.png" alt="Ronald Bong Querubin">
       <h3>Ronald Bong Querubin</h3>
-      <p>Frontend Developer</p>
+      <p>Lorem ipsum</p>
     </div>
     <div class="team-member">
-      <img src="../assets/member2.jpg" alt="Lester Mapa">
+      <img src="../assets/member.png" alt="Lester Mapa">
       <h3>Lester Mapa</h3>
-      <p>UI/UX Designer</p>
+      <p>Lorem ipsum</p>
     </div>
     <div class="team-member">
-      <img src="../assets/member2.jpg" alt="Ceejhay Caponga">
+      <img src="../assets/member.png" alt="Ceejhay Caponga">
       <h3>Ceejhay Caponga</h3>
-      <p>Documentation and Research</p>
+      <p>Lorem ipsum</p>
     </div>
     <div class="team-member">
-      <img src="../assets/member2.jpg" alt="Ivan Alonsagay">
+      <img src="../assets/member.png" alt="Ivan Alonsagay">
       <h3>Ivan Alonsagay</h3>
-      <p>Documentation and Research</p>
+      <p>Lorem ipsum</p>
     </div>
   </div>
 </div>

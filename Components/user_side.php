@@ -3,7 +3,7 @@
 
   <?php
     $currentPage = basename($_SERVER['PHP_SELF']);
-    $isMyHomePage = in_array($currentPage, ['userHome.php', 'userRequest_Indigency.php', 'userRequest_goodMoral.php', 'userRequest_permit.php', 'userRequest_certResidency.php','userViewReq_goodMoral.php', 'userViewReq_permit.php', 'userViewReq_certResidency.php', 'userViewReq_Indigency.php']);
+    $isMyHomePage = in_array($currentPage, ['userHome.php', 'userRequest_Indigency.php', 'userRequest_goodMoral.php', 'userRequest_permit.php', 'userViewReq_residency.php','userViewReq_good_moral.php', 'userViewReq_permit.php', 'userViewReq_certResidency.php', 'userViewReq_Indigency.php']);
     $isMyRequestsPage = in_array($currentPage, ['userViewReq.php']);
   ?>
 

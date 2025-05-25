@@ -27,6 +27,7 @@ $hasPendingGoodMoral = hasPendingRequest($conn, $userId, 'good_moral');
 
 <?php include '../php/get_unread_notifications.php'; ?>
 <?php include "../alertModals/alertModal_Home.php"; ?>
+<?php include "../alertModals/requestSuccessModal.php"; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,6 +50,7 @@ $hasPendingGoodMoral = hasPendingRequest($conn, $userId, 'good_moral');
   <script src="../js/displayChats.js" defer></script>
   <script src="../js/alerts.js" defer></script>
   <script src="../js/unread_to_read_notif.js" defer></script>
+  <script src="../js/requestSuccessAlert.js" defer></script>
 </head>
 <body>
   <!-- Navbar -->
@@ -145,5 +147,11 @@ $hasPendingGoodMoral = hasPendingRequest($conn, $userId, 'good_moral');
 </main>
 
   </div>
+  <?php
+if (isset($_SESSION['show_success_modal']) && $_SESSION['show_success_modal']) {
+    echo "<script>document.addEventListener('DOMContentLoaded', () => { showRequestSuccessAlert(); });</script>";
+    unset($_SESSION['show_success_modal']); // Clear flag after showing
+}
+?>
 </body>
 </html>

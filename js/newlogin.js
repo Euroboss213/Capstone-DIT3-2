@@ -24,7 +24,7 @@ function closeLoginAlert() {
     if (error) {
       let message = "";
       if (error === "invalid_credentials") {
-        message = "User does not exist, make sure you sign up.";
+        message = "User does not exist. Make sure to sign up.";
       } else if (error === "invalid_password") {
         message = "You entered an incorrect password.";
       }

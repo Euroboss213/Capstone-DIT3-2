@@ -40,7 +40,7 @@ if ($stmt->num_rows == 1) {
 
         // Redirect based on the role
         if ($role === 'admin') {
-            header("Location: ../admin/adminResidents.php"); // Redirect to admin page
+            header("Location: ../admin/adminDashboard.php"); // Redirect to admin page
         } else {
             header("Location: ../user/userHome.php"); // Redirect to user page
         }
