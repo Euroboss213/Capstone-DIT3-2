@@ -68,7 +68,7 @@ $userId = $_SESSION['id'];
 
       <div class="form-group">
         <label for="new_password">Enter New Password</label>
-        <input type="password" id="new_password" name="new_password" class="form-input" 
+        <input type="password" id="new_password" name="new_password" autocomplete="new_password" class="form-input" 
                placeholder="Enter New Password"/>
                <small id="password_error" class="error-text"></small>
       </div>

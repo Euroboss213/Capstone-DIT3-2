@@ -232,7 +232,13 @@ if (isset($_SESSION['import_message'])) {
         <label>Pag-IBIG No: <input type="text" name="pagibig_no" pattern="\d{4}-\d{4}-\d{4}" title="Format: 1234-5678-9012" /></label>
         <label>TIN No: <input type="text" name="tin_no" pattern="\d{3}-\d{3}-\d{3}" title="Format: 123-456-789" /></label>
         <label>Voter's ID No: <input type="text" name="voters_id_no" pattern="VIN-\d{4}-\d{4}" title="Format: VIN-XXXX-XXXX" required /></label>
-        <label>COVID Status: <input type="text" name="covid_status" required /></label>
+        <label>COVID Status: <select type="text" name="covid_status" required>
+          <option value="Yes">Positive</option>
+            <option value="No">Negative</option>
+            <option value="Recovered">Recovered</option>
+              <option value="Not Checked Up">Not Checked Up</option>
+            </select>
+        </label>
         <label>Vaccinated: 
           <select name="vaccinated" required>
             <option value="Yes">Yes</option>
