@@ -96,7 +96,7 @@ switch ($type) {
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('Barangay West Kamias');
-$pdf->SetTitle("Barangay Document");
+$pdf->SetTitle('Barangay Document');
 $pdf->SetMargins(20, 20, 20);
 $pdf->SetAutoPageBreak(TRUE, 20);
 $pdf->SetFont('times', '', 12);
@@ -111,6 +111,14 @@ if (file_exists($watermark)) {
 // Logos
 $leftLogo = __DIR__ . '/../assets/QC-LOGO.jpg';
 $rightLogo = __DIR__ . '/../assets/brgy-logo-jpg.jpg';
+
+if (file_exists($leftLogo)) {
+    $pdf->Image($leftLogo, 20, 25, 30); // left margin x=20, y=20, width=30mm
+}
+
+if (file_exists($rightLogo)) {
+    $pdf->Image($rightLogo, 160, 25, 30); // right margin x=160 (depends on page width), y=20, width=30mm
+}
 
 // Build HTML
 $html = '
@@ -127,7 +135,7 @@ $html = '
 <table>
     <tr>
         <td width="20%">
-            <img src="' . $leftLogo . '" width="60" />
+            
         </td>
         <td width="60%" style="text-align:center;">
             <div class="header-title">REPUBLIC OF THE PHILIPPINES</div>
@@ -137,7 +145,7 @@ $html = '
             <div class="sub-header">Tel. no: 8350-66-55</div>
         </td>
         <td width="20%" align="right">
-            <img src="' . $rightLogo . '" width="60" />
+            
         </td>
     </tr>
 </table>

@@ -75,16 +75,30 @@ nav .take-action {
 
 /* parallax Section (non-parallax) */
 .parallax-section {
-    height: 70vh;
-    background-image: url(../assets/newlanding-bg.jpg);
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  position: relative;
+  height: 70vh;
+  background-image: url(../assets/newlanding-bg.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 1;
+  overflow: hidden;
+}
 
+.parallax-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* adjust darkness here */
+  z-index: -1;
+}
 .parallax-section .container {
     z-index: 1;
 }
