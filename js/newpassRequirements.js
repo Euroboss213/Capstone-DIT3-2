@@ -1,9 +1,12 @@
-  const form = document.querySelector('.form-container');
-  const passwordInput = document.getElementById('new_password');
-  const errorText = document.getElementById('password_error');
+const form = document.querySelector('.form-container');
+const passwordInput = document.getElementById('new_password');
+const errorText = document.getElementById('password_error');
 
-  form.addEventListener('submit', function (event) {
-    const password = passwordInput.value;
+form.addEventListener('submit', function (event) {
+  const password = passwordInput.value.trim();
+
+  // Only run checks if the password field is not empty
+  if (password.length > 0) {
     const uppercase = /[A-Z]/;
     const number = /[0-9]/;
     const special = /[@$!%*?&.,#^()]/;
@@ -22,6 +25,9 @@
       errorText.textContent = 'Password must contain at least one special character.';
       event.preventDefault();
     } else {
-      errorText.textContent = ''; // Allow submit
+      errorText.textContent = ''; // Clear error if all checks pass
     }
-  });
+  } else {
+    errorText.textContent = ''; // No new password entered, so skip validation
+  }
+});
