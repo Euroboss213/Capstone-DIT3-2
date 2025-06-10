@@ -14,6 +14,14 @@
   filter: brightness(0.9);
 }
 
+.action-btn:disabled {
+    background-color: #ccc;  /* Light gray to show it's inactive */
+    color: #666;
+    cursor: not-allowed;
+    border: 1px solid #999;
+    opacity: 0.7;
+}
+
 .good-moral-table {
   width: 100%;
   border-collapse: collapse;

@@ -10,8 +10,16 @@
     cursor: pointer;
   }
 
-.action-btn:hover {
+.action-btn:hover { 
   filter: brightness(0.9);
+}
+
+.action-btn:disabled {
+    background-color: #ccc;  /* Light gray to show it's inactive */
+    color: #666;
+    cursor: not-allowed;
+    border: 1px solid #999;
+    opacity: 0.7;
 }
 
 .permit-table {

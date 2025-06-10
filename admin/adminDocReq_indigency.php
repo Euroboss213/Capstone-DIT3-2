@@ -4,6 +4,12 @@ include "../php/auth_check.php";
 // Get the user's name from session
 $userName = $_SESSION['user_name'];
 
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    // Not an admin, redirect or show access denied
+    header('Location: ../pages/newlogin.php');
+    exit();
+}
+
 ?>
 
 <?php include '../php/get_unread_notifications.php' ?>

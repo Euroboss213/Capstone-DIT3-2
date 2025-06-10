@@ -5,6 +5,8 @@ include "../database/connect_db_reqwest.php";
 // Get the user's name from session
 $userName = $_SESSION['user_name'];
 $userId = $_SESSION['id'];
+$acc_status = $_SESSION['acc_status'] ?? 'active'; // default to active if not set
+
 
 // Function to check pending requests
 function hasPendingRequest($conn, $userId, $table) {
@@ -23,6 +25,24 @@ $hasPendingResidency = hasPendingRequest($conn, $userId, 'certResidency');
 $hasPendingPermit = hasPendingRequest($conn, $userId, 'permit');
 $hasPendingGoodMoral = hasPendingRequest($conn, $userId, 'good_moral');
 ?>
+
+<?php if ($acc_status === 'inactive'): ?>
+    <style>
+        #chatButton {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        #notifButton {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        a {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+    </style>
+<?php endif; ?>
+
 
 
 <?php include '../php/get_unread_notifications.php'; ?>
@@ -52,7 +72,7 @@ $hasPendingGoodMoral = hasPendingRequest($conn, $userId, 'good_moral');
   <script src="../js/unread_to_read_notif.js" defer></script>
   <script src="../js/requestSuccessAlert.js" defer></script>
 </head>
-<body>
+<body data-inactive="<?php echo $acc_status === 'inactive' ? '1' : '0'; ?>">
   <!-- Navbar -->
   <?php include '../components/user_nav.php'; ?>
   <!-- Notification Modal -->

@@ -1,3 +1,10 @@
+<?php
+session_start();        // Start session
+session_unset();        // Unset all session variables
+session_destroy();      // Destroy the session
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,10 +97,10 @@
                 <div class="idcontainer">
                     <div class="id-options-box">
                         <select class="id" name="id_type" id="id">
-                            <option value="nationalid">National ID</option>
+                            <!-- <option value="nationalid">National ID</option>
                             <option value="philhealthid">Philhealth ID</option>
                             <option value="sssid">SSS ID</option>
-                            <option value="tinid">TIN ID</option>
+                            <option value="tinid">TIN ID</option> -->
                             <option value="votersid">Voter's ID</option>
                         </select>
                     </div>

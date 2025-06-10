@@ -13,6 +13,7 @@ if (isset($_SESSION['import_message'])) {
 $sql = "SELECT * FROM indigency";
 $result = $conn->query($sql);
 
+
 if ($result->num_rows > 0) {
   echo "<table class='indigency-table'>
           <thead>
@@ -41,6 +42,7 @@ if ($result->num_rows > 0) {
             <td>{$row['document_type']}</td>
             <td><button class='action-btn' onclick='openReviewModal(".json_encode($row).")'>Review Request</button></td>
           </tr>";
+
   }
   echo "</tbody></table>";
 } else {
@@ -119,9 +121,9 @@ $conn->close();
                 </div>
 
                 <div class="modal-buttons">
-                  <div class="left-buttons">
+                  <!-- <div class="left-buttons">
                     <button type="button" id="deleteBtn" class="btn btn-delete">Delete</button>
-                  </div>
+                  </div> -->
                   <div class="right-buttons">
                     <button type="button" class="btn btn-viewPdf" onclick="generateAndViewPDF(document.getElementById('requestId').value, 'indigency')">
                       View PDF

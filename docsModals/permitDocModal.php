@@ -43,7 +43,7 @@ if ($result->num_rows > 0) {
             <td class='status'>{$row['status']}</td>
             <td>{$row['date_requested']}</td>
             <td>{$row['document_type']}</td>
-            <td><button class='action-btn' onclick='openReviewModal(".json_encode($row).")'>Review Request</button></td>
+            <td><button class='action-btn' disabled onclick='openReviewModal(".json_encode($row).")'>Review Request</button></td>
           </tr>";
   }
   echo "</tbody></table>";
@@ -131,9 +131,9 @@ $conn->close();
                 </div>
 
                 <div class="modal-buttons">
-                    <div class="left-buttons">
+                    <!-- <div class="left-buttons">
                         <button type="button" id="deleteBtn" class="btn btn-delete">Delete</button>
-                    </div>
+                    </div> -->
                     <div class="right-buttons">
                         <button type="button" class="btn btn-viewPdf" onclick="generateAndViewPDF(document.getElementById('requestId').value, 'permit')">
                             View PDF

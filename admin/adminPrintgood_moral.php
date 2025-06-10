@@ -1,6 +1,12 @@
 <?php
 include "../php/auth_check.php";
 
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    // Not an admin, redirect or show access denied
+    header('Location: ../pages/newlogin.php');
+    exit();
+}
+
 // Get the 'id' parameter from URL, expected format: "{type}_{id}", e.g. "indigency_5"
 if (isset($_GET['id'])) {
     $id = $_GET['id']; // e.g. indigency_5

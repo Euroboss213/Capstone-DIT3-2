@@ -1,6 +1,12 @@
 <?php
 include "../php/auth_check.php";
 
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    // Not an admin, redirect or show access denied
+    header('Location: ../pages/newlogin.php');
+    exit();
+}
+
 // Get the user's name from session
 $userName = $_SESSION['user_name'];
 ?>
@@ -35,6 +41,22 @@ $userName = $_SESSION['user_name'];
     <h2 class="form-title">Manage Admin Account</h2>
 
     <form action="../php/update_credentials.php" method="POST" class="form-container">
+      <div class="section-title">Change Admin Credentials</div>
+      <div class="form-group">
+        <label for="new_username">Enter New Firstname</label>
+        <input type="text" id="new_first_name" name="new_first_name" class="form-input" 
+               value="<?php echo htmlspecialchars($_SESSION['first_name']); ?>"/>
+        <label for="new_username">Enter New Middlename</label>
+        <input type="text" id="new_middle_name" name="new_middle_name" class="form-input" 
+               value="<?php echo htmlspecialchars($_SESSION['middle_name']); ?>"/>
+        <label for="new_username">Enter New Lastname</label>
+        <input type="text" id="new_last_name" name="new_last_name" class="form-input" 
+               value="<?php echo htmlspecialchars($_SESSION['last_name']); ?>"/>
+        <label for="new_username">Enter New Suffix</label>
+        <input type="text" id="new_first_name" name="new_suffix" class="form-input" 
+               placeholder="Enter new suffix" value="<?php echo htmlspecialchars($_SESSION['suffix']); ?>"/>
+      </div>
+
       <div class="section-title">Change Admin Username</div>
       <div class="form-group">
         <label for="existing_username">Existing Admin Username</label>

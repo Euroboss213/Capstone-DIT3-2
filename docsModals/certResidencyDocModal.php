@@ -120,9 +120,9 @@ $conn->close();
       </div>
 
       <div class="modal-buttons">
-        <div class="left-buttons">
+        <!-- <div class="left-buttons">
           <button type="button" class="btn btn-delete" id="deleteBtn">Delete</button>
-        </div>
+        </div> -->
         <div class="right-buttons">
           <button type="button" class="btn btn-viewPdf" onclick="generateAndViewPDF(document.getElementById('requestId').value, 'certresidency')">View PDF</button>
           <button type="submit" class="btn btn-save">Save</button>

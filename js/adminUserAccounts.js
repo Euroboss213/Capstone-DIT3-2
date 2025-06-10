@@ -54,4 +54,25 @@ function filterTable() {
       });
     });
   });
+
+
+  document.querySelectorAll('.acc-toggle').forEach(toggle => {
+  toggle.addEventListener('change', function() {
+    const userId = this.dataset.userId;
+    const newStatus = this.checked ? 'active' : 'inactive';
+
+    fetch('../php/update_acc_status.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `user_id=${userId}&acc_status=${newStatus}`
+    })
+    .then(response => response.text())
+    .then(data => {
+      console.log(data); // Optional: show message
+    })
+    .catch(error => console.error('Error:', error));
+  });
+});
   

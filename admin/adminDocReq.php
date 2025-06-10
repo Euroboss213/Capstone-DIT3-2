@@ -2,6 +2,12 @@
 include "../php/auth_check.php";
 include "../database/connect_db_reqwest.php"; 
 
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    // Not an admin, redirect or show access denied
+    header('Location: ../pages/newlogin.php');
+    exit();
+}
+
 // Get the user's name from session
 $userName = $_SESSION['user_name'];
 $userId = $_SESSION['id'];

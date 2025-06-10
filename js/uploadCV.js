@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
     const openCsvModalBtn = document.getElementById('openCsvModalBtn');
     const uploadCsvModal = document.getElementById('uploadCsvModal');
     const closeBtn = uploadCsvModal.querySelector('.close'); // Select the close button inside the modal

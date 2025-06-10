@@ -10,6 +10,19 @@ if (!isset($_GET['id']) || !isset($_GET['type'])) {
 $id = intval($_GET['id']);
 $type = $_GET['type'];
 
+// Get status from the database
+$stmt = $conn->prepare("SELECT status FROM indigency WHERE id = ?");
+$stmt->bind_param("i", $requestId);
+$stmt->execute();
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
+
+// if (!$row || $row['status'] !== 'For Pickup') {
+//     echo "<script>alert('PDF generation not allowed. Status must be \"For Pickup\".'); window.history.back();</script>";
+//     exit;
+// }
+
+
 $allowedTables = ['indigency', 'certresidency', 'good_moral', 'permit'];
 if (!in_array($type, $allowedTables)) {
     die("Invalid document type.");

@@ -5,8 +5,26 @@ include "../database/connect_db_reqwest.php";
 // Get the user's name from session
 $username = $_SESSION['userName'] ;
 $userId = $_SESSION['id'];
+$acc_status = $_SESSION['acc_status'] ?? 'active'; // default to active if not set
 
 ?>
+
+<?php if ($acc_status === 'inactive'): ?>
+    <style>
+        #chatButton {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        #notifButton {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        a {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+    </style>
+<?php endif; ?>
 
 <!DOCTYPE html>
 <html lang="en">

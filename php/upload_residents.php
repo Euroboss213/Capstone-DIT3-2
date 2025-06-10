@@ -39,8 +39,7 @@ if (isset($_POST['import_csv']) && isset($_FILES['csv_file']) && $_FILES['csv_fi
     $expectedHeaders = [
         'first_name', 'middle_name', 'last_name', 'suffix', 'birth_date', 'birth_place', 'sex', 'civil_status',
     'nationality', 'religion', 'occupation', 'contact_number', 'address', 'pwd', 'pwd_id_no', 'indigent',
-    'solo_parent', 'solo_parent_id_no', 'member_4ps', 'family_monthly_income', 'national_id_no', 'philhealth_no',
-    'sss_no', 'pagibig_no', 'tin_no', 'voters_id_no', 'covid_status', 'vaccinated'
+    'solo_parent', 'solo_parent_id_no', 'member_4ps', 'family_monthly_income', 'voters_id_no', 'covid_status', 'vaccinated'
     ];
 
     if ($header !== $expectedHeaders) {
@@ -59,8 +58,7 @@ if (isset($_POST['import_csv']) && isset($_FILES['csv_file']) && $_FILES['csv_fi
             [
                 $first_name, $middle_name, $last_name, $suffix, $birth_date, $birth_place, $sex, $civil_status,
                 $nationality, $religion, $occupation, $contact_number, $address, $pwd, $pwd_id_no, $indigent,
-                $solo_parent, $solo_parent_id_no, $member_4ps, $family_monthly_income, $national_id_no,
-                $philhealth_no, $sss_no, $pagibig_no, $tin_no, $voters_id_no, $covid_status, $vaccinated
+                $solo_parent, $solo_parent_id_no, $member_4ps, $family_monthly_income, $voters_id_no, $covid_status, $vaccinated
             ] = $data;
 
             if (!empty($birth_date)) {
@@ -106,11 +104,6 @@ if (isset($_POST['import_csv']) && isset($_FILES['csv_file']) && $_FILES['csv_fi
             $idPatterns = [
                 'pwd_id_no' => '/^PWD-\d{4}-\d{4}$/',
                 'solo_parent_id_no' => '/^SP-\d{4}-\d{4}$/',
-                'national_id_no' => '/^\d{4} \d{4} \d{4}$/',
-                'philhealth_no' => '/^\d{2}-\d{4}-\d{4}$/',
-                'sss_no' => '/^\d{2}-\d{7}-\d{1}$/',
-                'pagibig_no' => '/^\d{4}-\d{4}-\d{4}$/',
-                'tin_no' => '/^\d{3}-\d{3}-\d{3}$/',
                 'voters_id_no' => '/^VIN-\d{4}-\d{4}$/'
             ];
 
@@ -131,10 +124,6 @@ if (isset($_POST['import_csv']) && isset($_FILES['csv_file']) && $_FILES['csv_fi
                 'national_id_no',
                 'pwd_id_no',
                 'solo_parent_id_no',
-                'philhealth_no',
-                'sss_no',
-                'pagibig_no',
-                'tin_no',
                 'voters_id_no'
             ];
 
@@ -163,17 +152,15 @@ if (isset($_POST['import_csv']) && isset($_FILES['csv_file']) && $_FILES['csv_fi
             $stmt = $conn->prepare("INSERT INTO residences (
                 first_name, middle_name, last_name, suffix, birth_date, birth_place, sex, civil_status,
                 nationality, religion, occupation, contact_number, address, pwd, pwd_id_no, indigent,
-                solo_parent, solo_parent_id_no, member_4ps, family_monthly_income, national_id_no,
-                philhealth_no, sss_no, pagibig_no, tin_no, voters_id_no, covid_status, vaccinated, date_of_registration
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+                solo_parent, solo_parent_id_no, member_4ps, family_monthly_income, voters_id_no, covid_status, vaccinated, date_of_registration
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
 
             if ($stmt) {
                 $stmt->bind_param(
-                    'ssssssssssssssssssdsssssssss',
+                    'ssssssssssssssssssdssss',
                     $first_name, $middle_name, $last_name, $suffix, $birth_date, $birth_place, $sex, $civil_status,
                     $nationality, $religion, $occupation, $contact_number, $address, $pwd, $pwd_id_no, $indigent,
-                    $solo_parent, $solo_parent_id_no, $member_4ps, $family_monthly_income, $national_id_no,
-                    $philhealth_no, $sss_no, $pagibig_no, $tin_no, $voters_id_no, $covid_status, $vaccinated
+                    $solo_parent, $solo_parent_id_no, $member_4ps, $family_monthly_income, $voters_id_no, $covid_status, $vaccinated
                 );
                 
 
@@ -199,14 +186,9 @@ if (isset($_POST['import_csv']) && isset($_FILES['csv_file']) && $_FILES['csv_fi
             $message .= "<p style='color:red;'>Import Failed for the following reasons:</p><ul>";
             foreach ($errorRows as $err) {
                 // Change: Only show the ID part of the error
-                $idFieldsWithLabels = [
-                    'national_id_no' => 'National ID No.',
+                $idFieldsWithLabels = [ 
                     'pwd_id_no' => 'PWD ID No.',
                     'solo_parent_id_no' => 'Solo Parent ID No.',
-                    'philhealth_no' => 'PhilHealth No.',
-                    'sss_no' => 'SSS No.',
-                    'pagibig_no' => 'Pag-IBIG No.',
-                    'tin_no' => 'TIN No.',
                     'voters_id_no' => 'Voter\'s ID No.'
                 ];
                 

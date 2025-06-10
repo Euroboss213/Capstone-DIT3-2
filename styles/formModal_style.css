@@ -154,6 +154,13 @@
     background-color: #3399FF;
     color: white;
   }
+  .btn-viewPdf:disabled {
+    background-color: #ccc;  
+    color: #666;
+    cursor: not-allowed;
+    border: 1px solid #999;
+    opacity: 0.7;
+  }
   
   @media (max-width: 600px) {
     .modal-content {

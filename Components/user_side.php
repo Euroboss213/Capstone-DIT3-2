@@ -8,4 +8,11 @@
   ?>
 
   <button class="<?php echo $isMyHomePage ? 'side-button-active' : 'side-button'; ?>" onclick="window.location.href='userHome.php'">Request Document</button>
+
+  <div id="inactiveOverlay" class="overlay" style="display:none;">
+  <div class="overlay-content">
+    <p>Your account is inactive. Please visit the barangay office to reactivate your account.</p>
+    <button onclick="closeOverlay()">Close</button>
+  </div>
+</div>
 </aside>

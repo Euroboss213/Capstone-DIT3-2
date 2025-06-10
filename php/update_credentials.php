@@ -9,8 +9,8 @@ if (!isset($_SESSION['id'])) {
 
 $userId = $_SESSION['id'];
 
-// Fetch current username from DB
-$sql = "SELECT username FROM users WHERE id = ?";
+// Fetch current user data, including role
+$sql = "SELECT username, role FROM users WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $userId);
 $stmt->execute();
@@ -25,56 +25,60 @@ if (!$row) {
 }
 
 $currentUsername = $row['username'];
+$role = $row['role']; // Get user role
 
-// Get form data and sanitize
-$newUsername = trim($_POST['new_username']);
-$newPassword = trim($_POST['new_password']);
-$confirmPassword = trim($_POST['confirm_password']);
+// Get form data
+$newUsername = trim($_POST['new_username'] ?? '');
+$newPassword = trim($_POST['new_password'] ?? '');
+$confirmPassword = trim($_POST['confirm_password'] ?? '');
 $currentPassword = trim($_POST['current_password'] ?? '');
 
-// If both username and password fields are empty, no change
-if (empty($newUsername) && empty($newPassword)) {
-    echo "<script>alert('No changes made.'); window.history.back();</script>";
-    exit();
-}
-
-// If password is given but confirmation doesn't match
-if (!empty($newPassword) && $newPassword !== $confirmPassword) {
-    echo "<script>alert('Passwords do not match.'); window.history.back();</script>";
-    exit();
-}
-
+// Initialize update fields
 $updateFields = [];
 $params = [];
 $types = "";
 
-// If username is empty, reuse the current one (so username change is optional)
+// If both username and password are empty, and role is not admin or no admin-specific fields are present
+if (empty($newUsername) && empty($newPassword) &&
+    ($role !== 'admin' || (
+        empty(trim($_POST['new_first_name'] ?? '')) &&
+        empty(trim($_POST['new_middle_name'] ?? '')) &&
+        empty(trim($_POST['new_last_name'] ?? '')) &&
+        empty(trim($_POST['new_suffix'] ?? ''))
+    ))
+) {
+    echo "<script>alert('No changes made.'); window.history.back();</script>";
+    exit();
+}
+
+// Username processing
 if (empty($newUsername)) {
     $newUsername = $currentUsername;
 }
 
-// If the username is different, add to update list
 if ($newUsername !== $currentUsername) {
     $updateFields[] = "username = ?";
     $params[] = $newUsername;
     $types .= "s";
 }
 
-// Password change handling
-if (strlen($newPassword) > 0) {
-    // Require current password only if changing password
-    if (empty($currentPassword)) {
-        echo "<script>alert('Please enter your current password to change password.'); window.history.back();</script>";
+// Password processing
+if (!empty($newPassword)) {
+    if ($newPassword !== $confirmPassword) {
+        echo "<script>alert('Passwords do not match.'); window.history.back();</script>";
         exit();
     }
 
-    // Password requirement checks ONLY if changing password:
     if (strlen($newPassword) < 8) {
         echo "<script>alert('New password must be at least 8 characters long.'); window.history.back();</script>";
         exit();
     }
 
-    // Verify current password in DB
+    if (empty($currentPassword)) {
+        echo "<script>alert('Please enter your current password to change password.'); window.history.back();</script>";
+        exit();
+    }
+
     $sql = "SELECT password FROM users WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $userId);
@@ -93,7 +97,37 @@ if (strlen($newPassword) > 0) {
     $types .= "s";
 }
 
-// If there is something to update
+// Admin-only field updates
+if ($role === 'admin') {
+    $newFirstName = trim($_POST['new_first_name'] ?? '');
+    $newMiddleName = trim($_POST['new_middle_name'] ?? '');
+    $newLastName = trim($_POST['new_last_name'] ?? '');
+    $newSuffix = trim($_POST['new_suffix'] ?? '');
+
+    if (isset($_POST['new_first_name'])) {
+        $updateFields[] = "first_name = ?";
+        $params[] = $newFirstName;
+        $types .= "s";
+    }
+    if (isset($_POST['new_middle_name'])) {
+        $updateFields[] = "middle_name = ?";
+        $params[] = $newMiddleName;
+        $types .= "s";
+    }
+    if (isset($_POST['new_last_name'])) {
+        $updateFields[] = "last_name = ?";
+        $params[] = $newLastName;
+        $types .= "s";
+    }
+    if (isset($_POST['new_suffix'])) {
+    $updateFields[] = "suffix = ?";
+    $params[] = $newSuffix; // could be ''
+    $types .= "s";
+    }
+
+}
+
+// If any field is to be updated
 if (count($updateFields) > 0) {
     $params[] = $userId;
     $types .= "i";
@@ -101,7 +135,6 @@ if (count($updateFields) > 0) {
     $sql = "UPDATE users SET " . implode(", ", $updateFields) . " WHERE id = ?";
     $stmt = $conn->prepare($sql);
 
-    // Dynamic binding for parameters
     $bind_names = [];
     $bind_names[] = &$types;
     foreach ($params as $key => $value) {
@@ -111,12 +144,20 @@ if (count($updateFields) > 0) {
     call_user_func_array([$stmt, 'bind_param'], $bind_names);
 
     if ($stmt->execute()) {
-        // Update session username if changed (optional, since you destroy session anyway)
+        // Update session username if changed
         if ($newUsername !== $currentUsername) {
             $_SESSION['userName'] = $newUsername;
         }
 
-        // Destroy session to force re-login after update
+        // Optionally update admin name fields in session
+        if ($role === 'admin') {
+            if (!empty($newFirstName)) $_SESSION['first_name'] = $newFirstName;
+            if (!empty($newMiddleName)) $_SESSION['middle_name'] = $newMiddleName;
+            if (!empty($newLastName)) $_SESSION['last_name'] = $newLastName;
+            if (!empty($newSuffix)) $_SESSION['suffix'] = $newSuffix;
+        }
+
+        // Force re-login
         session_unset();
         session_destroy();
 
@@ -127,7 +168,6 @@ if (count($updateFields) > 0) {
         exit();
     }
 } else {
-    // No updates made
     echo "<script>alert('No changes made.'); window.history.back();</script>";
     exit();
 }

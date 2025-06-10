@@ -1,6 +1,12 @@
 <?php
 include "../php/auth_check.php";
 
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    // Not an admin, redirect or show access denied
+    header('Location: ../pages/newlogin.php');
+    exit();
+}
+
 // Get the user's name from session
 $userName = $_SESSION['user_name'];
 ?>
@@ -58,7 +64,14 @@ $userName = $_SESSION['user_name'];
           echo "<tr>
                   <td>{$fullName}</td>
                    <td>{$row['username']}</td>
-                  <td><button class ='delete-btn'>delete account</button></td>
+                   <td style='display: flex; justify-content: space-evenly; align-items: center;'>
+                      <p>active status</p>
+                      <label class='switch'>
+                        <input type='checkbox' class='acc-toggle' data-user-id='" . $row['id'] . "' " . ($row['acc_status'] === 'active' ? 'checked' : '') . ">
+                        <span class='slider round'></span>
+                      </label>
+                      <button class ='delete-btn'>delete account</button>
+                    </td>
                 </tr>";
         }
         echo "</tbody></table>";

@@ -90,3 +90,16 @@ function deleteNotification(notifId) {
         alert('An error occurred while deleting the notification.');
     });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const body = document.body;
+  const showInactive = body.getAttribute('data-inactive') === '1';
+  if (showInactive) {
+    document.getElementById('inactiveOverlay').style.display = 'flex';
+  }
+});
+
+function closeOverlay() {
+  document.getElementById('inactiveOverlay').style.display = 'none';
+}
+

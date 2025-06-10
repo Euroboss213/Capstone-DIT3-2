@@ -7,7 +7,7 @@ $username = htmlspecialchars($_POST['username']);
 $password = $_POST['password'];
 
 // Prepare the query to fetch the user record, including the role
-$query = "SELECT id, password, first_name, middle_name, last_name, suffix, role FROM users WHERE username = ?";
+$query = "SELECT id, password, first_name, middle_name, last_name, suffix, role, acc_status FROM users WHERE username = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("s", $username);
 $stmt->execute();
@@ -15,7 +15,7 @@ $stmt->store_result();
 
 if ($stmt->num_rows == 1) {
     // Fetch the results
-    $stmt->bind_result($id, $hashed_password, $first_name, $middle_name, $last_name, $suffix, $role);
+    $stmt->bind_result($id, $hashed_password, $first_name, $middle_name, $last_name, $suffix, $role, $acc_status);
     $stmt->fetch();
 
     // Verify the password
@@ -37,10 +37,13 @@ if ($stmt->num_rows == 1) {
         $_SESSION['middle_name'] = $middle_name;
         $_SESSION['last_name'] = $last_name;
         $_SESSION['suffix'] = $suffix;
+        $_SESSION['acc_status'] = $acc_status;
 
         // Redirect based on the role
         if ($role === 'admin') {
             header("Location: ../admin/adminDashboard.php"); // Redirect to admin page
+        } else if ($role === 'superadmin') {
+            header("Location: ../superadmin/adminDashboard.php"); // Redirect to admin page
         } else {
             header("Location: ../user/userHome.php"); // Redirect to user page
         }

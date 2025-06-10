@@ -2,6 +2,12 @@
 include "../php/auth_check.php";
 include "../database/connect_db_reqwest.php"; 
 
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    // Not an admin, redirect or show access denied
+    header('Location: ../pages/newlogin.php');
+    exit();
+}
+
 // Get the user's name from session
 $userName = $_SESSION['user_name'];
 $userId = $_SESSION['id'];
@@ -94,74 +100,110 @@ if (isset($_SESSION['import_message'])) {
     <form id="residentForm">
       <input type="hidden" id="id" name="id" />
       <div class="form-grid">
-        <label>First Name: <input type="text" id="first_name" name="first_name" required /></label>
-        <label>Middle Name: <input type="text" id="middle_name" name="middle_name" required /></label>
-        <label>Last Name: <input type="text" id="last_name" name="last_name" required /></label>
+        <label><span style="color: red">*</span> First Name: <input type="text" id="first_name" name="first_name" required /></label>
+        <label><span style="color: red">*</span> Middle Name: <input type="text" id="middle_name" name="middle_name" required /></label>
+        <label><span style="color: red">*</span> Last Name: <input type="text" id="last_name" name="last_name" required /></label>
         <label>Suffix: <input type="text" id="suffix" name="suffix" /></label>
-        <label>Birth Date: <input type="date" id="birth_date" name="birth_date" required /></label>
-        <label>Birth Place: <input type="text" id="birth_place" name="birth_place" required /></label>
-        <label>Sex: 
+        <label><span style="color: red">*</span> Birth Date: <input type="date" name="birth_date" id="birth_date"  required /></label>
+        <label><span style="color: red">*</span> Birth Place: <input type="text"  name="birth_place" id="birth_place" required /></label>
+        <label><span style="color: red">*</span> Sex: 
           <select id="sex" name="sex" required>
+            <option value ="Select an option" disabled selected hidden>Select an option</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
         </label>
-        <label>Civil Status: 
+        <label><span style="color: red">*</span> Civil Status: 
           <select id="civil_status" name="civil_status" required>
+              <option value ="Select an option" disabled selected hidden>Select an option</option>
               <option value ="Single">Single</option>
               <option value ="Married">Married</option>
           </select>
+        </label>
+        <label><span style="color: red">*</span> Nationality: <input type="text" id="nationality" name="nationality" required /></label>
+        <label><span style="color: red">*</span> Religion: 
+          <select id="religion" name="religion" required id="religion">
+            <option value ="Select an option" disabled selected hidden>Select an option</option>
+            <option value ="Roman Catholic">Roman Catholic</option>
+            <option value ="Christian">Christian</option>
+            <option value ="Iglesia ni Cristo">Iglesia ni Cristo</option>
+          </select>
+        </label>
+        <label><span style="color: red">*</span> Occupation: <input type="text" id="occupation" name="occupation" required /></label>
+        <label><span style="color: red">*</span> Contact Number: <input type="number" id="contact_number" name="contact_number" required /></label>
+        <label><span style="color: red">*</span> Address:</br> <hr>
+                  <!-- House Number -->
+          <label>
+            <span style="color: red">*</span> House No.:
+            <input type="text" id="house_no" name="house_no" required />
+          </label>      
+        </label>
+        <label></br> <hr>
+          <label>
+            <span style="color: red">*</span> Street Name:
+            <input type="text" id="street_name" name="street_name" required />
           </label>
-        <label>Nationality: <input type="text" id="nationality" name="nationality" required /></label>
-        <label>Religion: <input type="text" id="religion" name="religion" required /></label>
-        <label>Occupation: <input type="text" id="occupation" name="occupation" required /></label>
-        <label>Contact Number: <input type="text" id="contact_number" name="contact_number" required /></label>
-        <label>Address: <input type="text" id="address" name="address" required /></label>
-            <label>Indigent: 
-          <select id="indigent" name="indigent" required>
+        </label>
+          <label>
+            <span style="color: red">*</span> Municipality:
+            <input type="text" id="municipality" name="municipality" required />
+          </label>
+          <label>
+            <span style="color: red">*</span> Province:
+            <input type="text" id="province" name="province" required />
+          </label>
+
+        <label><hr>
+        <label><span style="color: red">*</span> PWD: 
+          <select name="pwd" required id="pwd" onchange="togglePwdIdField()">
+            <option value ="Select an option" disabled selected hidden>Select an option</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </select>
         </label>
-        <label>PWD: 
-          <select id="pwd" name="pwd" required>
+        </label>
+        <label><hr>
+        <label>PWD ID No: <input type="text" id="pwd_id_no" name="pwd_id_no" pattern="PWD-\d{4}-\d{4}" title="Format: PWD-XXXX-XXXX"/></label>
+        </label>        
+        <label><span style="color: red">*</span>Indigent: 
+          <select name="indigent" required>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </label>
+        <label><span style="color: red">*</span> Solo Parent: 
+          <select name="solo_parent" required id="solo_parent" onchange="togglePwdIdField()">
+            <option value ="Select an option" disabled selected hidden>Select an option</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </select>
         </label>
-        <label>PWD ID No: <input type="text" id="pwd_id_no" name="pwd_id_no" pattern="PWD-\d{4}-\d{4}" title="Format: PWD-XXXX-XXXX" /></label>
-        <label>Solo Parent: 
-          <select id="solo_parent" name="solo_parent" required>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-          </select>
-        </label>
-        <label>Solo Parent ID No: <input type="text" id="solo_parent_id_no" name="solo_parent_id_no" pattern="SP-\d{4}-\d{4}" title="Format: SP-XXXX-XXXX" /></label>
-        <label>Member of 4Ps: 
+        <label>Solo Parent ID No: <input type="text" name="solo_parent_id_no" id="solo_parent_id_no" pattern="SP-\d{4}-\d{4}" title="Format: SP-XXXX-XXXX"/></label>
+        <label><span style="color: red">*</span> Member of 4Ps: 
           <select id="member_4ps" name="member_4ps" required>
-            <option value="Yes">Yes</option>
             <option value="No">No</option>
+            <option value="Yes">Yes</option>
           </select>
         </label>
-        <label>Family Monthly Income: <input type="number" step="0.01" id="family_monthly_income" name="family_monthly_income" required /></label>
-        <label>National ID No: <input type="text" id="national_id_no" name="national_id_no" pattern="\d{4} \d{4} \d{4}" title="Format: 1234 5678 9012" /></label>
-        <label>PhilHealth No: <input type="text" id="philhealth_no" name="philhealth_no" pattern="\d{2}-\d{4}-\d{4}" title="Format: 12-3456-7890" /></label>
-        <label>SSS No: <input type="text" id="sss_no" name="sss_no" pattern="\d{2}-\d{7}-\d{1}" title="Format: 12-3456789-0" /></label>
-        <label>Pag-IBIG No: <input type="text" id="pagibig_no" name="pagibig_no" pattern="\d{4}-\d{4}-\d{4}" title="Format: 1234-5678-9012" /></label>
-        <label>TIN No: <input type="text" id="tin_no" name="tin_no" pattern="\d{3}-\d{3}-\d{3}" title="Format: 123-456-789" /></label>
-        <label>Voter's ID No: <input type="text" id="voters_id_no" name="voters_id_no" pattern="VIN-\d{4}-\d{4}" title="Format: VIN-XXXX-XXXX" required /></label>
-        <label>COVID Status: 
-          <select id="covid_status" name="covid_status" required>
-              <option value="Postive">Postive</option>
-              <option value="Negative">Negative</option>
-              <option value="Recovered">Recovered</option>
-              <option value="Not Checked Up">Not Checked Up</option>
+        <label><span style="color: red">*</span> Family Monthly Income: <input type="number" step="0.01" id="family_monthly_income" name="family_monthly_income" required /></label>
+        <!-- 
+        <label>National ID No: <input type="text" name="national_id_no" pattern="\d{4} \d{4} \d{4}" title="Format: 1234 5678 9012" /></label>
+        <label>PhilHealth No: <input type="text" name="philhealth_no" pattern="\d{2}-\d{4}-\d{4}" title="Format: 12-3456-7890" /></label>
+        <label>SSS No: <input type="text" name="sss_no" pattern="\d{2}-\d{7}-\d{1}" title="Format: 12-3456789-0" /></label>
+        <label>Pag-IBIG No: <input type="text" name="pagibig_no" pattern="\d{4}-\d{4}-\d{4}" title="Format: 1234-5678-9012" /></label>
+        <label>TIN No: <input type="text" name="tin_no" pattern="\d{3}-\d{3}-\d{3}" title="Format: 123-456-789" /></label> 
+        -->
+        <label><span style="color: red">*</span> Voter's ID No: <input type="text" id="voters_id_no" name="voters_id_no" pattern="VIN-\d{4}-\d{4}" title="Format: VIN-XXXX-XXXX" required /></label>
+        <label><span style="color: red">*</span> COVID Status: 
+          <select type="text" id="covid_status" name="covid_status" required>
+            <option value="Negative">Negative</option>
+            <option value="Positive">Positive</option>
           </select>
-          </label>
-        <label>Vaccinated: 
+        </label>
+        <label><span style="color: red">*</span> Vaccinated: 
           <select id="vaccinated" name="vaccinated" required>
-            <option value="Yes">Yes</option>
             <option value="No">No</option>
+            <option value="Yes">Yes</option>
           </select>
         </label>
         <label>Date of Registration: <input type="text" id="date_of_registration" name="date_of_registration" readonly /></label>
@@ -181,62 +223,108 @@ if (isset($_SESSION['import_message'])) {
     <h2>Add New Resident</h2>
     <form id="addResidentForm">
       <div class="form-grid">
-        <label>First Name: <input type="text" name="first_name" required /></label>
-        <label>Middle Name: <input type="text" name="middle_name" required /></label>
-        <label>Last Name: <input type="text" name="last_name" required /></label>
+        <label><span style="color: red">*</span> First Name: <input type="text" name="first_name" required /></label>
+        <label><span style="color: red">*</span> Middle Name: <input type="text" name="middle_name" required /></label>
+        <label><span style="color: red">*</span> Last Name: <input type="text" name="last_name" required /></label>
         <label>Suffix: <input type="text" name="suffix" /></label>
-        <label>Birth Date: <input type="date" name="birth_date" id="birth_date" required /></label>
-        <label>Birth Place: <input type="text" name="birth_place" required /></label>
-        <label>Sex: 
+        <label><span style="color: red">*</span> Birth Date: <input type="date" name="birth_date" id="birth_date" required /></label>
+        <label><span style="color: red">*</span> Birth Place: <input type="text" name="birth_place" required /></label>
+        <label><span style="color: red">*</span> Sex: 
           <select name="sex" required>
+            <option value ="Select an option" disabled selected hidden>Select an option</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
         </label>
-        <label>Civil Status: <input type="text" name="civil_status" required /></label>
-        <label>Nationality: <input type="text" name="nationality" required /></label>
-        <label>Religion: <input type="text" name="religion" required /></label>
-        <label>Occupation: <input type="text" name="occupation" required /></label>
-        <label>Contact Number: <input type="text" name="contact_number" required /></label>
-        <label>Address: <input type="text" name="address" required /></label>
-        <label>PWD: 
-          <select name="pwd" required>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
+        <label><span style="color: red">*</span> Civil Status: 
+          <select id="civil_status" name="civil_status" required>
+              <option value ="Select an option" disabled selected hidden>Select an option</option>
+              <option value ="Single">Single</option>
+              <option value ="Married">Married</option>
           </select>
         </label>
-        <label>PWD ID No: <input type="text" name="pwd_id_no" pattern="PWD-\d{4}-\d{4}" title="Format: PWD-XXXX-XXXX" /></label>
-        <label>Indigent: 
+        <label><span style="color: red">*</span> Nationality: <input type="text" name="nationality" required /></label>
+        <label><span style="color: red">*</span> Religion: 
+          <select id="religion" name="religion" required>
+            <option value ="Select an option" disabled selected hidden>Select an option</option>
+            <option value ="Roman Catholic">Roman Catholic</option>
+            <option value ="Christian">Christian</option>
+            <option value ="Iglesia ni Cristo">Iglesia ni Cristo</option>
+          </select>
+        </label>
+        <label><span style="color: red">*</span> Occupation: <input type="text" name="occupation" required /></label>
+        <label><span style="color: red">*</span> Contact Number: <input type="number" name="contact_number" required /></label>
+        <label><span style="color: red">*</span> Address:</br> <hr>
+                  <!-- House Number -->
+          <label>
+            <span style="color: red">*</span> House No.:
+            <input type="text" name="house_no" required />
+          </label>      
+        </label>
+        <label></br> <hr>
+          <label>
+            <span style="color: red">*</span> Street Name:
+            <input type="text" name="street_name" required />
+          </label>
+        </label>
+          <label>
+            <span style="color: red">*</span> Municipality:
+            <input type="text" name="municipality" required />
+          </label>
+          <label>
+            <span style="color: red">*</span> Province:
+            <input type="text" name="province" required />
+          </label>
+
+        <label><hr>
+        <label><span style="color: red">*</span> PWD: 
+          <select name="pwd" required id="pwdSelect" onchange="togglePwdIdField()">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </label>
+        </label>
+        <label><hr>
+        <label>PWD ID No: <input type="text" id="pwdIdField" name="pwd_id_no" pattern="PWD-\d{4}-\d{4}" title="Format: PWD-XXXX-XXXX"/></label>
+        </label>
+        <label><span style="color: red">*</span> Indigent: 
           <select name="indigent" required>
-            <option value="Yes">Yes</option>
             <option value="No">No</option>
+            <option value="Yes">Yes</option>
           </select>
         </label>
-        <label>Solo Parent: 
-          <select name="solo_parent" required>
-            <option value="Yes">Yes</option>
+        <label><span style="color: red">*</span> Solo Parent: 
+          <select name="solo_parent" required id="spSelect" onchange="togglePwdIdField()">
             <option value="No">No</option>
+            <option value="Yes">Yes</option>
           </select>
         </label>
-        <label>Solo Parent ID No: <input type="text" name="solo_parent_id_no" pattern="SP-\d{4}-\d{4}" title="Format: SP-XXXX-XXXX" /></label>
-        <label>Member of 4Ps: 
+        <label>Solo Parent ID No: <input type="text" name="solo_parent_id_no" id="spIdField" pattern="SP-\d{4}-\d{4}" title="Format: SP-XXXX-XXXX" /></label>
+        <label><span style="color: red">*</span> Member of 4Ps: 
           <select name="member_4ps" required>
-            <option value="Yes">Yes</option>
             <option value="No">No</option>
+            <option value="Yes">Yes</option>
           </select>
         </label>
-        <label>Family Monthly Income: <input type="number" step="0.01" name="family_monthly_income" required /></label>
+        <label><span style="color: red">*</span> Family Monthly Income: <input type="number" step="0.01" name="family_monthly_income" required /></label>
+        <!-- 
         <label>National ID No: <input type="text" name="national_id_no" pattern="\d{4} \d{4} \d{4}" title="Format: 1234 5678 9012" /></label>
         <label>PhilHealth No: <input type="text" name="philhealth_no" pattern="\d{2}-\d{4}-\d{4}" title="Format: 12-3456-7890" /></label>
         <label>SSS No: <input type="text" name="sss_no" pattern="\d{2}-\d{7}-\d{1}" title="Format: 12-3456789-0" /></label>
         <label>Pag-IBIG No: <input type="text" name="pagibig_no" pattern="\d{4}-\d{4}-\d{4}" title="Format: 1234-5678-9012" /></label>
-        <label>TIN No: <input type="text" name="tin_no" pattern="\d{3}-\d{3}-\d{3}" title="Format: 123-456-789" /></label>
-        <label>Voter's ID No: <input type="text" name="voters_id_no" pattern="VIN-\d{4}-\d{4}" title="Format: VIN-XXXX-XXXX" required /></label>
-        <label>COVID Status: <input type="text" name="covid_status" required /></label>
-        <label>Vaccinated: 
+        <label>TIN No: <input type="text" name="tin_no" pattern="\d{3}-\d{3}-\d{3}" title="Format: 123-456-789" /></label> 
+        -->
+        <label><span style="color: red">*</span> Voter's ID No: <input type="text" name="voters_id_no" pattern="VIN-\d{4}-\d{4}" title="Format: VIN-XXXX-XXXX" required /></label>
+        <label><span style="color: red">*</span> COVID Status: 
+          <select name="covid_status"  required>
+            <option value="Negative">Negative</option>
+            <option value="Positive">Positive</option>
+          </select>
+        </label>
+        <label><span style="color: red">*</span> Vaccinated: 
           <select name="vaccinated" required>
-            <option value="Yes">Yes</option>
             <option value="No">No</option>
+            <option value="Yes">Yes</option>
           </select>
         </label>
       </div>
@@ -277,16 +365,14 @@ if (isset($_SESSION['import_message'])) {
         <tr><td>solo_parent_id_no</td></tr>
         <tr><td>member_4ps</td></tr>
         <tr><td>family_monthly_income</td></tr>
-        <tr><td>national_id_no</td></tr>
-        <tr><td>philhealth_no</td></tr>
-        <tr><td>sss_no</td></tr>
-        <tr><td>pagibig_no</td></tr>
-        <tr><td>tin_no</td></tr>
         <tr><td>voters_id_no</td></tr>
         <tr><td>covid_status</td></tr>
         <tr><td>vaccinated</td></tr>
       </tbody>
     </table>
+    <p>Or download this template:</p>
+    <a href="../required_csv/csv_template.csv" download style="color: green; text-decoration: underline;">Download CSV Template</a>
+
 
     <form action="../php/upload_residentS.php" method="POST" enctype="multipart/form-data" style="margin-top: 20px;">
       <input type="file" name="csv_file" accept=".csv" required />

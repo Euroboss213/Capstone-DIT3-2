@@ -118,9 +118,9 @@ $conn->close();
                 </div>
 
                 <div class="modal-buttons">
-                    <div class="left-buttons">
+                    <!-- <div class="left-buttons">
                         <button type="button" id="deleteBtn" class="btn btn-delete">Delete</button>
-                    </div>
+                    </div> -->
                     <div class="right-buttons">
                         <button type="button" class="btn btn-viewPdf" onclick="generateAndViewPDF(document.getElementById('requestId').value, 'good_moral')">
                             View PDF

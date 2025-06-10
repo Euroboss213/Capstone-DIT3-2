@@ -1,6 +1,12 @@
 <?php
 include "../php/auth_check.php";
 
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    // Not an admin, redirect or show access denied
+    header('Location: ../pages/newlogin.php');
+    exit();
+}
+
 // Get the user's name from session
 $userName = $_SESSION['user_name'];
 

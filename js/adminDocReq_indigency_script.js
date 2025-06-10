@@ -47,6 +47,33 @@ function filterTable() {
       linkElement.href = "#";
       linkElement.textContent = "No file uploaded";
     }
+
+    // Get all editable form fields
+    const editableFields = [
+      document.getElementById('comment'),
+      document.getElementById('status'),
+      document.getElementById('saveBtn')
+    ];
+
+    // If status is 'Completed', make fields read-only or disable them
+    if (data.status === 'Completed') {
+      editableFields.forEach(field => {
+        if (field.tagName === 'SELECT' || field.tagName === 'TEXTAREA' || field.tagName === 'INPUT') {
+          field.disabled = true;
+        }
+      });
+    } else {
+      // Re-enable in case previously disabled
+      editableFields.forEach(field => {
+        field.disabled = false;
+      });
+    }
+
+    // Set View PDF button availability based on current status
+    const viewPdfBtn = document.querySelector(".btn-viewPdf");
+    viewPdfBtn.disabled = data.status !== "For Pickup";
+    const saveBtn = document.querySelector("saveBtn");
+    saveBtn.disabled = data.status == "Completed";
   }  
   
   // Close modal

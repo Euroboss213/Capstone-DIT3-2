@@ -1,54 +1,96 @@
 const modal = document.getElementById("infoModal");
 const addModal = document.getElementById("addModal");
+const accModal = document.getElementById("accModal");
+const editAccModal = document.getElementById("editAccModal");
 
-function openModal(data) {
-  modal.style.display = "block";
+function openModalById(modalId, data) {
+  const modalElement = document.getElementById(modalId);
+  modalElement.style.display = "block";
 
-  // Fill in the form
-  for (const key in data) {
-    const el = document.getElementById(key);
-    if (el) {
-      el.value = data[key];
+  if (data) {
+    for (const key in data) {
+      const el = document.getElementById(key);
+      if (el) {
+        el.value = data[key];
+      }
     }
   }
+
+  togglePwdIdField();
+}
+
+function openModal(data) {
+  openModalById("infoModal", data);
+}
+
+function openNewResidentModal() {
+  document.getElementById("addResidentForm").reset();
+  openModalById("addModal");
+}
+
+function openAccModal(data) {
+  openModalById("accModal", data);
+}
+
+function openEditAccModal(data) {
+  openModalById("editAccModal", data);
+  
+  // If needed, to be explicit:
+  document.getElementById('account_id').value = data.id || '';
+  document.getElementById('first_name').value = data.first_name || '';
+  document.getElementById('middle_name').value = data.middle_name || '';
+  document.getElementById('last_name').value = data.last_name || '';
+  document.getElementById('suffix').value = data.suffix || '';
 }
 
 function closeModal() {
   modal.style.display = "none";
 }
 
+function closeAddModal() {
+  addModal.style.display = "none";
+}
+
+function closeAccModal() {
+  accModal.style.display = "none";
+}
+
+function closeEditAccModal() {
+  editAccModal.style.display = "none";
+}
+
 // Merged window click event
 window.addEventListener('click', (e) => {
-  // Close dropdown if clicked outside
   if (!profileButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
     dropdownMenu.classList.remove('show');
   }
-
-  // Close modal if clicked outside the modal content
   if (e.target === modal) {
     closeModal();
+  }
+  if (e.target === addModal) {
+    closeAddModal();
   }
 });
 
 // Handle the form submission to save changes
 document.getElementById('residentForm').addEventListener('submit', function(e) {
-  e.preventDefault(); // Prevent default form submission
+  e.preventDefault();
 
-  const formData = new FormData(this); // Collect form data
+  const formData = new FormData(this);
 
-  // Use AJAX to send data to the PHP server
   fetch('../php/update_resident.php', {
     method: 'POST',
     body: formData
   })
   .then(response => response.json())
   .then(data => {
+    console.log('Update response:', data);  // Debug log for backend response
     if (data.success) {
       alert('Resident information updated successfully.');
-      closeModal(); // Close the modal after successful update
-      location.reload(); // Reload the page to reflect changes
+      closeModal();
+      location.reload();
     } else {
-      alert('Error updating information. Please try again.');
+      alert('Error updating information: ' + (data.message || 'Please try again.'));
     }
   })
   .catch(error => {
@@ -63,12 +105,11 @@ function filterTable() {
   const table = document.querySelector(".residents-table");
   const rows = table.getElementsByTagName("tr");
 
-  // Start from 1 to skip the table header
   for (let i = 1; i < rows.length; i++) {
     const cells = rows[i].getElementsByTagName("td");
     let found = false;
 
-    for (let j = 0; j < cells.length - 1; j++) { // exclude the "Action" column
+    for (let j = 0; j < cells.length - 1; j++) {
       const cell = cells[j];
       if (cell.textContent.toLowerCase().includes(filter)) {
         found = true;
@@ -80,26 +121,10 @@ function filterTable() {
   }
 }
 
-// Show add modal
-function openNewResidentModal() {
-  document.getElementById("addResidentForm").reset();
-  addModal.style.display = "block";
-}
-
-// Close add modal
-function closeAddModal() {
-  addModal.style.display = "none";
-}
-
-// Close modals if click outside
-window.addEventListener("click", function (e) {
-  if (e.target === addModal) closeAddModal();
-});
-
 document.getElementById('addResidentForm').addEventListener('submit', function(event) {
-  event.preventDefault();  // Prevent the form from submitting the traditional way
+  event.preventDefault();
   
-  const formData = new FormData(this);  // Create a FormData object from the form
+  const formData = new FormData(this);
 
   fetch('../php/add_resident.php', {
     method: 'POST',
@@ -108,7 +133,7 @@ document.getElementById('addResidentForm').addEventListener('submit', function(e
   .then(response => {
     return response.text().then(text => {
       try {
-        return JSON.parse(text);  // Attempt to parse the response as JSON
+        return JSON.parse(text);
       } catch (err) {
         console.error("Raw response (not JSON):", text);
         throw new Error("Invalid JSON: " + err.message);
@@ -118,19 +143,18 @@ document.getElementById('addResidentForm').addEventListener('submit', function(e
   .then(data => {
     if (data.success) {
       alert('Resident added successfully!');
-      closeAddModal();  // Close the modal after successful submission
+      closeAddModal();
       location.reload();
-      document.getElementById('addResidentForm').reset();  // Reset the form fields
+      document.getElementById('addResidentForm').reset();
     } else {
-      alert('Error adding resident: ' + data.message);  // Show error message if not successful
+      alert('Error adding resident: ' + data.message);
     }
   })
   .catch(error => {
-    console.error('Error:', error);  // Log any error that occurs during the fetch request
-    alert('An error occurred: ' + error.message);  // Show an error message to the user
+    console.error('Error:', error);
+    alert('An error occurred: ' + error.message);
   });
 });
-
 
 function deleteResident() {
   const id = document.getElementById('id').value;
@@ -148,7 +172,7 @@ function deleteResident() {
       if (data.success) {
         alert("Resident deleted successfully.");
         closeModal();
-        location.reload(); // Reload to update the table
+        location.reload();
       } else {
         alert("Failed to delete resident.");
       }
@@ -160,3 +184,69 @@ function deleteResident() {
   }
 }
 
+function togglePwdIdField() {
+  const pwdSelect = document.getElementById("pwdSelect");
+  const pwdIdField = document.getElementById("pwdIdField");
+  const spSelect = document.getElementById("spSelect");
+  const spIdField = document.getElementById("spIdField");
+
+  const pwd = document.getElementById("pwd");
+  const pwd_id_no = document.getElementById("pwd_id_no");
+  const solo_parent = document.getElementById("solo_parent");
+  const solo_parent_id_no = document.getElementById("solo_parent_id_no");
+
+  // PWD Select
+  const isPwdSelectYes = pwdSelect.value === "Yes";
+  pwdIdField.disabled = !isPwdSelectYes;
+  pwdIdField.required = isPwdSelectYes;
+  if (!isPwdSelectYes && !pwdIdField.value) pwdIdField.value = "";
+
+  // Solo Parent Select
+  const isSpSelectYes = spSelect.value === "Yes";
+  spIdField.disabled = !isSpSelectYes;
+  spIdField.required = isSpSelectYes;
+  if (!isSpSelectYes && !spIdField.value) spIdField.value = "";
+
+  // PWD (Yes/No) Input
+  const isPwdYes = pwd.value === "Yes";
+  pwd_id_no.disabled = !isPwdYes;
+  pwd_id_no.required = isPwdYes;
+  if (!isPwdYes && !pwd_id_no.value) pwd_id_no.value = "";
+
+  // Solo Parent (Yes/No) Input
+  const isSoloYes = solo_parent.value === "Yes";
+  solo_parent_id_no.disabled = !isSoloYes;
+  solo_parent_id_no.required = isSoloYes;
+  if (!isSoloYes && !solo_parent_id_no.value) solo_parent_id_no.value = "";
+}
+
+
+window.onload = togglePwdIdField;
+
+window.addEventListener('DOMContentLoaded', () => {
+  const birthDateInput = document.getElementById('birth_date');
+
+  birthDateInput.addEventListener('change', () => {
+    const inputDate = new Date(birthDateInput.value);
+    const today = new Date();
+
+    const eighteenYearsAgo = new Date();
+    eighteenYearsAgo.setFullYear(today.getFullYear() - 18);
+
+    birthDateInput.setCustomValidity("");
+
+    if (isNaN(inputDate)) return;
+
+    if (inputDate > today) {
+      birthDateInput.setCustomValidity("Birth date cannot be in the future.");
+    } else if (inputDate > eighteenYearsAgo) {
+      birthDateInput.setCustomValidity("You must be at least 18 years old.");
+    }
+
+    birthDateInput.reportValidity();
+  });
+
+  const eighteenYearsAgo = new Date();
+  eighteenYearsAgo.setFullYear((new Date()).getFullYear() - 18);
+  birthDateInput.max = eighteenYearsAgo.toISOString().split('T')[0];
+});
