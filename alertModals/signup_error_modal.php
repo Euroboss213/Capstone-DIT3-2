@@ -14,13 +14,13 @@
             echo "Passwords do not match!";
             break;
           case 'id_not_found':
-            echo "No matching ID found in residences!";
+            echo "Resident is not a Registered Voter!";
             break;
           case 'duplicate_user':
             echo "A user with this name already has an account!";
             break;
           case 'no_residence':
-            echo "No matching residence data with that ID found!";
+            echo "ID did not match any existing Resident!";
             break;
           case 'insert_failed':
             echo "Error occurred while creating your account. Please try again.";

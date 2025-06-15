@@ -21,6 +21,33 @@ if (!$row) {
     session_unset();
     session_destroy();
     header("Location: ../pages/newlogin.php");
+
+// Fetch current username from DB
+$sql = "SELECT username FROM users WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $userId);
+$stmt->execute();
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
+
+if (!$row) {
+    session_unset();
+    session_destroy();
+    header("Location: ../pages/newlogin.php");
+    exit();
+}
+
+$currentUsername = $row['username'];
+
+// Get form data and sanitize
+$newUsername = trim($_POST['new_username']);
+$newPassword = trim($_POST['new_password']);
+$confirmPassword = trim($_POST['confirm_password']);
+$currentPassword = trim($_POST['current_password'] ?? '');
+
+// If both username and password fields are empty, no change
+if (empty($newUsername) && empty($newPassword)) {
+    echo "<script>alert('No changes made.'); window.history.back();</script>";
     exit();
 }
 
@@ -52,10 +79,13 @@ if (empty($newUsername) && empty($newPassword) &&
 }
 
 // Username processing
+// If username is empty, reuse the current one (so username change is optional)
 if (empty($newUsername)) {
     $newUsername = $currentUsername;
 }
 
+// If the username is different, add to update list
+if ($newUsername !== $currentUsername) {
 if ($newUsername !== $currentUsername) {
     $updateFields[] = "username = ?";
     $params[] = $newUsername;
@@ -74,11 +104,23 @@ if (!empty($newPassword)) {
         exit();
     }
 
+// Password change handling
+if (strlen($newPassword) > 0) {
+    // Require current password only if changing password
     if (empty($currentPassword)) {
+        echo "<script>alert('Please enter your current password to change password.'); window.history.back();</script>";
+        exit();
         echo "<script>alert('Please enter your current password to change password.'); window.history.back();</script>";
         exit();
     }
 
+    // Password requirement checks ONLY if changing password:
+    if (strlen($newPassword) < 8) {
+        echo "<script>alert('New password must be at least 8 characters long.'); window.history.back();</script>";
+        exit();
+    }
+
+    // Verify current password in DB
     $sql = "SELECT password FROM users WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $userId);
@@ -128,6 +170,7 @@ if ($role === 'admin') {
 }
 
 // If any field is to be updated
+// If there is something to update
 if (count($updateFields) > 0) {
     $params[] = $userId;
     $types .= "i";
@@ -135,6 +178,9 @@ if (count($updateFields) > 0) {
     $sql = "UPDATE users SET " . implode(", ", $updateFields) . " WHERE id = ?";
     $stmt = $conn->prepare($sql);
 
+    $bind_names = [];
+    $bind_names[] = &$types;
+    // Dynamic binding for parameters
     $bind_names = [];
     $bind_names[] = &$types;
     foreach ($params as $key => $value) {
@@ -161,6 +207,16 @@ if (count($updateFields) > 0) {
         session_unset();
         session_destroy();
 
+    if ($stmt->execute()) {
+        // Update session username if changed (optional, since you destroy session anyway)
+        if ($newUsername !== $currentUsername) {
+            $_SESSION['userName'] = $newUsername;
+        }
+
+        // Destroy session to force re-login after update
+        session_unset();
+        session_destroy();
+
         echo "<script>alert('Account updated successfully! Please log in again.'); window.location.href='../pages/newlogin.php';</script>";
         exit();
     } else {
@@ -168,6 +224,14 @@ if (count($updateFields) > 0) {
         exit();
     }
 } else {
+    echo "<script>alert('No changes made.'); window.history.back();</script>";
+    exit();
+}
+        echo "<script>alert('Failed to update account. Please try again later.'); window.history.back();</script>";
+        exit();
+    }
+} else {
+    // No updates made
     echo "<script>alert('No changes made.'); window.history.back();</script>";
     exit();
 }
