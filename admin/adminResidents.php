@@ -101,7 +101,7 @@ if (isset($_SESSION['import_message'])) {
       <input type="hidden" id="id" name="id" />
       <div class="form-grid">
         <label><span style="color: red">*</span> First Name: <input type="text" id="first_name" name="first_name" required /></label>
-        <label><span style="color: red">*</span> Middle Name: <input type="text" id="middle_name" name="middle_name" required /></label>
+        <label><span style="color: red"></span> Middle Name: <input type="text" id="middle_name" name="middle_name"/></label>
         <label><span style="color: red">*</span> Last Name: <input type="text" id="last_name" name="last_name" required /></label>
         <label>Suffix: <input type="text" id="suffix" name="suffix" /></label>
         <label><span style="color: red">*</span> Birth Date: <input type="date" name="birth_date" id="birth_date"  required /></label>
@@ -224,7 +224,7 @@ if (isset($_SESSION['import_message'])) {
     <form id="addResidentForm">
       <div class="form-grid">
         <label><span style="color: red">*</span> First Name: <input type="text" name="first_name" required /></label>
-        <label><span style="color: red">*</span> Middle Name: <input type="text" name="middle_name" required /></label>
+        <label><span style="color: red"></span> Middle Name: <input type="text" name="middle_name"/></label>
         <label><span style="color: red">*</span> Last Name: <input type="text" name="last_name" required /></label>
         <label>Suffix: <input type="text" name="suffix" /></label>
         <label><span style="color: red">*</span> Birth Date: <input type="date" name="birth_date" id="birth_date" required /></label>
@@ -320,16 +320,6 @@ if (isset($_SESSION['import_message'])) {
             <option value="Negative">Negative</option>
             <option value="Positive">Positive</option>
           </select>
-        </label>
-        <label><span style="color: red">*</span> Vaccinated: 
-        <label>TIN No: <input type="text" name="tin_no" pattern="\d{3}-\d{3}-\d{3}" title="Format: 123-456-789" /></label>
-        <label>Voter's ID No: <input type="text" name="voters_id_no" pattern="VIN-\d{4}-\d{4}" title="Format: VIN-XXXX-XXXX" required /></label>
-        <label>COVID Status: <select type="text" name="covid_status" required>
-          <option value="Yes">Positive</option>
-            <option value="No">Negative</option>
-            <option value="Recovered">Recovered</option>
-              <option value="Not Checked Up">Not Checked Up</option>
-            </select>
         </label>
         <label>Vaccinated: 
           <select name="vaccinated" required>
