@@ -41,6 +41,7 @@ $userName = $_SESSION['user_name'];
     <main class="main-content">
     <div class="top-bar">
     <input type="text" id="searchInput" placeholder="Search residents..." class="search-bar" onkeyup="filterTable()" />
+    <button class="add-btn" onclick='openAccModal()'>add an account</button>
     </div>
     <?php
       $conn = new mysqli("localhost", "root", "", "reqwest");
@@ -89,7 +90,6 @@ $userName = $_SESSION['user_name'];
       }
       $conn->close();
       ?>
-      <button class="add-btn" onclick='openAccModal()'>add an account</button>
     </main>
     <div>
        <!-- add new account -->
@@ -100,7 +100,7 @@ $userName = $_SESSION['user_name'];
         <form id="addAccount" action="../php/add_account.php" method="POST">
           <div class="form-grid">
             <label><span style="color: red">*</span>First Name: <input type="text" name="first_name" required /></label>
-            <label><span style="color: red">*</span>Middle Name: <input type="text" name="middle_name" required /></label>
+            <label><span style="color: red"></span>Middle Name: <input type="text" name="middle_name" /></label>
             <label><span style="color: red">*</span>Last Name: <input type="text" name="last_name" required /></label>
             <label>Suffix: <input type="text" name="suffix" /></label> 
             <label>Username: <input type="text" name="username" required/></label> 

@@ -21,7 +21,7 @@ if (!$row) {
     session_unset();
     session_destroy();
     header("Location: ../pages/newlogin.php");
-
+}
 // Fetch current username from DB
 $sql = "SELECT username FROM users WHERE id = ?";
 $stmt = $conn->prepare($sql);
@@ -91,7 +91,7 @@ if ($newUsername !== $currentUsername) {
     $params[] = $newUsername;
     $types .= "s";
 }
-
+}
 // Password processing
 if (!empty($newPassword)) {
     if ($newPassword !== $confirmPassword) {
