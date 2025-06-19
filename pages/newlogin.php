@@ -19,6 +19,7 @@ session_destroy();      // Destroy the session
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />    
     <!--SCRIPTS-->
     <script src="../js/confirmPass.js"></script>
     <script src="../js/signup_success.js"></script>
@@ -29,7 +30,15 @@ session_destroy();      // Destroy the session
     <nav>
       <ul>
         <li><a href="newlanding.php">Home</a></li>
-        <li><a href="newservices.php">Services</a></li>
+        <li class="dropdown">
+          <a href="newservices.php" class="dropdown-toggle">Services <i class="fas fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="#indigency">Barangay Indigency</a></li>
+            <li><a href="#residency">Barangay Residency</a></li>
+            <li><a href="#permit">Barangay Permit</a></li>
+            <li><a href="#goodmoral">Barangay Good Moral</a></li>
+          </ul>
+        </li>
         <li><a href="newabout.php">About Us</a></li>
         <li><a href="newfaq.php">FAQ</a></li>
         <li><a href="newcontact.php">Contact Us</a></li>
