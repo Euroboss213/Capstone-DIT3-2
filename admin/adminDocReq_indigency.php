@@ -25,10 +25,13 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
   <link rel="stylesheet" href="../styles/formModal_style.css" />
   <link rel="stylesheet" href="../styles/status.css" />
   <link rel="stylesheet" href="../styles/notifModal.css" />
+  <link rel="stylesheet" href="../styles/history.css" />
+
   <script src="../js/adminNav.js" defer></script>
   <script src="../js/adminDocReq_indigency_script.js" defer></script>
   <script src="../js/status.js" defer></script>
   <script src="../js/unread_to_read_notif.js" defer></script>
+  <script src="../js/history_modal.js" defer></script>
   
 </head>
 <!-- Font Awesome CDN -->

@@ -26,10 +26,13 @@ $userName = $_SESSION['user_name'];
   <link rel="stylesheet" href="../styles/status.css" />
   <link rel="stylesheet" href="../styles/notifModal.css" />
   <link rel="stylesheet" href="../styles/adminDocReq_goodMoral_style.css" />
+  <link rel="stylesheet" href="../styles/history.css" />
+  
   <script src="../js/adminNav.js" defer></script>
   <script src="../js/adminDocReq_goodMoral_script.js" defer></script>
   <script src="../js/status.js" defer></script>
   <script src="../js/unread_to_read_notif.js" defer></script>
+  <script src="../js/history_modal.js" defer></script>
   
 </head>
 <!-- Font Awesome CDN -->

@@ -117,10 +117,16 @@ $conn->close();
                     <textarea id="comment" name="comment" rows="4" placeholder="Add a comment..." required></textarea>
                 </div>
 
+                <div class="form-group">
+                    <label>Reply:</label>
+                    <textarea id="reply" name="reply" rows="4" placeholder="Reply to the comment..." readonly></textarea>
+                </div>
+
                 <div class="modal-buttons">
-                    <!-- <div class="left-buttons">
-                        <button type="button" id="deleteBtn" class="btn btn-delete">Delete</button>
-                    </div> -->
+                    <div class="left-buttons">
+                        <!-- <button type="button" class="btn btn-delete" id="deleteBtn">Delete</button> -->
+                        <button type="button" class="btn btn-log" onclick="openHistoryModal()">Log</button>
+                    </div>
                     <div class="right-buttons">
                         <button type="button" class="btn btn-viewPdf" onclick="generateAndViewPDF(document.getElementById('requestId').value, 'good_moral')">
                             View PDF
@@ -129,6 +135,17 @@ $conn->close();
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <div id="historyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeHistoryModal()">&times;</span>
+            <h2 class="modal-title">Request History Log</h2>
+            <div id="historyContent" class="history-content">
+        <!-- Logs will be loaded here dynamically -->
+            </div>
+
         </div>
     </div>
 </body>

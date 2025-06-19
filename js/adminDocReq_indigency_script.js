@@ -26,6 +26,7 @@ function filterTable() {
     document.getElementById('reviewModal').style.display = 'block';
   
     originalStatus = data.status; // Store original status
+    
   
     document.getElementById('requestId').value = data.id;
     document.getElementById('userId').value = data.user_id;
@@ -35,6 +36,7 @@ function filterTable() {
     document.getElementById('dateRequested').value = data.date_requested;
     document.getElementById('status').value = data.status;
     document.getElementById('comment').value = data.comment ?? '';
+    document.getElementById('reply').value = data.reply ?? '';
   
     const fileName = data.supporting_document;
     const linkElement = document.getElementById('supportingDocumentLink');
@@ -72,7 +74,7 @@ function filterTable() {
     // Set View PDF button availability based on current status
     const viewPdfBtn = document.querySelector(".btn-viewPdf");
     viewPdfBtn.disabled = data.status !== "For Pickup";
-    const saveBtn = document.querySelector("saveBtn");
+    const saveBtn = document.querySelector("btn-save");
     saveBtn.disabled = data.status == "Completed";
   }  
   

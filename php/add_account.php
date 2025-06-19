@@ -4,7 +4,8 @@ if ($conn->connect_error) {
     die("Database connection failed: " . $conn->connect_error);
 }
 
-$fields = ['first_name', 'middle_name', 'last_name', 'suffix', 'username', 'password', 'role'];
+$fields = ['first_name', 'middle_name', 'last_name', 'suffix', 'username', 'password', 'role', 'position'];
+
 $data = [];
 
 foreach ($fields as $field) {
@@ -38,17 +39,19 @@ if ($stmt->num_rows > 0) {
 $stmt->close();
 
 // Insert the new user
-$stmt = $conn->prepare("INSERT INTO users (username, password, first_name, middle_name, last_name, suffix, role) VALUES (?, ?, ?, ?, ?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO users (username, password, first_name, middle_name, last_name, suffix, role, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 $stmt->bind_param(
-    "sssssss",
+    "ssssssss",
     $data['username'],
     $data['password'],
     $data['first_name'],
     $data['middle_name'],
     $data['last_name'],
     $data['suffix'],
-    $data['role']
+    $data['role'],
+    $data['position']
 );
+
 
 if ($stmt->execute()) {
     $stmt->close();

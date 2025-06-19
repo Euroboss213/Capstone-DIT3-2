@@ -112,6 +112,15 @@ $userName = $_SESSION['user_name'];
                 <option value="user">user</option>
               </select>
             </label>
+            <label>Positon: 
+              <select name="position" required>
+                <option value ="Select an option" disabled selected hidden>Select an option</option>
+                <option value="Chairman">Chairman</option>
+                <option value="Secretary">Secretary</option>
+                <option value="Kagawad">Kagawad</option>
+                <option value="Staff">Staff</option>
+              </select>
+            </label>
             <div class="modal-footer">
               <button type="submit" class="save-btn">Create new account</button>
             </div>

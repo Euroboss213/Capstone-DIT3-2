@@ -151,10 +151,16 @@ $conn->close();
                     </select>
                 </div>
 
-                  <div class="form-group">
-                <label>Comment:</label>
-                <textarea id="comment" name="comment" rows="4" placeholder="The Brgy. Official Will comment here..." readonly></textarea>
-            </div>
+                <div class="form-group">
+                    <label>Comment:</label>
+                    <textarea id="comment" name="comment" rows="4" placeholder="The Brgy. Official Will comment here..." readonly></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Reply:</label>
+                    <textarea id="reply" name="reply" rows="4" placeholder="Reply to the comment..." disabled></textarea>
+                </div>
+
 
                 <div class="modal-buttons">
                     <button type="button" id="deleteBtn" class="btn btn-delete">Cancel</button>

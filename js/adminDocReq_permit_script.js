@@ -37,19 +37,47 @@ function openReviewModal(data) {
     document.getElementById('dateRequested').value = data.date_requested;
     document.getElementById('status').value = data.status;
     document.getElementById('comment').value = data.comment ?? '';
+    document.getElementById('reply').value = data.reply ?? '';
 
     const fileName = data.supporting_document?.trim();
-const linkElement = document.getElementById('supportingDocumentLink');
+    const linkElement = document.getElementById('supportingDocumentLink');
 
-if (fileName) {
-  const filePath = `../uploads/${fileName}`;
-  const justFileName = fileName.split('/').pop();
-  linkElement.href = filePath;
-  linkElement.textContent = `View Document (${justFileName})`;
-} else {
-  linkElement.href = "#";
-  linkElement.textContent = "No file uploaded";
-}
+    if (fileName) {
+    const filePath = `../uploads/${fileName}`;
+    const justFileName = fileName.split('/').pop();
+    linkElement.href = filePath;
+    linkElement.textContent = `View Document (${justFileName})`;
+    } else {
+    linkElement.href = "#";
+    linkElement.textContent = "No file uploaded";
+    }
+
+    // Get all editable form fields
+    const editableFields = [
+      document.getElementById('comment'),
+      document.getElementById('status'),
+      document.getElementById('saveBtn')
+    ];
+
+    // If status is 'Completed', make fields read-only or disable them
+    if (data.status === 'Completed') {
+      editableFields.forEach(field => {
+        if (field.tagName === 'SELECT' || field.tagName === 'TEXTAREA' || field.tagName === 'INPUT') {
+          field.disabled = true;
+        }
+      });
+    } else {
+      // Re-enable in case previously disabled
+      editableFields.forEach(field => {
+        field.disabled = false;
+      });
+    }
+
+    // Set View PDF button availability based on current status
+    const viewPdfBtn = document.querySelector(".btn-viewPdf");
+    viewPdfBtn.disabled = data.status !== "For Pickup";
+    const saveBtn = document.querySelector("btn-save");
+    saveBtn.disabled = data.status == "Completed";
 }
 
 // Close modal
