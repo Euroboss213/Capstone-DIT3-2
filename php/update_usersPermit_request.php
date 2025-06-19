@@ -3,16 +3,17 @@ session_start();
 include "../database/connect_db_reqwest.php";
 
 // Sanitize and validate input
-$userName = $_SESSION['user_name'];
-$userId = $_SESSION['id'];
+$userName = $_SESSION['user_name'] ?? '';
+$userId = $_SESSION['id'] ?? '';
 
 $id = $_POST['requestId'] ?? '';
 $purpose = $_POST['purpose'] ?? '';
 $contact_number = $_POST['contact_number'] ?? '';
 $permit_type = $_POST['permit_type'] ?? '';
+$reply = $_POST['reply'] ?? null;
 $removeFile = isset($_POST['removeFile']) && $_POST['removeFile'] === '1';
-$form_origin = $_POST['form_origin']; // form name: 'admin_updatePermit' or 'update_usersPermit'
-$actor_id = $_POST['actor_id']; // passed via hidden input
+$form_origin = $_POST['form_origin'];
+$actor_id = $_POST['actor_id'];
 $actor_role = 'user';
 
 $docTypes = ['indigency', 'certresidency', 'good_moral', 'permit'];
@@ -25,7 +26,7 @@ foreach ($docTypes as $type) {
     }
 }
 
-// Ensure necessary data is available
+// Validate required fields
 if (empty($id) || empty($purpose) || empty($contact_number) || empty($permit_type)) {
     echo "Invalid request. Missing required fields.";
     exit();
@@ -40,16 +41,15 @@ $existingRow = $result->fetch_assoc();
 $existingFile = $existingRow['supporting_document'] ?? '';
 $stmt->close();
 
-$supporting_document = $existingFile; // Default to existing file if no new file is uploaded
+$supporting_document = $existingFile;
 
-// Handle file upload if a new file is submitted
+// Handle file upload
 if (isset($_FILES['supporting_document']) && $_FILES['supporting_document']['error'] === UPLOAD_ERR_OK) {
     $uploadDir = '../uploads/';
-    $filename = basename($_FILES['supporting_document']['name']);
+    $filename = time() . "_" . basename($_FILES['supporting_document']['name']);
     $uploadPath = $uploadDir . $filename;
 
     if (move_uploaded_file($_FILES['supporting_document']['tmp_name'], $uploadPath)) {
-        // Delete old file if exists
         if (!empty($existingFile) && file_exists("../" . $existingFile)) {
             unlink("../" . $existingFile);
         }
@@ -58,23 +58,58 @@ if (isset($_FILES['supporting_document']) && $_FILES['supporting_document']['err
         echo "Error uploading the new supporting document.";
         exit();
     }
-}
-// Handle file removal if selected and no new file is uploaded
-elseif ($removeFile) {
+} elseif ($removeFile) {
     if (!empty($existingFile) && file_exists("../" . $existingFile)) {
         unlink("../" . $existingFile);
     }
-    $supporting_document = ''; // Set to empty as the file is removed
+    $supporting_document = '';
 }
 
-// Update query
-$updateStmt = $conn->prepare("UPDATE permit SET purpose = ?, contact_number = ?, permit_type = ?, supporting_document = ?, status = 'ongoing' WHERE id = ?");
-$updateStmt->bind_param("ssssi", $purpose, $contact_number, $permit_type, $supporting_document, $id);
+// Update permit request
+$updateStmt = $conn->prepare("UPDATE permit SET purpose = ?, contact_number = ?, permit_type = ?, supporting_document = ?, reply = ?, status = 'ongoing' WHERE id = ?");
+$updateStmt->bind_param("sssssi", $purpose, $contact_number, $permit_type, $supporting_document, $reply, $id);
 
 if ($updateStmt->execute()) {
     include '../php/handle-notification.php';
+    sendNotificationToTarget($documentType, $id, $actor_id, $actor_role, $userName, $documentType);
 
-    sendNotificationToTarget($documentType, $id, $actor_id, $actor_role, $userName, $type);
+    // Insert into request_history
+    $fetchStmt = $conn->prepare("SELECT p.*, u.first_name, u.middle_name, u.last_name, u.suffix FROM permit p JOIN users u ON p.user_id = u.id WHERE p.id = ?");
+    $fetchStmt->bind_param("i", $id);
+    $fetchStmt->execute();
+    $result = $fetchStmt->get_result();
+
+    if ($row = $result->fetch_assoc()) {
+        $historyStmt = $conn->prepare("INSERT INTO request_history (
+            request_id, user_id, first_name, middle_name, last_name, suffix,
+            purpose, date_requested, document_type, status, comment, reply, supporting_document,
+            actor, actor_role
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+        $historyStmt->bind_param(
+            "iisssssssssssis",
+            $row['id'],
+            $row['user_id'],
+            $row['first_name'],
+            $row['middle_name'],
+            $row['last_name'],
+            $row['suffix'],
+            $row['purpose'],
+            $row['date_requested'],
+            $row['document_type'],
+            $row['status'],
+            $row['comment'],
+            $row['reply'],
+            $row['supporting_document'],
+            $actor_id,
+            $actor_role
+        );
+
+        $historyStmt->execute();
+        $historyStmt->close();
+    }
+
+    $fetchStmt->close();
     echo "Request updated successfully.";
 } else {
     echo "Error updating request: " . $conn->error;

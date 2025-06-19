@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeBtn = document.querySelector('.close');
 
   let originalPurpose = '';
+  let originalReply = ''; // ✅ Added
   let originalFileChanged = false;
   let fileRemoved = false;
 
@@ -33,11 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('dateRequested').value = data.date_requested ?? '';
     document.getElementById('status').value = data.status ?? '';
     document.getElementById('comment').value = data.comment ?? '';
+    document.getElementById('reply').value = data.reply ?? ''; 
 
     // Track original values
     originalPurpose = data.purpose ?? '';
     originalFileChanged = false;
     fileRemoved = false;
+    originalReply = data.reply ?? '';
 
     if (data.supporting_document) {
       const filename = data.supporting_document.split('/').pop();
@@ -49,6 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fileInput.value = '';
     previewDiv.innerHTML = '';
+
+    const replyInput = document.getElementById('reply');
+    if (data.status === 'Returned') {
+        replyInput.removeAttribute('disabled'); // in case it's disabled
+    }
   }
 
   fileInput.addEventListener('change', function () {
@@ -89,11 +97,14 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
 
     const currentPurpose = document.getElementById('purpose').value.trim();
+    const currentReply = document.getElementById('reply').value.trim();
 
     const hasChanges =
       originalFileChanged ||
       fileRemoved ||
-      currentPurpose !== originalPurpose;
+      currentPurpose !== originalPurpose ||
+      currentReply !== originalReply;
+
 
     if (!hasChanges) {
       alert("You won't be able to submit if there are no changes.");

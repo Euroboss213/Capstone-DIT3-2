@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let originalContact = ''; 
     let originalPurpose = ''; 
+    let originalReply = '';
 
     function resetFilePreview() {
         fileInput.value = '';
@@ -40,11 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('documentType').value = data.document_type;
         document.getElementById('dateRequested').value = data.date_requested;
         document.getElementById('status').value = data.status;
-        document.getElementById('comment').value = data.comment ?? '';
+        document.getElementById('comment').value = data.comment ?? ''; 
+        document.getElementById('reply').value = data.reply ?? ''; 
 
         // Store original values
         originalContact = data.contact_number; 
         originalPurpose = data.purpose; 
+        originalReply = data.reply;
 
         if (data.supporting_document) {
             const filename = data.supporting_document.split('/').pop();
@@ -63,6 +66,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         fileInput.value = '';
         previewDiv.innerHTML = '';
+
+        const replyInput = document.getElementById('reply');
+        if (data.status === 'Returned') {
+            replyInput.removeAttribute('disabled'); // in case it's disabled
+        }
     }
 
     // Handle file removal
@@ -110,11 +118,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const fileChanged = fileInput.files.length > 0;
         const fileRemoved = removeInput.value === '1';
 
+        const currentReply = document.getElementById('reply').value.trim();
+
         const hasChanges =
             fileChanged || 
             fileRemoved ||
             currentContact !== originalContact ||
-            currentPurpose !== originalPurpose;
+            currentPurpose !== originalPurpose ||
+            currentReply !== originalReply;
 
         if (!hasChanges) {
             alert('You must make changes before submitting.');
@@ -132,6 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
             alert(data);
             originalContact = currentContact;
             originalPurpose = currentPurpose;
+            originalReply = currentReply
+            
             removeInput.value = '0';
 
             if (fileChanged) {

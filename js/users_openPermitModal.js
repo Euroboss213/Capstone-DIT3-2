@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let originalPermitType = '';
   let originalFileChanged = false;
   let fileRemoved = false;
+  let originalReply = '';
+
 
   function resetFilePreview() {
     fileInput.value = '';
@@ -45,6 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('dateRequested').value = data.date_requested ?? '';
     document.getElementById('status').value = data.status ?? '';
     document.getElementById('comment').value = data.comment ?? '';
+    document.getElementById('reply').value = data.reply ?? '';
+
 
     // Store original values
     originalPurpose = data.purpose ?? '';
@@ -52,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     originalPermitType = data.permit_type ?? '';
     originalFileChanged = false;
     fileRemoved = false;
+    originalReply = data.reply ?? '';
 
     if (data.supporting_document) {
       const filename = data.supporting_document.split('/').pop();
@@ -63,6 +68,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fileInput.value = '';
     previewDiv.innerHTML = '';
+
+    const replyInput = document.getElementById('reply');
+    if (data.status === 'Returned') {
+        replyInput.removeAttribute('disabled'); // in case it's disabled
+    }
   }
 
   fileInput.addEventListener('change', function () {
@@ -105,13 +115,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentPurpose = document.getElementById('purpose').value.trim();
     const currentContact = document.getElementById('contactNumber').value.trim();
     const currentPermitType = document.getElementById('permitType').value.trim();
+    const currentReply = document.getElementById('reply').value.trim();
+
 
     const hasChanges =
       originalFileChanged ||
       fileRemoved ||
       currentPurpose !== originalPurpose ||
       currentContact !== originalContact ||
-      currentPermitType !== originalPermitType;
+      currentPermitType !== originalPermitType ||
+      currentReply !== originalReply;
+
 
     if (!hasChanges) {
       alert('You won\'t be able to submit if there are no changes.');

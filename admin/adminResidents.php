@@ -120,7 +120,13 @@ if (isset($_SESSION['import_message'])) {
               <option value ="Married">Married</option>
           </select>
         </label>
-        <label><span style="color: red">*</span> Nationality: <input type="text" id="nationality" name="nationality" required /></label>
+        <label><span style="color: red">*</span> Nationality: 
+          <select id="nationality" name="nationality" required>
+              <option value ="Select an option" disabled selected hidden>Select an option</option>
+              <option value ="Filipino">Filipino</option>
+              <option value ="Japanese">Japanese</option>
+          </select>
+        </label>
         <label><span style="color: red">*</span> Religion: 
           <select id="religion" name="religion" required id="religion">
             <option value ="Select an option" disabled selected hidden>Select an option</option>
@@ -243,7 +249,13 @@ if (isset($_SESSION['import_message'])) {
               <option value ="Married">Married</option>
           </select>
         </label>
-        <label><span style="color: red">*</span> Nationality: <input type="text" name="nationality" required /></label>
+        <label><span style="color: red">*</span> Nationality: 
+          <select id="nationality" name="nationality" required>
+              <option value ="Select an option" disabled selected hidden>Select an option</option>
+              <option value ="Filipino">Filipino</option>
+              <option value ="Japanese">Japanese</option>
+          </select>
+        </label>
         <label><span style="color: red">*</span> Religion: 
           <select id="religion" name="religion" required>
             <option value ="Select an option" disabled selected hidden>Select an option</option>

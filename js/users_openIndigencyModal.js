@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let originalPurpose = ''; // <-- added
   let originalFileChanged = false; // <-- added
   let fileRemoved = false;  // <-- added to track file removal
+  let originalReply = ''; // ✅ Track the original reply value
+
 
   function resetFilePreview() {
     fileInput.value = '';
@@ -41,9 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('dateRequested').value = data.date_requested;
     document.getElementById('status').value = data.status;
     document.getElementById('comment').value = data.comment ?? '';
+    document.getElementById('reply').value = data.reply ?? '';
+
 
     // Store original values to detect changes
     originalPurpose = data.purpose; // <-- added
+    originalReply = data.reply ?? ''; // ✅ Store the original reply
 
     // Show existing file or fallback text
     if (data.supporting_document) {
@@ -55,6 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     fileInput.value = ''; // Always reset input on open
+
+    const replyInput = document.getElementById('reply');
+    if (data.status === 'Returned') {
+        replyInput.removeAttribute('disabled'); // in case it's disabled
+    }
   }
 
   // File input preview
@@ -100,8 +110,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Get current values to compare with original
     const currentPurpose = document.getElementById('purpose').value.trim();
+    const currentReply = document.getElementById('reply').value.trim();
+
     const hasChanges =
-      originalFileChanged || fileRemoved || currentPurpose !== originalPurpose;  // <-- updated
+      originalFileChanged ||
+      fileRemoved ||
+      currentPurpose !== originalPurpose ||
+      currentReply !== originalReply; // ✅ include reply
+
 
     if (!hasChanges) {
       alert('You won\'t be able to submit if there are no changes.');
